@@ -1,0 +1,12 @@
+type User {
+    id: ID! @unique
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+
+    emailAddress: String!
+
+    hashword: String!
+
+    displayName: String
+}

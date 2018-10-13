@@ -1,12 +1,18 @@
 type User {
     id: ID! @unique
 
+    displayName: String!
+
     createdAt: DateTime!
     updatedAt: DateTime!
+}
 
-    emailAddress: String!
+type SystemUserLogin {
+    id: ID! @unique
+    user: User!
+    environmentVariable: String! @unique
+    systemUsername: String! @unique
 
-    hashword: String!
-
-    displayName: String
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }

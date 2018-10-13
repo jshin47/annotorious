@@ -1,0 +1,16 @@
+mutation {
+
+  createSystemUser: createSystemUserLogin(
+    data: {
+      systemUsername: "SYSTEM",
+      environmentVariable: "V_SYSTEM",
+      user: {
+        create: {
+          displayName: "System User",
+        }
+      }
+    }
+  ) {
+    id
+  }
+}

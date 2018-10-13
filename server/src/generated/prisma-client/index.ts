@@ -11,6 +11,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  systemUserLogin: (where?: SystemUserLoginWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -32,6 +33,29 @@ export interface Prisma {
    * Queries
    */
 
+  systemUserLogin: (where: SystemUserLoginWhereUniqueInput) => SystemUserLogin;
+  systemUserLogins: (
+    args?: {
+      where?: SystemUserLoginWhereInput;
+      orderBy?: SystemUserLoginOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<SystemUserLoginNode>>;
+  systemUserLoginsConnection: (
+    args?: {
+      where?: SystemUserLoginWhereInput;
+      orderBy?: SystemUserLoginOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => SystemUserLoginConnection;
   user: (where: UserWhereUniqueInput) => User;
   users: (
     args?: {
@@ -61,6 +85,32 @@ export interface Prisma {
    * Mutations
    */
 
+  createSystemUserLogin: (data: SystemUserLoginCreateInput) => SystemUserLogin;
+  updateSystemUserLogin: (
+    args: {
+      data: SystemUserLoginUpdateInput;
+      where: SystemUserLoginWhereUniqueInput;
+    }
+  ) => SystemUserLogin;
+  updateManySystemUserLogins: (
+    args: {
+      data: SystemUserLoginUpdateInput;
+      where?: SystemUserLoginWhereInput;
+    }
+  ) => BatchPayload;
+  upsertSystemUserLogin: (
+    args: {
+      where: SystemUserLoginWhereUniqueInput;
+      create: SystemUserLoginCreateInput;
+      update: SystemUserLoginUpdateInput;
+    }
+  ) => SystemUserLogin;
+  deleteSystemUserLogin: (
+    where: SystemUserLoginWhereUniqueInput
+  ) => SystemUserLogin;
+  deleteManySystemUserLogins: (
+    where?: SystemUserLoginWhereInput
+  ) => BatchPayload;
   createUser: (data: UserCreateInput) => User;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -86,6 +136,9 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  systemUserLogin: (
+    where?: SystemUserLoginSubscriptionWhereInput
+  ) => SystemUserLoginSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -99,26 +152,154 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput =
+export type SystemUserLoginOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "environmentVariable_ASC"
+  | "environmentVariable_DESC"
+  | "systemUsername_ASC"
+  | "systemUsername_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "emailAddress_ASC"
-  | "emailAddress_DESC"
-  | "hashword_ASC"
-  | "hashword_DESC"
+  | "updatedAt_DESC";
+
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
   | "displayName_ASC"
-  | "displayName_DESC";
+  | "displayName_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserCreateInput {
-  emailAddress: String;
-  hashword: String;
+export interface UserUpdateDataInput {
   displayName?: String;
+}
+
+export type SystemUserLoginWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  environmentVariable?: String;
+  systemUsername?: String;
+}>;
+
+export interface SystemUserLoginUpdateInput {
+  user?: UserUpdateOneRequiredInput;
+  environmentVariable?: String;
+  systemUsername?: String;
+}
+
+export interface SystemUserLoginWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  environmentVariable?: String;
+  environmentVariable_not?: String;
+  environmentVariable_in?: String[] | String;
+  environmentVariable_not_in?: String[] | String;
+  environmentVariable_lt?: String;
+  environmentVariable_lte?: String;
+  environmentVariable_gt?: String;
+  environmentVariable_gte?: String;
+  environmentVariable_contains?: String;
+  environmentVariable_not_contains?: String;
+  environmentVariable_starts_with?: String;
+  environmentVariable_not_starts_with?: String;
+  environmentVariable_ends_with?: String;
+  environmentVariable_not_ends_with?: String;
+  systemUsername?: String;
+  systemUsername_not?: String;
+  systemUsername_in?: String[] | String;
+  systemUsername_not_in?: String[] | String;
+  systemUsername_lt?: String;
+  systemUsername_lte?: String;
+  systemUsername_gt?: String;
+  systemUsername_gte?: String;
+  systemUsername_contains?: String;
+  systemUsername_not_contains?: String;
+  systemUsername_starts_with?: String;
+  systemUsername_not_starts_with?: String;
+  systemUsername_ends_with?: String;
+  systemUsername_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput;
+  OR?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput;
+  NOT?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput;
+}
+
+export interface UserCreateInput {
+  displayName: String;
+}
+
+export interface UserUpdateInput {
+  displayName?: String;
+}
+
+export interface SystemUserLoginCreateInput {
+  user: UserCreateOneInput;
+  environmentVariable: String;
+  systemUsername: String;
+}
+
+export interface SystemUserLoginSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SystemUserLoginWhereInput;
+  AND?:
+    | SystemUserLoginSubscriptionWhereInput[]
+    | SystemUserLoginSubscriptionWhereInput;
+  OR?:
+    | SystemUserLoginSubscriptionWhereInput[]
+    | SystemUserLoginSubscriptionWhereInput;
+  NOT?:
+    | SystemUserLoginSubscriptionWhereInput[]
+    | SystemUserLoginSubscriptionWhereInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface UserWhereInput {
@@ -136,6 +317,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -152,57 +347,16 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  emailAddress?: String;
-  emailAddress_not?: String;
-  emailAddress_in?: String[] | String;
-  emailAddress_not_in?: String[] | String;
-  emailAddress_lt?: String;
-  emailAddress_lte?: String;
-  emailAddress_gt?: String;
-  emailAddress_gte?: String;
-  emailAddress_contains?: String;
-  emailAddress_not_contains?: String;
-  emailAddress_starts_with?: String;
-  emailAddress_not_starts_with?: String;
-  emailAddress_ends_with?: String;
-  emailAddress_not_ends_with?: String;
-  hashword?: String;
-  hashword_not?: String;
-  hashword_in?: String[] | String;
-  hashword_not_in?: String[] | String;
-  hashword_lt?: String;
-  hashword_lte?: String;
-  hashword_gt?: String;
-  hashword_gte?: String;
-  hashword_contains?: String;
-  hashword_not_contains?: String;
-  hashword_starts_with?: String;
-  hashword_not_starts_with?: String;
-  hashword_ends_with?: String;
-  hashword_not_ends_with?: String;
-  displayName?: String;
-  displayName_not?: String;
-  displayName_in?: String[] | String;
-  displayName_not_in?: String[] | String;
-  displayName_lt?: String;
-  displayName_lte?: String;
-  displayName_gt?: String;
-  displayName_gte?: String;
-  displayName_contains?: String;
-  displayName_not_contains?: String;
-  displayName_starts_with?: String;
-  displayName_not_starts_with?: String;
-  displayName_ends_with?: String;
-  displayName_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface UserUpdateInput {
-  emailAddress?: String;
-  hashword?: String;
-  displayName?: String;
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -216,12 +370,201 @@ export interface UserSubscriptionWhereInput {
   NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface AggregateUserNode {
+  count: Int;
+}
+
+export interface AggregateUser
+  extends Promise<AggregateUserNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUserNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayloadNode {
+  count: Long;
+}
+
+export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayloadNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface UserPreviousValuesNode {
+  id: ID_Output;
+  displayName: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserPreviousValues
+  extends Promise<UserPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SystemUserLoginPreviousValuesNode {
+  id: ID_Output;
+  environmentVariable: String;
+  systemUsername: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SystemUserLoginPreviousValues
+  extends Promise<SystemUserLoginPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  environmentVariable: () => Promise<String>;
+  systemUsername: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SystemUserLoginPreviousValuesSubscription
+  extends Promise<AsyncIterator<SystemUserLoginPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  environmentVariable: () => Promise<AsyncIterator<String>>;
+  systemUsername: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SystemUserLoginNode {
+  id: ID_Output;
+  environmentVariable: String;
+  systemUsername: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SystemUserLogin
+  extends Promise<SystemUserLoginNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = User>() => T;
+  environmentVariable: () => Promise<String>;
+  systemUsername: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SystemUserLoginSubscription
+  extends Promise<AsyncIterator<SystemUserLoginNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  environmentVariable: () => Promise<AsyncIterator<String>>;
+  systemUsername: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UserConnectionNode {}
+
+export interface UserConnection
+  extends Promise<UserConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<UserEdgeNode>>>() => T;
+  aggregate: <T = AggregateUser>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<UserEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface UserNode {
+  id: ID_Output;
+  displayName: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface User extends Promise<UserNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<UserNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SystemUserLoginSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface SystemUserLoginSubscriptionPayload
+  extends Promise<SystemUserLoginSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SystemUserLogin>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SystemUserLoginPreviousValues>() => T;
+}
+
+export interface SystemUserLoginSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SystemUserLoginSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SystemUserLoginSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SystemUserLoginPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateSystemUserLoginNode {
+  count: Int;
+}
+
+export interface AggregateSystemUserLogin
+  extends Promise<AggregateSystemUserLoginNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSystemUserLoginSubscription
+  extends Promise<AsyncIterator<AggregateSystemUserLoginNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserEdgeNode {
@@ -240,35 +583,42 @@ export interface UserEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserPreviousValuesNode {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  emailAddress: String;
-  hashword: String;
-  displayName?: String;
+export interface SystemUserLoginEdgeNode {
+  cursor: String;
 }
 
-export interface UserPreviousValues
-  extends Promise<UserPreviousValuesNode>,
+export interface SystemUserLoginEdge
+  extends Promise<SystemUserLoginEdgeNode>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  emailAddress: () => Promise<String>;
-  hashword: () => Promise<String>;
-  displayName: () => Promise<String>;
+  node: <T = SystemUserLogin>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValuesNode>>,
+export interface SystemUserLoginEdgeSubscription
+  extends Promise<AsyncIterator<SystemUserLoginEdgeNode>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  emailAddress: () => Promise<AsyncIterator<String>>;
-  hashword: () => Promise<AsyncIterator<String>>;
-  displayName: () => Promise<AsyncIterator<String>>;
+  node: <T = SystemUserLoginSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SystemUserLoginConnectionNode {}
+
+export interface SystemUserLoginConnection
+  extends Promise<SystemUserLoginConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<SystemUserLoginEdgeNode>>>() => T;
+  aggregate: <T = AggregateSystemUserLogin>() => T;
+}
+
+export interface SystemUserLoginConnectionSubscription
+  extends Promise<AsyncIterator<SystemUserLoginConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<SystemUserLoginEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateSystemUserLoginSubscription>() => T;
 }
 
 export interface PageInfoNode {
@@ -294,51 +644,6 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUserNode {
-  count: Int;
-}
-
-export interface AggregateUser
-  extends Promise<AggregateUserNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUserNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserNode {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  emailAddress: String;
-  hashword: String;
-  displayName?: String;
-}
-
-export interface User extends Promise<UserNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  emailAddress: () => Promise<String>;
-  hashword: () => Promise<String>;
-  displayName: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<UserNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  emailAddress: () => Promise<AsyncIterator<String>>;
-  hashword: () => Promise<AsyncIterator<String>>;
-  displayName: () => Promise<AsyncIterator<String>>;
-}
-
 export interface UserSubscriptionPayloadNode {
   mutation: MutationType;
   updatedFields?: String[];
@@ -362,42 +667,7 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface UserConnectionNode {}
-
-export interface UserConnection
-  extends Promise<UserConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<UserEdgeNode>>>() => T;
-  aggregate: <T = AggregateUser>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<UserEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface BatchPayloadNode {
-  count: Long;
-}
-
-export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayloadNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export type Long = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -406,14 +676,19 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
-
-/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
 
 /*
 DateTime scalar input type, allowing Date
@@ -424,8 +699,6 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
-
-export type Long = string;
 
 /**
  * Type Defs

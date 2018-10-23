@@ -1,7 +1,6 @@
 import { SystemUserLoginResolvers } from "../generated/resolvers";
 import { TypeMap } from "./types/TypeMap";
 import { UserParent } from "./User";
-// import {Prisma} from "../generated/prisma-client";
 
 export interface SystemUserLoginParent {
   id: string;
@@ -13,13 +12,10 @@ export interface SystemUserLoginParent {
 }
 
 export const SystemUserLogin: SystemUserLoginResolvers.Type<TypeMap> = {
-  id: parent => 'a', // parent.id,
-  user: (parent, args, ctx: any) => {
-    console.log('resolving')
-    return ctx.db.systemUserLogin({id: parent.id}).user()
-  },
+  id: parent => parent.id,
+  user: parent => parent.user,
   environmentVariable: parent => parent.environmentVariable,
-  systemUsername: parent => 'a',// parent.systemUsername,
+  systemUsername: parent => parent.systemUsername,
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt
 };

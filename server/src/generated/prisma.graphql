@@ -1,5 +1,9 @@
 # source: http://localhost:4466
-# timestamp: Mon Oct 08 2018 03:58:47 GMT-0400 (Eastern Daylight Time)
+# timestamp: Tue Oct 23 2018 03:54:10 GMT-0400 (Eastern Daylight Time)
+
+type AggregateLocalLogin {
+  count: Int!
+}
 
 type AggregateSystemUserLogin {
   count: Int!
@@ -16,6 +20,316 @@ type BatchPayload {
 
 scalar DateTime
 
+type LocalLogin implements Node {
+  id: ID!
+  user: User!
+  username: String!
+  hashword: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type LocalLoginConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LocalLoginEdge]!
+  aggregate: AggregateLocalLogin!
+}
+
+input LocalLoginCreateInput {
+  username: String!
+  hashword: String!
+  user: UserCreateOneWithoutLocalLoginInput!
+}
+
+input LocalLoginCreateOneWithoutUserInput {
+  create: LocalLoginCreateWithoutUserInput
+  connect: LocalLoginWhereUniqueInput
+}
+
+input LocalLoginCreateWithoutUserInput {
+  username: String!
+  hashword: String!
+}
+
+"""An edge in a connection."""
+type LocalLoginEdge {
+  """The item at the end of the edge."""
+  node: LocalLogin!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum LocalLoginOrderByInput {
+  id_ASC
+  id_DESC
+  username_ASC
+  username_DESC
+  hashword_ASC
+  hashword_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type LocalLoginPreviousValues {
+  id: ID!
+  username: String!
+  hashword: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type LocalLoginSubscriptionPayload {
+  mutation: MutationType!
+  node: LocalLogin
+  updatedFields: [String!]
+  previousValues: LocalLoginPreviousValues
+}
+
+input LocalLoginSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LocalLoginSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LocalLoginSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LocalLoginSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: LocalLoginWhereInput
+}
+
+input LocalLoginUpdateInput {
+  username: String
+  hashword: String
+  user: UserUpdateOneRequiredWithoutLocalLoginInput
+}
+
+input LocalLoginUpdateOneWithoutUserInput {
+  create: LocalLoginCreateWithoutUserInput
+  connect: LocalLoginWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: LocalLoginUpdateWithoutUserDataInput
+  upsert: LocalLoginUpsertWithoutUserInput
+}
+
+input LocalLoginUpdateWithoutUserDataInput {
+  username: String
+  hashword: String
+}
+
+input LocalLoginUpsertWithoutUserInput {
+  update: LocalLoginUpdateWithoutUserDataInput!
+  create: LocalLoginCreateWithoutUserInput!
+}
+
+input LocalLoginWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LocalLoginWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LocalLoginWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LocalLoginWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
+  hashword: String
+
+  """All values that are not equal to given value."""
+  hashword_not: String
+
+  """All values that are contained in given list."""
+  hashword_in: [String!]
+
+  """All values that are not contained in given list."""
+  hashword_not_in: [String!]
+
+  """All values less than the given value."""
+  hashword_lt: String
+
+  """All values less than or equal the given value."""
+  hashword_lte: String
+
+  """All values greater than the given value."""
+  hashword_gt: String
+
+  """All values greater than or equal the given value."""
+  hashword_gte: String
+
+  """All values containing the given string."""
+  hashword_contains: String
+
+  """All values not containing the given string."""
+  hashword_not_contains: String
+
+  """All values starting with the given string."""
+  hashword_starts_with: String
+
+  """All values not starting with the given string."""
+  hashword_not_starts_with: String
+
+  """All values ending with the given string."""
+  hashword_ends_with: String
+
+  """All values not ending with the given string."""
+  hashword_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  user: UserWhereInput
+}
+
+input LocalLoginWhereUniqueInput {
+  id: ID
+  username: String
+}
+
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
 Long can represent values between -(2^63) and 2^63 - 1.
@@ -23,18 +337,24 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createSystemUserLogin(data: SystemUserLoginCreateInput!): SystemUserLogin!
   createUser(data: UserCreateInput!): User!
-  updateSystemUserLogin(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  createSystemUserLogin(data: SystemUserLoginCreateInput!): SystemUserLogin!
+  createLocalLogin(data: LocalLoginCreateInput!): LocalLogin!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  deleteSystemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  updateSystemUserLogin(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  updateLocalLogin(data: LocalLoginUpdateInput!, where: LocalLoginWhereUniqueInput!): LocalLogin
   deleteUser(where: UserWhereUniqueInput!): User
-  upsertSystemUserLogin(where: SystemUserLoginWhereUniqueInput!, create: SystemUserLoginCreateInput!, update: SystemUserLoginUpdateInput!): SystemUserLogin!
+  deleteSystemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  deleteLocalLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManySystemUserLogins(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereInput): BatchPayload!
+  upsertSystemUserLogin(where: SystemUserLoginWhereUniqueInput!, create: SystemUserLoginCreateInput!, update: SystemUserLoginUpdateInput!): SystemUserLogin!
+  upsertLocalLogin(where: LocalLoginWhereUniqueInput!, create: LocalLoginCreateInput!, update: LocalLoginUpdateInput!): LocalLogin!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  deleteManySystemUserLogins(where: SystemUserLoginWhereInput): BatchPayload!
+  updateManySystemUserLogins(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereInput): BatchPayload!
+  updateManyLocalLogins(data: LocalLoginUpdateInput!, where: LocalLoginWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManySystemUserLogins(where: SystemUserLoginWhereInput): BatchPayload!
+  deleteManyLocalLogins(where: LocalLoginWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -65,12 +385,15 @@ type PageInfo {
 }
 
 type Query {
-  systemUserLogins(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemUserLogin]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  systemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  systemUserLogins(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemUserLogin]!
+  localLogins(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LocalLogin]!
   user(where: UserWhereUniqueInput!): User
-  systemUserLoginsConnection(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemUserLoginConnection!
+  systemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  localLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  systemUserLoginsConnection(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemUserLoginConnection!
+  localLoginsConnection(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocalLoginConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -80,8 +403,9 @@ type Query {
 }
 
 type Subscription {
-  systemUserLogin(where: SystemUserLoginSubscriptionWhereInput): SystemUserLoginSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  systemUserLogin(where: SystemUserLoginSubscriptionWhereInput): SystemUserLoginSubscriptionPayload
+  localLogin(where: LocalLoginSubscriptionWhereInput): LocalLoginSubscriptionPayload
 }
 
 type SystemUserLogin implements Node {
@@ -106,7 +430,17 @@ type SystemUserLoginConnection {
 input SystemUserLoginCreateInput {
   environmentVariable: String!
   systemUsername: String!
-  user: UserCreateOneInput!
+  user: UserCreateOneWithoutSystemUserLoginInput!
+}
+
+input SystemUserLoginCreateOneWithoutUserInput {
+  create: SystemUserLoginCreateWithoutUserInput
+  connect: SystemUserLoginWhereUniqueInput
+}
+
+input SystemUserLoginCreateWithoutUserInput {
+  environmentVariable: String!
+  systemUsername: String!
 }
 
 """An edge in a connection."""
@@ -181,7 +515,26 @@ input SystemUserLoginSubscriptionWhereInput {
 input SystemUserLoginUpdateInput {
   environmentVariable: String
   systemUsername: String
-  user: UserUpdateOneRequiredInput
+  user: UserUpdateOneRequiredWithoutSystemUserLoginInput
+}
+
+input SystemUserLoginUpdateOneWithoutUserInput {
+  create: SystemUserLoginCreateWithoutUserInput
+  connect: SystemUserLoginWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: SystemUserLoginUpdateWithoutUserDataInput
+  upsert: SystemUserLoginUpsertWithoutUserInput
+}
+
+input SystemUserLoginUpdateWithoutUserDataInput {
+  environmentVariable: String
+  systemUsername: String
+}
+
+input SystemUserLoginUpsertWithoutUserInput {
+  update: SystemUserLoginUpdateWithoutUserDataInput!
+  create: SystemUserLoginCreateWithoutUserInput!
 }
 
 input SystemUserLoginWhereInput {
@@ -371,6 +724,8 @@ type User implements Node {
   displayName: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  systemUserLogin: SystemUserLogin
+  localLogin: LocalLogin
 }
 
 """A connection to a list of items."""
@@ -385,11 +740,28 @@ type UserConnection {
 
 input UserCreateInput {
   displayName: String!
+  systemUserLogin: SystemUserLoginCreateOneWithoutUserInput
+  localLogin: LocalLoginCreateOneWithoutUserInput
 }
 
-input UserCreateOneInput {
-  create: UserCreateInput
+input UserCreateOneWithoutLocalLoginInput {
+  create: UserCreateWithoutLocalLoginInput
   connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutSystemUserLoginInput {
+  create: UserCreateWithoutSystemUserLoginInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutLocalLoginInput {
+  displayName: String!
+  systemUserLogin: SystemUserLoginCreateOneWithoutUserInput
+}
+
+input UserCreateWithoutSystemUserLoginInput {
+  displayName: String!
+  localLogin: LocalLoginCreateOneWithoutUserInput
 }
 
 """An edge in a connection."""
@@ -458,24 +830,44 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
-input UserUpdateDataInput {
-  displayName: String
-}
-
 input UserUpdateInput {
   displayName: String
+  systemUserLogin: SystemUserLoginUpdateOneWithoutUserInput
+  localLogin: LocalLoginUpdateOneWithoutUserInput
 }
 
-input UserUpdateOneRequiredInput {
-  create: UserCreateInput
+input UserUpdateOneRequiredWithoutLocalLoginInput {
+  create: UserCreateWithoutLocalLoginInput
   connect: UserWhereUniqueInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
+  update: UserUpdateWithoutLocalLoginDataInput
+  upsert: UserUpsertWithoutLocalLoginInput
 }
 
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
+input UserUpdateOneRequiredWithoutSystemUserLoginInput {
+  create: UserCreateWithoutSystemUserLoginInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutSystemUserLoginDataInput
+  upsert: UserUpsertWithoutSystemUserLoginInput
+}
+
+input UserUpdateWithoutLocalLoginDataInput {
+  displayName: String
+  systemUserLogin: SystemUserLoginUpdateOneWithoutUserInput
+}
+
+input UserUpdateWithoutSystemUserLoginDataInput {
+  displayName: String
+  localLogin: LocalLoginUpdateOneWithoutUserInput
+}
+
+input UserUpsertWithoutLocalLoginInput {
+  update: UserUpdateWithoutLocalLoginDataInput!
+  create: UserCreateWithoutLocalLoginInput!
+}
+
+input UserUpsertWithoutSystemUserLoginInput {
+  update: UserUpdateWithoutSystemUserLoginDataInput!
+  create: UserCreateWithoutSystemUserLoginInput!
 }
 
 input UserWhereInput {
@@ -611,6 +1003,8 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  systemUserLogin: SystemUserLoginWhereInput
+  localLogin: LocalLoginWhereInput
 }
 
 input UserWhereUniqueInput {

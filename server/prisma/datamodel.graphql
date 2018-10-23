@@ -5,6 +5,9 @@ type User {
 
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    systemUserLogin: SystemUserLogin @unique
+    localLogin: LocalLogin @unique
 }
 
 type SystemUserLogin {
@@ -16,3 +19,14 @@ type SystemUserLogin {
     createdAt: DateTime!
     updatedAt: DateTime!
 }
+
+type LocalLogin {
+    id: ID! @unique
+    user: User!
+    username: String! @unique
+    hashword: String!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+

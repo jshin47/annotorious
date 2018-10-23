@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken'
-
+import bcrypt from 'bcryptjs';
 import {AuthPayloadParent} from "../AuthPayload";
 
 export async function login(parent, { user, password }: { user: string, password: string }, context, info): Promise<AuthPayloadParent> {
@@ -16,6 +16,21 @@ export async function login(parent, { user, password }: { user: string, password
     const correctPassword = process.env[systemUserLogin.environmentVariable];
     if (correctPassword && correctPassword === password) {
       const userIdentity = await context.db.user({ id: systemUserLogin.user.id });
+      const token = jwt.sign({ userId: userIdentity.id }, 'abc')
+      return {
+        user: userIdentity,
+        token,
+      }
+    }
+  }
+
+  const localUserLogins = await context.db.localUserLogins({ where: { username: user }}).$fragment(`{ hashword  user { id } }`);
+
+  if (localUserLogins && localUserLogins.length === 1) {
+    const localUserLogin: any = localUserLogins[0];
+    const correctPassword = await bcrypt.compare(password, localUserLogin.hashword);
+    if (correctPassword) {
+      const userIdentity = await context.db.user({ id: localUserLogin.user.id });
       const token = jwt.sign({ userId: userIdentity.id }, 'abc')
       return {
         user: userIdentity,

@@ -6,11 +6,13 @@ import { Mutation } from "./Mutation";
 import { AuthPayload } from "./AuthPayload";
 import { User } from "./User";
 import { SystemUserLogin } from "./SystemUserLogin";
+import { LocalLogin } from "./LocalLogin";
 
 export const resolvers: IResolvers<TypeMap> = {
   Query,
   Mutation,
   AuthPayload,
   User,
-  SystemUserLogin
+  SystemUserLogin,
+  LocalLogin
 };

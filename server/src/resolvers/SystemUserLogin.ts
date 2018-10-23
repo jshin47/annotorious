@@ -13,13 +13,13 @@ export interface SystemUserLoginParent {
 }
 
 export const SystemUserLogin: SystemUserLoginResolvers.Type<TypeMap> = {
-  id: parent => parent.id,
+  id: parent => 'a', // parent.id,
   user: (parent, args, ctx: any) => {
     console.log('resolving')
     return ctx.db.systemUserLogin({id: parent.id}).user()
   },
   environmentVariable: parent => parent.environmentVariable,
-  systemUsername: parent => parent.systemUsername,
+  systemUsername: parent => 'a',// parent.systemUsername,
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt
 };

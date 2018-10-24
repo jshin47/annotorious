@@ -12,7 +12,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 
 export interface Exists {
   localLogin: (where?: LocalLoginWhereInput) => Promise<boolean>;
-  systemUserLogin: (where?: SystemUserLoginWhereInput) => Promise<boolean>;
+  systemLogin: (where?: SystemLoginWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -57,29 +57,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => LocalLoginConnection;
-  systemUserLogin: (where: SystemUserLoginWhereUniqueInput) => SystemUserLogin;
-  systemUserLogins: (
+  systemLogin: (where: SystemLoginWhereUniqueInput) => SystemLogin;
+  systemLogins: (
     args?: {
-      where?: SystemUserLoginWhereInput;
-      orderBy?: SystemUserLoginOrderByInput;
+      where?: SystemLoginWhereInput;
+      orderBy?: SystemLoginOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => Promise<Array<SystemUserLoginNode>>;
-  systemUserLoginsConnection: (
+  ) => Promise<Array<SystemLoginNode>>;
+  systemLoginsConnection: (
     args?: {
-      where?: SystemUserLoginWhereInput;
-      orderBy?: SystemUserLoginOrderByInput;
+      where?: SystemLoginWhereInput;
+      orderBy?: SystemLoginOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => SystemUserLoginConnection;
+  ) => SystemLoginConnection;
   user: (where: UserWhereUniqueInput) => User;
   users: (
     args?: {
@@ -125,32 +125,22 @@ export interface Prisma {
   ) => LocalLogin;
   deleteLocalLogin: (where: LocalLoginWhereUniqueInput) => LocalLogin;
   deleteManyLocalLogins: (where?: LocalLoginWhereInput) => BatchPayload;
-  createSystemUserLogin: (data: SystemUserLoginCreateInput) => SystemUserLogin;
-  updateSystemUserLogin: (
-    args: {
-      data: SystemUserLoginUpdateInput;
-      where: SystemUserLoginWhereUniqueInput;
-    }
-  ) => SystemUserLogin;
-  updateManySystemUserLogins: (
-    args: {
-      data: SystemUserLoginUpdateInput;
-      where?: SystemUserLoginWhereInput;
-    }
+  createSystemLogin: (data: SystemLoginCreateInput) => SystemLogin;
+  updateSystemLogin: (
+    args: { data: SystemLoginUpdateInput; where: SystemLoginWhereUniqueInput }
+  ) => SystemLogin;
+  updateManySystemLogins: (
+    args: { data: SystemLoginUpdateInput; where?: SystemLoginWhereInput }
   ) => BatchPayload;
-  upsertSystemUserLogin: (
+  upsertSystemLogin: (
     args: {
-      where: SystemUserLoginWhereUniqueInput;
-      create: SystemUserLoginCreateInput;
-      update: SystemUserLoginUpdateInput;
+      where: SystemLoginWhereUniqueInput;
+      create: SystemLoginCreateInput;
+      update: SystemLoginUpdateInput;
     }
-  ) => SystemUserLogin;
-  deleteSystemUserLogin: (
-    where: SystemUserLoginWhereUniqueInput
-  ) => SystemUserLogin;
-  deleteManySystemUserLogins: (
-    where?: SystemUserLoginWhereInput
-  ) => BatchPayload;
+  ) => SystemLogin;
+  deleteSystemLogin: (where: SystemLoginWhereUniqueInput) => SystemLogin;
+  deleteManySystemLogins: (where?: SystemLoginWhereInput) => BatchPayload;
   createUser: (data: UserCreateInput) => User;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -179,9 +169,9 @@ export interface Subscription {
   localLogin: (
     where?: LocalLoginSubscriptionWhereInput
   ) => LocalLoginSubscriptionPayloadSubscription;
-  systemUserLogin: (
-    where?: SystemUserLoginSubscriptionWhereInput
-  ) => SystemUserLoginSubscriptionPayloadSubscription;
+  systemLogin: (
+    where?: SystemLoginSubscriptionWhereInput
+  ) => SystemLoginSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -207,13 +197,13 @@ export type LocalLoginOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type SystemUserLoginOrderByInput =
+export type SystemLoginOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "environmentVariable_ASC"
-  | "environmentVariable_DESC"
-  | "systemUsername_ASC"
-  | "systemUsername_DESC"
+  | "username_ASC"
+  | "username_DESC"
+  | "passwordEnvironmentVariable_ASC"
+  | "passwordEnvironmentVariable_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -247,10 +237,10 @@ export interface LocalLoginCreateWithoutUserInput {
   hashword: String;
 }
 
-export interface SystemUserLoginCreateInput {
-  user: UserCreateOneWithoutSystemUserLoginInput;
-  environmentVariable: String;
-  systemUsername: String;
+export interface SystemLoginCreateInput {
+  user: UserCreateOneWithoutSystemLoginInput;
+  username: String;
+  passwordEnvironmentVariable: String;
 }
 
 export interface LocalLoginCreateOneWithoutUserInput {
@@ -258,21 +248,21 @@ export interface LocalLoginCreateOneWithoutUserInput {
   connect?: LocalLoginWhereUniqueInput;
 }
 
-export interface SystemUserLoginUpdateOneWithoutUserInput {
-  create?: SystemUserLoginCreateWithoutUserInput;
-  update?: SystemUserLoginUpdateWithoutUserDataInput;
-  upsert?: SystemUserLoginUpsertWithoutUserInput;
+export interface SystemLoginUpdateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput;
+  update?: SystemLoginUpdateWithoutUserDataInput;
+  upsert?: SystemLoginUpsertWithoutUserInput;
   delete?: Boolean;
   disconnect?: Boolean;
-  connect?: SystemUserLoginWhereUniqueInput;
+  connect?: SystemLoginWhereUniqueInput;
 }
 
-export interface UserCreateWithoutSystemUserLoginInput {
+export interface UserCreateWithoutSystemLoginInput {
   displayName: String;
   localLogin?: LocalLoginCreateOneWithoutUserInput;
 }
 
-export interface SystemUserLoginWhereInput {
+export interface SystemLoginWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -288,34 +278,34 @@ export interface SystemUserLoginWhereInput {
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
   user?: UserWhereInput;
-  environmentVariable?: String;
-  environmentVariable_not?: String;
-  environmentVariable_in?: String[] | String;
-  environmentVariable_not_in?: String[] | String;
-  environmentVariable_lt?: String;
-  environmentVariable_lte?: String;
-  environmentVariable_gt?: String;
-  environmentVariable_gte?: String;
-  environmentVariable_contains?: String;
-  environmentVariable_not_contains?: String;
-  environmentVariable_starts_with?: String;
-  environmentVariable_not_starts_with?: String;
-  environmentVariable_ends_with?: String;
-  environmentVariable_not_ends_with?: String;
-  systemUsername?: String;
-  systemUsername_not?: String;
-  systemUsername_in?: String[] | String;
-  systemUsername_not_in?: String[] | String;
-  systemUsername_lt?: String;
-  systemUsername_lte?: String;
-  systemUsername_gt?: String;
-  systemUsername_gte?: String;
-  systemUsername_contains?: String;
-  systemUsername_not_contains?: String;
-  systemUsername_starts_with?: String;
-  systemUsername_not_starts_with?: String;
-  systemUsername_ends_with?: String;
-  systemUsername_not_ends_with?: String;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
+  passwordEnvironmentVariable?: String;
+  passwordEnvironmentVariable_not?: String;
+  passwordEnvironmentVariable_in?: String[] | String;
+  passwordEnvironmentVariable_not_in?: String[] | String;
+  passwordEnvironmentVariable_lt?: String;
+  passwordEnvironmentVariable_lte?: String;
+  passwordEnvironmentVariable_gt?: String;
+  passwordEnvironmentVariable_gte?: String;
+  passwordEnvironmentVariable_contains?: String;
+  passwordEnvironmentVariable_not_contains?: String;
+  passwordEnvironmentVariable_starts_with?: String;
+  passwordEnvironmentVariable_not_starts_with?: String;
+  passwordEnvironmentVariable_ends_with?: String;
+  passwordEnvironmentVariable_not_ends_with?: String;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -332,31 +322,25 @@ export interface SystemUserLoginWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  AND?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput;
-  OR?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput;
-  NOT?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput;
+  AND?: SystemLoginWhereInput[] | SystemLoginWhereInput;
+  OR?: SystemLoginWhereInput[] | SystemLoginWhereInput;
+  NOT?: SystemLoginWhereInput[] | SystemLoginWhereInput;
 }
 
-export interface SystemUserLoginSubscriptionWhereInput {
+export interface SystemLoginSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: SystemUserLoginWhereInput;
-  AND?:
-    | SystemUserLoginSubscriptionWhereInput[]
-    | SystemUserLoginSubscriptionWhereInput;
-  OR?:
-    | SystemUserLoginSubscriptionWhereInput[]
-    | SystemUserLoginSubscriptionWhereInput;
-  NOT?:
-    | SystemUserLoginSubscriptionWhereInput[]
-    | SystemUserLoginSubscriptionWhereInput;
+  node?: SystemLoginWhereInput;
+  AND?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+  OR?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+  NOT?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
 }
 
 export interface UserUpdateInput {
   displayName?: String;
-  systemUserLogin?: SystemUserLoginUpdateOneWithoutUserInput;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
   localLogin?: LocalLoginUpdateOneWithoutUserInput;
 }
 
@@ -366,9 +350,9 @@ export interface LocalLoginCreateInput {
   hashword: String;
 }
 
-export interface UserUpsertWithoutSystemUserLoginInput {
-  update: UserUpdateWithoutSystemUserLoginDataInput;
-  create: UserCreateWithoutSystemUserLoginInput;
+export interface UserUpsertWithoutSystemLoginInput {
+  update: UserUpdateWithoutSystemLoginDataInput;
+  create: UserCreateWithoutSystemLoginInput;
 }
 
 export interface UserCreateOneWithoutLocalLoginInput {
@@ -376,15 +360,15 @@ export interface UserCreateOneWithoutLocalLoginInput {
   connect?: UserWhereUniqueInput;
 }
 
-export type SystemUserLoginWhereUniqueInput = AtLeastOne<{
+export type SystemLoginWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  environmentVariable?: String;
-  systemUsername?: String;
+  username?: String;
+  passwordEnvironmentVariable?: String;
 }>;
 
 export interface UserCreateWithoutLocalLoginInput {
   displayName: String;
-  systemUserLogin?: SystemUserLoginCreateOneWithoutUserInput;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
 }
 
 export interface LocalLoginUpdateOneWithoutUserInput {
@@ -396,31 +380,31 @@ export interface LocalLoginUpdateOneWithoutUserInput {
   connect?: LocalLoginWhereUniqueInput;
 }
 
-export interface SystemUserLoginCreateOneWithoutUserInput {
-  create?: SystemUserLoginCreateWithoutUserInput;
-  connect?: SystemUserLoginWhereUniqueInput;
+export interface SystemLoginCreateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput;
+  connect?: SystemLoginWhereUniqueInput;
 }
 
-export interface UserUpdateOneRequiredWithoutSystemUserLoginInput {
-  create?: UserCreateWithoutSystemUserLoginInput;
-  update?: UserUpdateWithoutSystemUserLoginDataInput;
-  upsert?: UserUpsertWithoutSystemUserLoginInput;
+export interface UserUpdateOneRequiredWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput;
+  update?: UserUpdateWithoutSystemLoginDataInput;
+  upsert?: UserUpsertWithoutSystemLoginInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface SystemUserLoginCreateWithoutUserInput {
-  environmentVariable: String;
-  systemUsername: String;
+export interface SystemLoginCreateWithoutUserInput {
+  username: String;
+  passwordEnvironmentVariable: String;
 }
 
-export interface SystemUserLoginUpdateInput {
-  user?: UserUpdateOneRequiredWithoutSystemUserLoginInput;
-  environmentVariable?: String;
-  systemUsername?: String;
+export interface SystemLoginUpdateInput {
+  user?: UserUpdateOneRequiredWithoutSystemLoginInput;
+  username?: String;
+  passwordEnvironmentVariable?: String;
 }
 
-export interface UserCreateOneWithoutSystemUserLoginInput {
-  create?: UserCreateWithoutSystemUserLoginInput;
+export interface UserCreateOneWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput;
   connect?: UserWhereUniqueInput;
 }
 
@@ -444,13 +428,13 @@ export interface UserUpdateOneRequiredWithoutLocalLoginInput {
 
 export interface UserCreateInput {
   displayName: String;
-  systemUserLogin?: SystemUserLoginCreateOneWithoutUserInput;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
   localLogin?: LocalLoginCreateOneWithoutUserInput;
 }
 
 export interface UserUpdateWithoutLocalLoginDataInput {
   displayName?: String;
-  systemUserLogin?: SystemUserLoginUpdateOneWithoutUserInput;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
 }
 
 export interface LocalLoginUpdateWithoutUserDataInput {
@@ -463,14 +447,14 @@ export interface UserUpsertWithoutLocalLoginInput {
   create: UserCreateWithoutLocalLoginInput;
 }
 
-export interface SystemUserLoginUpsertWithoutUserInput {
-  update: SystemUserLoginUpdateWithoutUserDataInput;
-  create: SystemUserLoginCreateWithoutUserInput;
+export interface SystemLoginUpsertWithoutUserInput {
+  update: SystemLoginUpdateWithoutUserDataInput;
+  create: SystemLoginCreateWithoutUserInput;
 }
 
-export interface SystemUserLoginUpdateWithoutUserDataInput {
-  environmentVariable?: String;
-  systemUsername?: String;
+export interface SystemLoginUpdateWithoutUserDataInput {
+  username?: String;
+  passwordEnvironmentVariable?: String;
 }
 
 export interface LocalLoginWhereInput {
@@ -538,7 +522,7 @@ export interface LocalLoginWhereInput {
   NOT?: LocalLoginWhereInput[] | LocalLoginWhereInput;
 }
 
-export interface UserUpdateWithoutSystemUserLoginDataInput {
+export interface UserUpdateWithoutSystemLoginDataInput {
   displayName?: String;
   localLogin?: LocalLoginUpdateOneWithoutUserInput;
 }
@@ -604,7 +588,7 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  systemUserLogin?: SystemUserLoginWhereInput;
+  systemLogin?: SystemLoginWhereInput;
   localLogin?: LocalLoginWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
@@ -662,32 +646,30 @@ export interface LocalLoginEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface SystemUserLoginNode {
+export interface SystemLoginNode {
   id: ID_Output;
-  environmentVariable: String;
-  systemUsername: String;
+  username: String;
+  passwordEnvironmentVariable: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface SystemUserLogin
-  extends Promise<SystemUserLoginNode>,
-    Fragmentable {
+export interface SystemLogin extends Promise<SystemLoginNode>, Fragmentable {
   id: () => Promise<ID_Output>;
   user: <T = User>() => T;
-  environmentVariable: () => Promise<String>;
-  systemUsername: () => Promise<String>;
+  username: () => Promise<String>;
+  passwordEnvironmentVariable: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface SystemUserLoginSubscription
-  extends Promise<AsyncIterator<SystemUserLoginNode>>,
+export interface SystemLoginSubscription
+  extends Promise<AsyncIterator<SystemLoginNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   user: <T = UserSubscription>() => T;
-  environmentVariable: () => Promise<AsyncIterator<String>>;
-  systemUsername: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
+  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -706,27 +688,27 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface SystemUserLoginSubscriptionPayloadNode {
+export interface SystemLoginSubscriptionPayloadNode {
   mutation: MutationType;
   updatedFields?: String[];
 }
 
-export interface SystemUserLoginSubscriptionPayload
-  extends Promise<SystemUserLoginSubscriptionPayloadNode>,
+export interface SystemLoginSubscriptionPayload
+  extends Promise<SystemLoginSubscriptionPayloadNode>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = SystemUserLogin>() => T;
+  node: <T = SystemLogin>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = SystemUserLoginPreviousValues>() => T;
+  previousValues: <T = SystemLoginPreviousValues>() => T;
 }
 
-export interface SystemUserLoginSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SystemUserLoginSubscriptionPayloadNode>>,
+export interface SystemLoginSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SystemLoginSubscriptionPayloadNode>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SystemUserLoginSubscription>() => T;
+  node: <T = SystemLoginSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SystemUserLoginPreviousValuesSubscription>() => T;
+  previousValues: <T = SystemLoginPreviousValuesSubscription>() => T;
 }
 
 export interface AggregateUserNode {
@@ -786,18 +768,18 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateSystemUserLoginNode {
+export interface AggregateSystemLoginNode {
   count: Int;
 }
 
-export interface AggregateSystemUserLogin
-  extends Promise<AggregateSystemUserLoginNode>,
+export interface AggregateSystemLogin
+  extends Promise<AggregateSystemLoginNode>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateSystemUserLoginSubscription
-  extends Promise<AsyncIterator<AggregateSystemUserLoginNode>>,
+export interface AggregateSystemLoginSubscription
+  extends Promise<AsyncIterator<AggregateSystemLoginNode>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -820,50 +802,50 @@ export interface LocalLoginConnectionSubscription
   aggregate: <T = AggregateLocalLoginSubscription>() => T;
 }
 
-export interface SystemUserLoginConnectionNode {}
+export interface SystemLoginConnectionNode {}
 
-export interface SystemUserLoginConnection
-  extends Promise<SystemUserLoginConnectionNode>,
+export interface SystemLoginConnection
+  extends Promise<SystemLoginConnectionNode>,
     Fragmentable {
   pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<SystemUserLoginEdgeNode>>>() => T;
-  aggregate: <T = AggregateSystemUserLogin>() => T;
+  edges: <T = Promise<Array<SystemLoginEdgeNode>>>() => T;
+  aggregate: <T = AggregateSystemLogin>() => T;
 }
 
-export interface SystemUserLoginConnectionSubscription
-  extends Promise<AsyncIterator<SystemUserLoginConnectionNode>>,
+export interface SystemLoginConnectionSubscription
+  extends Promise<AsyncIterator<SystemLoginConnectionNode>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <
-    T = Promise<AsyncIterator<Array<SystemUserLoginEdgeSubscription>>>
+    T = Promise<AsyncIterator<Array<SystemLoginEdgeSubscription>>>
   >() => T;
-  aggregate: <T = AggregateSystemUserLoginSubscription>() => T;
+  aggregate: <T = AggregateSystemLoginSubscription>() => T;
 }
 
-export interface SystemUserLoginPreviousValuesNode {
+export interface SystemLoginPreviousValuesNode {
   id: ID_Output;
-  environmentVariable: String;
-  systemUsername: String;
+  username: String;
+  passwordEnvironmentVariable: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface SystemUserLoginPreviousValues
-  extends Promise<SystemUserLoginPreviousValuesNode>,
+export interface SystemLoginPreviousValues
+  extends Promise<SystemLoginPreviousValuesNode>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  environmentVariable: () => Promise<String>;
-  systemUsername: () => Promise<String>;
+  username: () => Promise<String>;
+  passwordEnvironmentVariable: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface SystemUserLoginPreviousValuesSubscription
-  extends Promise<AsyncIterator<SystemUserLoginPreviousValuesNode>>,
+export interface SystemLoginPreviousValuesSubscription
+  extends Promise<AsyncIterator<SystemLoginPreviousValuesNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  environmentVariable: () => Promise<AsyncIterator<String>>;
-  systemUsername: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
+  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -954,7 +936,7 @@ export interface User extends Promise<UserNode>, Fragmentable {
   displayName: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  systemUserLogin: <T = SystemUserLogin>() => T;
+  systemLogin: <T = SystemLogin>() => T;
   localLogin: <T = LocalLogin>() => T;
 }
 
@@ -965,25 +947,25 @@ export interface UserSubscription
   displayName: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  systemUserLogin: <T = SystemUserLoginSubscription>() => T;
+  systemLogin: <T = SystemLoginSubscription>() => T;
   localLogin: <T = LocalLoginSubscription>() => T;
 }
 
-export interface SystemUserLoginEdgeNode {
+export interface SystemLoginEdgeNode {
   cursor: String;
 }
 
-export interface SystemUserLoginEdge
-  extends Promise<SystemUserLoginEdgeNode>,
+export interface SystemLoginEdge
+  extends Promise<SystemLoginEdgeNode>,
     Fragmentable {
-  node: <T = SystemUserLogin>() => T;
+  node: <T = SystemLogin>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface SystemUserLoginEdgeSubscription
-  extends Promise<AsyncIterator<SystemUserLoginEdgeNode>>,
+export interface SystemLoginEdgeSubscription
+  extends Promise<AsyncIterator<SystemLoginEdgeNode>>,
     Fragmentable {
-  node: <T = SystemUserLoginSubscription>() => T;
+  node: <T = SystemLoginSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 

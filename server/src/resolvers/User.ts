@@ -1,6 +1,6 @@
 import { UserResolvers } from "../generated/resolvers";
 import { TypeMap } from "./types/TypeMap";
-import { SystemUserLoginParent } from "./SystemUserLogin";
+import { SystemLoginParent } from "./SystemLogin";
 import { LocalLoginParent } from "./LocalLogin";
 
 export interface UserParent {
@@ -8,7 +8,7 @@ export interface UserParent {
   displayName: string;
   createdAt: string;
   updatedAt: string;
-  systemUserLogin?: SystemUserLoginParent;
+  systemLogin?: SystemLoginParent;
   localLogin?: LocalLoginParent;
 }
 
@@ -17,6 +17,6 @@ export const User: UserResolvers.Type<TypeMap> = {
   displayName: parent => parent.displayName,
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt,
-  systemUserLogin: parent => parent.systemUserLogin,
+  systemLogin: parent => parent.systemLogin,
   localLogin: parent => parent.localLogin
 };

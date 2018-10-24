@@ -4,18 +4,18 @@ import {AuthPayloadParent} from "../AuthPayload";
 
 export async function login(parent, { user, password }: { user: string, password: string }, context, info): Promise<AuthPayloadParent> {
 
-  const systemUserLogins = await context.db.systemUserLogins({
+  const systemLogins = await context.db.systemLogins({
     where: {
-      systemUsername: user,
-      environmentVariable_in: Object.keys(process.env),
+      username: user,
+      passwordEnvironmentVariable_in: Object.keys(process.env),
     }
-  }).$fragment(`{ environmentVariable  user { id } }`);
+  }).$fragment(`{ passwordEnvironmentVariable  user { id } }`);
 
-  if (systemUserLogins && systemUserLogins.length == 1) {
-    const systemUserLogin: any = systemUserLogins[0];
-    const correctPassword = process.env[systemUserLogin.environmentVariable];
+  if (systemLogins && systemLogins.length == 1) {
+    const systemLogin: any = systemLogins[0];
+    const correctPassword = process.env[systemLogin.passwordEnvironmentVariable];
     if (correctPassword && correctPassword === password) {
-      const userIdentity = await context.db.user({ id: systemUserLogin.user.id });
+      const userIdentity = await context.db.user({ id: systemLogin.user.id });
       const token = jwt.sign({ userId: userIdentity.id }, 'abc')
       return {
         user: userIdentity,
@@ -24,13 +24,13 @@ export async function login(parent, { user, password }: { user: string, password
     }
   }
 
-  const localUserLogins = await context.db.localUserLogins({ where: { username: user }}).$fragment(`{ hashword  user { id } }`);
+  const localLogins = await context.db.localLogins({ where: { username: user }}).$fragment(`{ hashword  user { id } }`);
 
-  if (localUserLogins && localUserLogins.length === 1) {
-    const localUserLogin: any = localUserLogins[0];
-    const correctPassword = await bcrypt.compare(password, localUserLogin.hashword);
+  if (localLogins && localLogins.length === 1) {
+    const localLogin: any = localLogins[0];
+    const correctPassword = await bcrypt.compare(password, localLogin.hashword);
     if (correctPassword) {
-      const userIdentity = await context.db.user({ id: localUserLogin.user.id });
+      const userIdentity = await context.db.user({ id: localLogin.user.id });
       const token = jwt.sign({ userId: userIdentity.id }, 'abc')
       return {
         user: userIdentity,

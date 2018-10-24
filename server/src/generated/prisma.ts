@@ -5,47 +5,47 @@ import { makePrismaBindingClass, BasePrismaOptions } from 'prisma-binding'
 
 export interface Query {
     users: <T = User[]>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    systemUserLogins: <T = SystemUserLogin[]>(args: { where?: SystemUserLoginWhereInput, orderBy?: SystemUserLoginOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    systemLogins: <T = SystemLogin[]>(args: { where?: SystemLoginWhereInput, orderBy?: SystemLoginOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     localLogins: <T = LocalLogin[]>(args: { where?: LocalLoginWhereInput, orderBy?: LocalLoginOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     user: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    systemUserLogin: <T = SystemUserLogin | null>(args: { where: SystemUserLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    systemLogin: <T = SystemLogin | null>(args: { where: SystemLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     localLogin: <T = LocalLogin | null>(args: { where: LocalLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     usersConnection: <T = UserConnection>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    systemUserLoginsConnection: <T = SystemUserLoginConnection>(args: { where?: SystemUserLoginWhereInput, orderBy?: SystemUserLoginOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    systemLoginsConnection: <T = SystemLoginConnection>(args: { where?: SystemLoginWhereInput, orderBy?: SystemLoginOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     localLoginsConnection: <T = LocalLoginConnection>(args: { where?: LocalLoginWhereInput, orderBy?: LocalLoginOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     node: <T = Node | null>(args: { id: ID_Output }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Mutation {
     createUser: <T = User>(args: { data: UserCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    createSystemUserLogin: <T = SystemUserLogin>(args: { data: SystemUserLoginCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createSystemLogin: <T = SystemLogin>(args: { data: SystemLoginCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createLocalLogin: <T = LocalLogin>(args: { data: LocalLoginCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateUser: <T = User | null>(args: { data: UserUpdateInput, where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateSystemUserLogin: <T = SystemUserLogin | null>(args: { data: SystemUserLoginUpdateInput, where: SystemUserLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateSystemLogin: <T = SystemLogin | null>(args: { data: SystemLoginUpdateInput, where: SystemLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateLocalLogin: <T = LocalLogin | null>(args: { data: LocalLoginUpdateInput, where: LocalLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteUser: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteSystemUserLogin: <T = SystemUserLogin | null>(args: { where: SystemUserLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteSystemLogin: <T = SystemLogin | null>(args: { where: SystemLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteLocalLogin: <T = LocalLogin | null>(args: { where: LocalLoginWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertUser: <T = User>(args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    upsertSystemUserLogin: <T = SystemUserLogin>(args: { where: SystemUserLoginWhereUniqueInput, create: SystemUserLoginCreateInput, update: SystemUserLoginUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertSystemLogin: <T = SystemLogin>(args: { where: SystemLoginWhereUniqueInput, create: SystemLoginCreateInput, update: SystemLoginUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertLocalLogin: <T = LocalLogin>(args: { where: LocalLoginWhereUniqueInput, create: LocalLoginCreateInput, update: LocalLoginUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyUsers: <T = BatchPayload>(args: { data: UserUpdateInput, where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManySystemUserLogins: <T = BatchPayload>(args: { data: SystemUserLoginUpdateInput, where?: SystemUserLoginWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManySystemLogins: <T = BatchPayload>(args: { data: SystemLoginUpdateInput, where?: SystemLoginWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyLocalLogins: <T = BatchPayload>(args: { data: LocalLoginUpdateInput, where?: LocalLoginWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyUsers: <T = BatchPayload>(args: { where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManySystemUserLogins: <T = BatchPayload>(args: { where?: SystemUserLoginWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManySystemLogins: <T = BatchPayload>(args: { where?: SystemLoginWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyLocalLogins: <T = BatchPayload>(args: { where?: LocalLoginWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Subscription {
     user: <T = UserSubscriptionPayload | null>(args: { where?: UserSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
-    systemUserLogin: <T = SystemUserLoginSubscriptionPayload | null>(args: { where?: SystemUserLoginSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
+    systemLogin: <T = SystemLoginSubscriptionPayload | null>(args: { where?: SystemLoginSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     localLogin: <T = LocalLoginSubscriptionPayload | null>(args: { where?: LocalLoginSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
   }
 
 export interface Exists {
   User: (where?: UserWhereInput) => Promise<boolean>
-  SystemUserLogin: (where?: SystemUserLoginWhereInput) => Promise<boolean>
+  SystemLogin: (where?: SystemLoginWhereInput) => Promise<boolean>
   LocalLogin: (where?: LocalLoginWhereInput) => Promise<boolean>
 }
 
@@ -75,7 +75,7 @@ const typeDefs = `type AggregateLocalLogin {
   count: Int!
 }
 
-type AggregateSystemUserLogin {
+type AggregateSystemLogin {
   count: Int!
 }
 
@@ -408,22 +408,22 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
-  createSystemUserLogin(data: SystemUserLoginCreateInput!): SystemUserLogin!
+  createSystemLogin(data: SystemLoginCreateInput!): SystemLogin!
   createLocalLogin(data: LocalLoginCreateInput!): LocalLogin!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateSystemUserLogin(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  updateSystemLogin(data: SystemLoginUpdateInput!, where: SystemLoginWhereUniqueInput!): SystemLogin
   updateLocalLogin(data: LocalLoginUpdateInput!, where: LocalLoginWhereUniqueInput!): LocalLogin
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteSystemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  deleteSystemLogin(where: SystemLoginWhereUniqueInput!): SystemLogin
   deleteLocalLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertSystemUserLogin(where: SystemUserLoginWhereUniqueInput!, create: SystemUserLoginCreateInput!, update: SystemUserLoginUpdateInput!): SystemUserLogin!
+  upsertSystemLogin(where: SystemLoginWhereUniqueInput!, create: SystemLoginCreateInput!, update: SystemLoginUpdateInput!): SystemLogin!
   upsertLocalLogin(where: LocalLoginWhereUniqueInput!, create: LocalLoginCreateInput!, update: LocalLoginUpdateInput!): LocalLogin!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManySystemUserLogins(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereInput): BatchPayload!
+  updateManySystemLogins(data: SystemLoginUpdateInput!, where: SystemLoginWhereInput): BatchPayload!
   updateManyLocalLogins(data: LocalLoginUpdateInput!, where: LocalLoginWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManySystemUserLogins(where: SystemUserLoginWhereInput): BatchPayload!
+  deleteManySystemLogins(where: SystemLoginWhereInput): BatchPayload!
   deleteManyLocalLogins(where: LocalLoginWhereInput): BatchPayload!
 }
 
@@ -456,13 +456,13 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  systemUserLogins(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemUserLogin]!
+  systemLogins(where: SystemLoginWhereInput, orderBy: SystemLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemLogin]!
   localLogins(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LocalLogin]!
   user(where: UserWhereUniqueInput!): User
-  systemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
+  systemLogin(where: SystemLoginWhereUniqueInput!): SystemLogin
   localLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  systemUserLoginsConnection(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemUserLoginConnection!
+  systemLoginsConnection(where: SystemLoginWhereInput, orderBy: SystemLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemLoginConnection!
   localLoginsConnection(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocalLoginConnection!
 
   """Fetches an object given its ID"""
@@ -474,91 +474,91 @@ type Query {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  systemUserLogin(where: SystemUserLoginSubscriptionWhereInput): SystemUserLoginSubscriptionPayload
+  systemLogin(where: SystemLoginSubscriptionWhereInput): SystemLoginSubscriptionPayload
   localLogin(where: LocalLoginSubscriptionWhereInput): LocalLoginSubscriptionPayload
 }
 
-type SystemUserLogin implements Node {
+type SystemLogin implements Node {
   id: ID!
   user: User!
-  environmentVariable: String!
-  systemUsername: String!
+  username: String!
+  passwordEnvironmentVariable: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
-type SystemUserLoginConnection {
+type SystemLoginConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [SystemUserLoginEdge]!
-  aggregate: AggregateSystemUserLogin!
+  edges: [SystemLoginEdge]!
+  aggregate: AggregateSystemLogin!
 }
 
-input SystemUserLoginCreateInput {
-  environmentVariable: String!
-  systemUsername: String!
-  user: UserCreateOneWithoutSystemUserLoginInput!
+input SystemLoginCreateInput {
+  username: String!
+  passwordEnvironmentVariable: String!
+  user: UserCreateOneWithoutSystemLoginInput!
 }
 
-input SystemUserLoginCreateOneWithoutUserInput {
-  create: SystemUserLoginCreateWithoutUserInput
-  connect: SystemUserLoginWhereUniqueInput
+input SystemLoginCreateOneWithoutUserInput {
+  create: SystemLoginCreateWithoutUserInput
+  connect: SystemLoginWhereUniqueInput
 }
 
-input SystemUserLoginCreateWithoutUserInput {
-  environmentVariable: String!
-  systemUsername: String!
+input SystemLoginCreateWithoutUserInput {
+  username: String!
+  passwordEnvironmentVariable: String!
 }
 
 """An edge in a connection."""
-type SystemUserLoginEdge {
+type SystemLoginEdge {
   """The item at the end of the edge."""
-  node: SystemUserLogin!
+  node: SystemLogin!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum SystemUserLoginOrderByInput {
+enum SystemLoginOrderByInput {
   id_ASC
   id_DESC
-  environmentVariable_ASC
-  environmentVariable_DESC
-  systemUsername_ASC
-  systemUsername_DESC
+  username_ASC
+  username_DESC
+  passwordEnvironmentVariable_ASC
+  passwordEnvironmentVariable_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
-type SystemUserLoginPreviousValues {
+type SystemLoginPreviousValues {
   id: ID!
-  environmentVariable: String!
-  systemUsername: String!
+  username: String!
+  passwordEnvironmentVariable: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-type SystemUserLoginSubscriptionPayload {
+type SystemLoginSubscriptionPayload {
   mutation: MutationType!
-  node: SystemUserLogin
+  node: SystemLogin
   updatedFields: [String!]
-  previousValues: SystemUserLoginPreviousValues
+  previousValues: SystemLoginPreviousValues
 }
 
-input SystemUserLoginSubscriptionWhereInput {
+input SystemLoginSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [SystemUserLoginSubscriptionWhereInput!]
+  AND: [SystemLoginSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [SystemUserLoginSubscriptionWhereInput!]
+  OR: [SystemLoginSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [SystemUserLoginSubscriptionWhereInput!]
+  NOT: [SystemLoginSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -579,43 +579,43 @@ input SystemUserLoginSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: SystemUserLoginWhereInput
+  node: SystemLoginWhereInput
 }
 
-input SystemUserLoginUpdateInput {
-  environmentVariable: String
-  systemUsername: String
-  user: UserUpdateOneRequiredWithoutSystemUserLoginInput
+input SystemLoginUpdateInput {
+  username: String
+  passwordEnvironmentVariable: String
+  user: UserUpdateOneRequiredWithoutSystemLoginInput
 }
 
-input SystemUserLoginUpdateOneWithoutUserInput {
-  create: SystemUserLoginCreateWithoutUserInput
-  connect: SystemUserLoginWhereUniqueInput
+input SystemLoginUpdateOneWithoutUserInput {
+  create: SystemLoginCreateWithoutUserInput
+  connect: SystemLoginWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: SystemUserLoginUpdateWithoutUserDataInput
-  upsert: SystemUserLoginUpsertWithoutUserInput
+  update: SystemLoginUpdateWithoutUserDataInput
+  upsert: SystemLoginUpsertWithoutUserInput
 }
 
-input SystemUserLoginUpdateWithoutUserDataInput {
-  environmentVariable: String
-  systemUsername: String
+input SystemLoginUpdateWithoutUserDataInput {
+  username: String
+  passwordEnvironmentVariable: String
 }
 
-input SystemUserLoginUpsertWithoutUserInput {
-  update: SystemUserLoginUpdateWithoutUserDataInput!
-  create: SystemUserLoginCreateWithoutUserInput!
+input SystemLoginUpsertWithoutUserInput {
+  update: SystemLoginUpdateWithoutUserDataInput!
+  create: SystemLoginCreateWithoutUserInput!
 }
 
-input SystemUserLoginWhereInput {
+input SystemLoginWhereInput {
   """Logical AND on all given filters."""
-  AND: [SystemUserLoginWhereInput!]
+  AND: [SystemLoginWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [SystemUserLoginWhereInput!]
+  OR: [SystemLoginWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [SystemUserLoginWhereInput!]
+  NOT: [SystemLoginWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -656,86 +656,86 @@ input SystemUserLoginWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  environmentVariable: String
+  username: String
 
   """All values that are not equal to given value."""
-  environmentVariable_not: String
+  username_not: String
 
   """All values that are contained in given list."""
-  environmentVariable_in: [String!]
+  username_in: [String!]
 
   """All values that are not contained in given list."""
-  environmentVariable_not_in: [String!]
+  username_not_in: [String!]
 
   """All values less than the given value."""
-  environmentVariable_lt: String
+  username_lt: String
 
   """All values less than or equal the given value."""
-  environmentVariable_lte: String
+  username_lte: String
 
   """All values greater than the given value."""
-  environmentVariable_gt: String
+  username_gt: String
 
   """All values greater than or equal the given value."""
-  environmentVariable_gte: String
+  username_gte: String
 
   """All values containing the given string."""
-  environmentVariable_contains: String
+  username_contains: String
 
   """All values not containing the given string."""
-  environmentVariable_not_contains: String
+  username_not_contains: String
 
   """All values starting with the given string."""
-  environmentVariable_starts_with: String
+  username_starts_with: String
 
   """All values not starting with the given string."""
-  environmentVariable_not_starts_with: String
+  username_not_starts_with: String
 
   """All values ending with the given string."""
-  environmentVariable_ends_with: String
+  username_ends_with: String
 
   """All values not ending with the given string."""
-  environmentVariable_not_ends_with: String
-  systemUsername: String
+  username_not_ends_with: String
+  passwordEnvironmentVariable: String
 
   """All values that are not equal to given value."""
-  systemUsername_not: String
+  passwordEnvironmentVariable_not: String
 
   """All values that are contained in given list."""
-  systemUsername_in: [String!]
+  passwordEnvironmentVariable_in: [String!]
 
   """All values that are not contained in given list."""
-  systemUsername_not_in: [String!]
+  passwordEnvironmentVariable_not_in: [String!]
 
   """All values less than the given value."""
-  systemUsername_lt: String
+  passwordEnvironmentVariable_lt: String
 
   """All values less than or equal the given value."""
-  systemUsername_lte: String
+  passwordEnvironmentVariable_lte: String
 
   """All values greater than the given value."""
-  systemUsername_gt: String
+  passwordEnvironmentVariable_gt: String
 
   """All values greater than or equal the given value."""
-  systemUsername_gte: String
+  passwordEnvironmentVariable_gte: String
 
   """All values containing the given string."""
-  systemUsername_contains: String
+  passwordEnvironmentVariable_contains: String
 
   """All values not containing the given string."""
-  systemUsername_not_contains: String
+  passwordEnvironmentVariable_not_contains: String
 
   """All values starting with the given string."""
-  systemUsername_starts_with: String
+  passwordEnvironmentVariable_starts_with: String
 
   """All values not starting with the given string."""
-  systemUsername_not_starts_with: String
+  passwordEnvironmentVariable_not_starts_with: String
 
   """All values ending with the given string."""
-  systemUsername_ends_with: String
+  passwordEnvironmentVariable_ends_with: String
 
   """All values not ending with the given string."""
-  systemUsername_not_ends_with: String
+  passwordEnvironmentVariable_not_ends_with: String
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -783,10 +783,10 @@ input SystemUserLoginWhereInput {
   user: UserWhereInput
 }
 
-input SystemUserLoginWhereUniqueInput {
+input SystemLoginWhereUniqueInput {
   id: ID
-  environmentVariable: String
-  systemUsername: String
+  username: String
+  passwordEnvironmentVariable: String
 }
 
 type User implements Node {
@@ -794,7 +794,7 @@ type User implements Node {
   displayName: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-  systemUserLogin: SystemUserLogin
+  systemLogin: SystemLogin
   localLogin: LocalLogin
 }
 
@@ -810,7 +810,7 @@ type UserConnection {
 
 input UserCreateInput {
   displayName: String!
-  systemUserLogin: SystemUserLoginCreateOneWithoutUserInput
+  systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
 }
 
@@ -819,17 +819,17 @@ input UserCreateOneWithoutLocalLoginInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutSystemUserLoginInput {
-  create: UserCreateWithoutSystemUserLoginInput
+input UserCreateOneWithoutSystemLoginInput {
+  create: UserCreateWithoutSystemLoginInput
   connect: UserWhereUniqueInput
 }
 
 input UserCreateWithoutLocalLoginInput {
   displayName: String!
-  systemUserLogin: SystemUserLoginCreateOneWithoutUserInput
+  systemLogin: SystemLoginCreateOneWithoutUserInput
 }
 
-input UserCreateWithoutSystemUserLoginInput {
+input UserCreateWithoutSystemLoginInput {
   displayName: String!
   localLogin: LocalLoginCreateOneWithoutUserInput
 }
@@ -902,7 +902,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   displayName: String
-  systemUserLogin: SystemUserLoginUpdateOneWithoutUserInput
+  systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
 }
 
@@ -913,19 +913,19 @@ input UserUpdateOneRequiredWithoutLocalLoginInput {
   upsert: UserUpsertWithoutLocalLoginInput
 }
 
-input UserUpdateOneRequiredWithoutSystemUserLoginInput {
-  create: UserCreateWithoutSystemUserLoginInput
+input UserUpdateOneRequiredWithoutSystemLoginInput {
+  create: UserCreateWithoutSystemLoginInput
   connect: UserWhereUniqueInput
-  update: UserUpdateWithoutSystemUserLoginDataInput
-  upsert: UserUpsertWithoutSystemUserLoginInput
+  update: UserUpdateWithoutSystemLoginDataInput
+  upsert: UserUpsertWithoutSystemLoginInput
 }
 
 input UserUpdateWithoutLocalLoginDataInput {
   displayName: String
-  systemUserLogin: SystemUserLoginUpdateOneWithoutUserInput
+  systemLogin: SystemLoginUpdateOneWithoutUserInput
 }
 
-input UserUpdateWithoutSystemUserLoginDataInput {
+input UserUpdateWithoutSystemLoginDataInput {
   displayName: String
   localLogin: LocalLoginUpdateOneWithoutUserInput
 }
@@ -935,9 +935,9 @@ input UserUpsertWithoutLocalLoginInput {
   create: UserCreateWithoutLocalLoginInput!
 }
 
-input UserUpsertWithoutSystemUserLoginInput {
-  update: UserUpdateWithoutSystemUserLoginDataInput!
-  create: UserCreateWithoutSystemUserLoginInput!
+input UserUpsertWithoutSystemLoginInput {
+  update: UserUpdateWithoutSystemLoginDataInput!
+  create: UserCreateWithoutSystemLoginInput!
 }
 
 input UserWhereInput {
@@ -1073,7 +1073,7 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
-  systemUserLogin: SystemUserLoginWhereInput
+  systemLogin: SystemLoginWhereInput
   localLogin: LocalLoginWhereInput
 }
 
@@ -1097,12 +1097,12 @@ export type UserOrderByInput =   'id_ASC' |
   'updatedAt_ASC' |
   'updatedAt_DESC'
 
-export type SystemUserLoginOrderByInput =   'id_ASC' |
+export type SystemLoginOrderByInput =   'id_ASC' |
   'id_DESC' |
-  'environmentVariable_ASC' |
-  'environmentVariable_DESC' |
-  'systemUsername_ASC' |
-  'systemUsername_DESC' |
+  'username_ASC' |
+  'username_DESC' |
+  'passwordEnvironmentVariable_ASC' |
+  'passwordEnvironmentVariable_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC' |
   'updatedAt_ASC' |
@@ -1123,10 +1123,10 @@ export type MutationType =   'CREATED' |
   'UPDATED' |
   'DELETED'
 
-export interface SystemUserLoginCreateInput {
-  environmentVariable: String
-  systemUsername: String
-  user: UserCreateOneWithoutSystemUserLoginInput
+export interface SystemLoginCreateInput {
+  username: String
+  passwordEnvironmentVariable: String
+  user: UserCreateOneWithoutSystemLoginInput
 }
 
 export interface UserWhereInput {
@@ -1177,7 +1177,7 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTime
   updatedAt_gt?: DateTime
   updatedAt_gte?: DateTime
-  systemUserLogin?: SystemUserLoginWhereInput
+  systemLogin?: SystemLoginWhereInput
   localLogin?: LocalLoginWhereInput
 }
 
@@ -1257,13 +1257,13 @@ export interface LocalLoginUpsertWithoutUserInput {
   create: LocalLoginCreateWithoutUserInput
 }
 
-export interface SystemUserLoginUpdateOneWithoutUserInput {
-  create?: SystemUserLoginCreateWithoutUserInput
-  connect?: SystemUserLoginWhereUniqueInput
+export interface SystemLoginUpdateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput
+  connect?: SystemLoginWhereUniqueInput
   disconnect?: Boolean
   delete?: Boolean
-  update?: SystemUserLoginUpdateWithoutUserDataInput
-  upsert?: SystemUserLoginUpsertWithoutUserInput
+  update?: SystemLoginUpdateWithoutUserDataInput
+  upsert?: SystemLoginUpsertWithoutUserInput
 }
 
 export interface LocalLoginUpdateWithoutUserDataInput {
@@ -1285,20 +1285,20 @@ export interface LocalLoginUpdateOneWithoutUserInput {
   upsert?: LocalLoginUpsertWithoutUserInput
 }
 
-export interface SystemUserLoginSubscriptionWhereInput {
-  AND?: SystemUserLoginSubscriptionWhereInput[] | SystemUserLoginSubscriptionWhereInput
-  OR?: SystemUserLoginSubscriptionWhereInput[] | SystemUserLoginSubscriptionWhereInput
-  NOT?: SystemUserLoginSubscriptionWhereInput[] | SystemUserLoginSubscriptionWhereInput
+export interface SystemLoginSubscriptionWhereInput {
+  AND?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput
+  OR?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput
+  NOT?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput
   mutation_in?: MutationType[] | MutationType
   updatedFields_contains?: String
   updatedFields_contains_every?: String[] | String
   updatedFields_contains_some?: String[] | String
-  node?: SystemUserLoginWhereInput
+  node?: SystemLoginWhereInput
 }
 
 export interface UserCreateInput {
   displayName: String
-  systemUserLogin?: SystemUserLoginCreateOneWithoutUserInput
+  systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
 }
 
@@ -1313,20 +1313,20 @@ export interface UserSubscriptionWhereInput {
   node?: UserWhereInput
 }
 
-export interface SystemUserLoginCreateOneWithoutUserInput {
-  create?: SystemUserLoginCreateWithoutUserInput
-  connect?: SystemUserLoginWhereUniqueInput
+export interface SystemLoginCreateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput
+  connect?: SystemLoginWhereUniqueInput
 }
 
-export interface SystemUserLoginWhereUniqueInput {
+export interface SystemLoginWhereUniqueInput {
   id?: ID_Input
-  environmentVariable?: String
-  systemUsername?: String
+  username?: String
+  passwordEnvironmentVariable?: String
 }
 
-export interface SystemUserLoginCreateWithoutUserInput {
-  environmentVariable: String
-  systemUsername: String
+export interface SystemLoginCreateWithoutUserInput {
+  username: String
+  passwordEnvironmentVariable: String
 }
 
 export interface UserUpsertWithoutLocalLoginInput {
@@ -1351,25 +1351,25 @@ export interface LocalLoginCreateWithoutUserInput {
   hashword: String
 }
 
-export interface UserUpsertWithoutSystemUserLoginInput {
-  update: UserUpdateWithoutSystemUserLoginDataInput
-  create: UserCreateWithoutSystemUserLoginInput
+export interface UserUpsertWithoutSystemLoginInput {
+  update: UserUpdateWithoutSystemLoginDataInput
+  create: UserCreateWithoutSystemLoginInput
 }
 
-export interface SystemUserLoginUpsertWithoutUserInput {
-  update: SystemUserLoginUpdateWithoutUserDataInput
-  create: SystemUserLoginCreateWithoutUserInput
+export interface SystemLoginUpsertWithoutUserInput {
+  update: SystemLoginUpdateWithoutUserDataInput
+  create: SystemLoginCreateWithoutUserInput
 }
 
-export interface UserUpdateOneRequiredWithoutSystemUserLoginInput {
-  create?: UserCreateWithoutSystemUserLoginInput
+export interface UserUpdateOneRequiredWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput
   connect?: UserWhereUniqueInput
-  update?: UserUpdateWithoutSystemUserLoginDataInput
-  upsert?: UserUpsertWithoutSystemUserLoginInput
+  update?: UserUpdateWithoutSystemLoginDataInput
+  upsert?: UserUpsertWithoutSystemLoginInput
 }
 
-export interface UserCreateOneWithoutSystemUserLoginInput {
-  create?: UserCreateWithoutSystemUserLoginInput
+export interface UserCreateOneWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput
   connect?: UserWhereUniqueInput
 }
 
@@ -1384,7 +1384,7 @@ export interface LocalLoginSubscriptionWhereInput {
   node?: LocalLoginWhereInput
 }
 
-export interface UserCreateWithoutSystemUserLoginInput {
+export interface UserCreateWithoutSystemLoginInput {
   displayName: String
   localLogin?: LocalLoginCreateOneWithoutUserInput
 }
@@ -1395,23 +1395,23 @@ export interface UserWhereUniqueInput {
 
 export interface UserUpdateWithoutLocalLoginDataInput {
   displayName?: String
-  systemUserLogin?: SystemUserLoginUpdateOneWithoutUserInput
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput
 }
 
 export interface UserUpdateInput {
   displayName?: String
-  systemUserLogin?: SystemUserLoginUpdateOneWithoutUserInput
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
 }
 
 export interface UserCreateWithoutLocalLoginInput {
   displayName: String
-  systemUserLogin?: SystemUserLoginCreateOneWithoutUserInput
+  systemLogin?: SystemLoginCreateOneWithoutUserInput
 }
 
-export interface SystemUserLoginUpdateWithoutUserDataInput {
-  environmentVariable?: String
-  systemUsername?: String
+export interface SystemLoginUpdateWithoutUserDataInput {
+  username?: String
+  passwordEnvironmentVariable?: String
 }
 
 export interface LocalLoginUpdateInput {
@@ -1425,10 +1425,10 @@ export interface LocalLoginWhereUniqueInput {
   username?: String
 }
 
-export interface SystemUserLoginWhereInput {
-  AND?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput
-  OR?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput
-  NOT?: SystemUserLoginWhereInput[] | SystemUserLoginWhereInput
+export interface SystemLoginWhereInput {
+  AND?: SystemLoginWhereInput[] | SystemLoginWhereInput
+  OR?: SystemLoginWhereInput[] | SystemLoginWhereInput
+  NOT?: SystemLoginWhereInput[] | SystemLoginWhereInput
   id?: ID_Input
   id_not?: ID_Input
   id_in?: ID_Input[] | ID_Input
@@ -1443,34 +1443,34 @@ export interface SystemUserLoginWhereInput {
   id_not_starts_with?: ID_Input
   id_ends_with?: ID_Input
   id_not_ends_with?: ID_Input
-  environmentVariable?: String
-  environmentVariable_not?: String
-  environmentVariable_in?: String[] | String
-  environmentVariable_not_in?: String[] | String
-  environmentVariable_lt?: String
-  environmentVariable_lte?: String
-  environmentVariable_gt?: String
-  environmentVariable_gte?: String
-  environmentVariable_contains?: String
-  environmentVariable_not_contains?: String
-  environmentVariable_starts_with?: String
-  environmentVariable_not_starts_with?: String
-  environmentVariable_ends_with?: String
-  environmentVariable_not_ends_with?: String
-  systemUsername?: String
-  systemUsername_not?: String
-  systemUsername_in?: String[] | String
-  systemUsername_not_in?: String[] | String
-  systemUsername_lt?: String
-  systemUsername_lte?: String
-  systemUsername_gt?: String
-  systemUsername_gte?: String
-  systemUsername_contains?: String
-  systemUsername_not_contains?: String
-  systemUsername_starts_with?: String
-  systemUsername_not_starts_with?: String
-  systemUsername_ends_with?: String
-  systemUsername_not_ends_with?: String
+  username?: String
+  username_not?: String
+  username_in?: String[] | String
+  username_not_in?: String[] | String
+  username_lt?: String
+  username_lte?: String
+  username_gt?: String
+  username_gte?: String
+  username_contains?: String
+  username_not_contains?: String
+  username_starts_with?: String
+  username_not_starts_with?: String
+  username_ends_with?: String
+  username_not_ends_with?: String
+  passwordEnvironmentVariable?: String
+  passwordEnvironmentVariable_not?: String
+  passwordEnvironmentVariable_in?: String[] | String
+  passwordEnvironmentVariable_not_in?: String[] | String
+  passwordEnvironmentVariable_lt?: String
+  passwordEnvironmentVariable_lte?: String
+  passwordEnvironmentVariable_gt?: String
+  passwordEnvironmentVariable_gte?: String
+  passwordEnvironmentVariable_contains?: String
+  passwordEnvironmentVariable_not_contains?: String
+  passwordEnvironmentVariable_starts_with?: String
+  passwordEnvironmentVariable_not_starts_with?: String
+  passwordEnvironmentVariable_ends_with?: String
+  passwordEnvironmentVariable_not_ends_with?: String
   createdAt?: DateTime
   createdAt_not?: DateTime
   createdAt_in?: DateTime[] | DateTime
@@ -1490,13 +1490,13 @@ export interface SystemUserLoginWhereInput {
   user?: UserWhereInput
 }
 
-export interface SystemUserLoginUpdateInput {
-  environmentVariable?: String
-  systemUsername?: String
-  user?: UserUpdateOneRequiredWithoutSystemUserLoginInput
+export interface SystemLoginUpdateInput {
+  username?: String
+  passwordEnvironmentVariable?: String
+  user?: UserUpdateOneRequiredWithoutSystemLoginInput
 }
 
-export interface UserUpdateWithoutSystemUserLoginDataInput {
+export interface UserUpdateWithoutSystemLoginDataInput {
   displayName?: String
   localLogin?: LocalLoginUpdateOneWithoutUserInput
 }
@@ -1532,7 +1532,7 @@ export interface User extends Node {
   displayName: String
   createdAt: DateTime
   updatedAt: DateTime
-  systemUserLogin?: SystemUserLogin
+  systemLogin?: SystemLogin
   localLogin?: LocalLogin
 }
 
@@ -1544,11 +1544,11 @@ export interface AggregateLocalLogin {
   count: Int
 }
 
-export interface SystemUserLogin extends Node {
+export interface SystemLogin extends Node {
   id: ID_Output
   user: User
-  environmentVariable: String
-  systemUsername: String
+  username: String
+  passwordEnvironmentVariable: String
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -1581,7 +1581,7 @@ export interface LocalLoginConnection {
   aggregate: AggregateLocalLogin
 }
 
-export interface AggregateSystemUserLogin {
+export interface AggregateSystemLogin {
   count: Int
 }
 
@@ -1589,10 +1589,10 @@ export interface AggregateSystemUserLogin {
  * A connection to a list of items.
 
  */
-export interface SystemUserLoginConnection {
+export interface SystemLoginConnection {
   pageInfo: PageInfo
-  edges: SystemUserLoginEdge[]
-  aggregate: AggregateSystemUserLogin
+  edges: SystemLoginEdge[]
+  aggregate: AggregateSystemLogin
 }
 
 /*
@@ -1618,17 +1618,17 @@ export interface UserSubscriptionPayload {
   previousValues?: UserPreviousValues
 }
 
-export interface SystemUserLoginSubscriptionPayload {
+export interface SystemLoginSubscriptionPayload {
   mutation: MutationType
-  node?: SystemUserLogin
+  node?: SystemLogin
   updatedFields?: String[]
-  previousValues?: SystemUserLoginPreviousValues
+  previousValues?: SystemLoginPreviousValues
 }
 
-export interface SystemUserLoginPreviousValues {
+export interface SystemLoginPreviousValues {
   id: ID_Output
-  environmentVariable: String
-  systemUsername: String
+  username: String
+  passwordEnvironmentVariable: String
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -1648,8 +1648,8 @@ export interface AggregateUser {
  * An edge in a connection.
 
  */
-export interface SystemUserLoginEdge {
-  node: SystemUserLogin
+export interface SystemLoginEdge {
+  node: SystemLogin
   cursor: String
 }
 

@@ -6,15 +6,15 @@ type User {
     createdAt: DateTime!
     updatedAt: DateTime!
 
-    systemUserLogin: SystemUserLogin @unique
+    systemLogin: SystemLogin @unique
     localLogin: LocalLogin @unique
 }
 
-type SystemUserLogin {
+type SystemLogin {
     id: ID! @unique
     user: User!
-    environmentVariable: String! @unique
-    systemUsername: String! @unique
+    username: String! @unique
+    passwordEnvironmentVariable: String! @unique
 
     createdAt: DateTime!
     updatedAt: DateTime!

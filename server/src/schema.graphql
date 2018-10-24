@@ -1,15 +1,15 @@
 # import * from "./generated/prisma.graphql"
 
-type AuthPayload {
-    token: String!
-    user: User!
-}
-
 type Query {
     me: User
 }
 
 type Mutation {
-    login(user: String!, password: String!): AuthPayload
-    createUser(input: UserCreateInput!): User
+    login(username: String!, password: String!): AuthPayload
+    createUser(username: String!, password: String!): AuthPayload
+}
+
+type AuthPayload {
+    token: String!
+    user: User!
 }

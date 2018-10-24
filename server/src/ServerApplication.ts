@@ -29,6 +29,9 @@ export class ServerApplication {
           typeDefs: './src/schema.graphql',
           resolvers,
           context,
+          resolverValidationOptions: {
+            requireResolversForResolveType: false
+          },
         } as any);
 
         this.db = db;

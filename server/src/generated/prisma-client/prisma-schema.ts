@@ -2,7 +2,7 @@ export const typeDefs = /* GraphQL */ `type AggregateLocalLogin {
   count: Int!
 }
 
-type AggregateSystemUserLogin {
+type AggregateSystemLogin {
   count: Int!
 }
 
@@ -195,12 +195,12 @@ type Mutation {
   upsertLocalLogin(where: LocalLoginWhereUniqueInput!, create: LocalLoginCreateInput!, update: LocalLoginUpdateInput!): LocalLogin!
   deleteLocalLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
   deleteManyLocalLogins(where: LocalLoginWhereInput): BatchPayload!
-  createSystemUserLogin(data: SystemUserLoginCreateInput!): SystemUserLogin!
-  updateSystemUserLogin(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
-  updateManySystemUserLogins(data: SystemUserLoginUpdateInput!, where: SystemUserLoginWhereInput): BatchPayload!
-  upsertSystemUserLogin(where: SystemUserLoginWhereUniqueInput!, create: SystemUserLoginCreateInput!, update: SystemUserLoginUpdateInput!): SystemUserLogin!
-  deleteSystemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
-  deleteManySystemUserLogins(where: SystemUserLoginWhereInput): BatchPayload!
+  createSystemLogin(data: SystemLoginCreateInput!): SystemLogin!
+  updateSystemLogin(data: SystemLoginUpdateInput!, where: SystemLoginWhereUniqueInput!): SystemLogin
+  updateManySystemLogins(data: SystemLoginUpdateInput!, where: SystemLoginWhereInput): BatchPayload!
+  upsertSystemLogin(where: SystemLoginWhereUniqueInput!, create: SystemLoginCreateInput!, update: SystemLoginUpdateInput!): SystemLogin!
+  deleteSystemLogin(where: SystemLoginWhereUniqueInput!): SystemLogin
+  deleteManySystemLogins(where: SystemLoginWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
@@ -230,9 +230,9 @@ type Query {
   localLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
   localLogins(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LocalLogin]!
   localLoginsConnection(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocalLoginConnection!
-  systemUserLogin(where: SystemUserLoginWhereUniqueInput!): SystemUserLogin
-  systemUserLogins(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemUserLogin]!
-  systemUserLoginsConnection(where: SystemUserLoginWhereInput, orderBy: SystemUserLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemUserLoginConnection!
+  systemLogin(where: SystemLoginWhereUniqueInput!): SystemLogin
+  systemLogins(where: SystemLoginWhereInput, orderBy: SystemLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemLogin]!
+  systemLoginsConnection(where: SystemLoginWhereInput, orderBy: SystemLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemLoginConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -241,111 +241,111 @@ type Query {
 
 type Subscription {
   localLogin(where: LocalLoginSubscriptionWhereInput): LocalLoginSubscriptionPayload
-  systemUserLogin(where: SystemUserLoginSubscriptionWhereInput): SystemUserLoginSubscriptionPayload
+  systemLogin(where: SystemLoginSubscriptionWhereInput): SystemLoginSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
-type SystemUserLogin {
+type SystemLogin {
   id: ID!
   user: User!
-  environmentVariable: String!
-  systemUsername: String!
+  username: String!
+  passwordEnvironmentVariable: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-type SystemUserLoginConnection {
+type SystemLoginConnection {
   pageInfo: PageInfo!
-  edges: [SystemUserLoginEdge]!
-  aggregate: AggregateSystemUserLogin!
+  edges: [SystemLoginEdge]!
+  aggregate: AggregateSystemLogin!
 }
 
-input SystemUserLoginCreateInput {
-  user: UserCreateOneWithoutSystemUserLoginInput!
-  environmentVariable: String!
-  systemUsername: String!
+input SystemLoginCreateInput {
+  user: UserCreateOneWithoutSystemLoginInput!
+  username: String!
+  passwordEnvironmentVariable: String!
 }
 
-input SystemUserLoginCreateOneWithoutUserInput {
-  create: SystemUserLoginCreateWithoutUserInput
-  connect: SystemUserLoginWhereUniqueInput
+input SystemLoginCreateOneWithoutUserInput {
+  create: SystemLoginCreateWithoutUserInput
+  connect: SystemLoginWhereUniqueInput
 }
 
-input SystemUserLoginCreateWithoutUserInput {
-  environmentVariable: String!
-  systemUsername: String!
+input SystemLoginCreateWithoutUserInput {
+  username: String!
+  passwordEnvironmentVariable: String!
 }
 
-type SystemUserLoginEdge {
-  node: SystemUserLogin!
+type SystemLoginEdge {
+  node: SystemLogin!
   cursor: String!
 }
 
-enum SystemUserLoginOrderByInput {
+enum SystemLoginOrderByInput {
   id_ASC
   id_DESC
-  environmentVariable_ASC
-  environmentVariable_DESC
-  systemUsername_ASC
-  systemUsername_DESC
+  username_ASC
+  username_DESC
+  passwordEnvironmentVariable_ASC
+  passwordEnvironmentVariable_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
-type SystemUserLoginPreviousValues {
+type SystemLoginPreviousValues {
   id: ID!
-  environmentVariable: String!
-  systemUsername: String!
+  username: String!
+  passwordEnvironmentVariable: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-type SystemUserLoginSubscriptionPayload {
+type SystemLoginSubscriptionPayload {
   mutation: MutationType!
-  node: SystemUserLogin
+  node: SystemLogin
   updatedFields: [String!]
-  previousValues: SystemUserLoginPreviousValues
+  previousValues: SystemLoginPreviousValues
 }
 
-input SystemUserLoginSubscriptionWhereInput {
+input SystemLoginSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: SystemUserLoginWhereInput
-  AND: [SystemUserLoginSubscriptionWhereInput!]
-  OR: [SystemUserLoginSubscriptionWhereInput!]
-  NOT: [SystemUserLoginSubscriptionWhereInput!]
+  node: SystemLoginWhereInput
+  AND: [SystemLoginSubscriptionWhereInput!]
+  OR: [SystemLoginSubscriptionWhereInput!]
+  NOT: [SystemLoginSubscriptionWhereInput!]
 }
 
-input SystemUserLoginUpdateInput {
-  user: UserUpdateOneRequiredWithoutSystemUserLoginInput
-  environmentVariable: String
-  systemUsername: String
+input SystemLoginUpdateInput {
+  user: UserUpdateOneRequiredWithoutSystemLoginInput
+  username: String
+  passwordEnvironmentVariable: String
 }
 
-input SystemUserLoginUpdateOneWithoutUserInput {
-  create: SystemUserLoginCreateWithoutUserInput
-  update: SystemUserLoginUpdateWithoutUserDataInput
-  upsert: SystemUserLoginUpsertWithoutUserInput
+input SystemLoginUpdateOneWithoutUserInput {
+  create: SystemLoginCreateWithoutUserInput
+  update: SystemLoginUpdateWithoutUserDataInput
+  upsert: SystemLoginUpsertWithoutUserInput
   delete: Boolean
   disconnect: Boolean
-  connect: SystemUserLoginWhereUniqueInput
+  connect: SystemLoginWhereUniqueInput
 }
 
-input SystemUserLoginUpdateWithoutUserDataInput {
-  environmentVariable: String
-  systemUsername: String
+input SystemLoginUpdateWithoutUserDataInput {
+  username: String
+  passwordEnvironmentVariable: String
 }
 
-input SystemUserLoginUpsertWithoutUserInput {
-  update: SystemUserLoginUpdateWithoutUserDataInput!
-  create: SystemUserLoginCreateWithoutUserInput!
+input SystemLoginUpsertWithoutUserInput {
+  update: SystemLoginUpdateWithoutUserDataInput!
+  create: SystemLoginCreateWithoutUserInput!
 }
 
-input SystemUserLoginWhereInput {
+input SystemLoginWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -361,34 +361,34 @@ input SystemUserLoginWhereInput {
   id_ends_with: ID
   id_not_ends_with: ID
   user: UserWhereInput
-  environmentVariable: String
-  environmentVariable_not: String
-  environmentVariable_in: [String!]
-  environmentVariable_not_in: [String!]
-  environmentVariable_lt: String
-  environmentVariable_lte: String
-  environmentVariable_gt: String
-  environmentVariable_gte: String
-  environmentVariable_contains: String
-  environmentVariable_not_contains: String
-  environmentVariable_starts_with: String
-  environmentVariable_not_starts_with: String
-  environmentVariable_ends_with: String
-  environmentVariable_not_ends_with: String
-  systemUsername: String
-  systemUsername_not: String
-  systemUsername_in: [String!]
-  systemUsername_not_in: [String!]
-  systemUsername_lt: String
-  systemUsername_lte: String
-  systemUsername_gt: String
-  systemUsername_gte: String
-  systemUsername_contains: String
-  systemUsername_not_contains: String
-  systemUsername_starts_with: String
-  systemUsername_not_starts_with: String
-  systemUsername_ends_with: String
-  systemUsername_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
+  passwordEnvironmentVariable: String
+  passwordEnvironmentVariable_not: String
+  passwordEnvironmentVariable_in: [String!]
+  passwordEnvironmentVariable_not_in: [String!]
+  passwordEnvironmentVariable_lt: String
+  passwordEnvironmentVariable_lte: String
+  passwordEnvironmentVariable_gt: String
+  passwordEnvironmentVariable_gte: String
+  passwordEnvironmentVariable_contains: String
+  passwordEnvironmentVariable_not_contains: String
+  passwordEnvironmentVariable_starts_with: String
+  passwordEnvironmentVariable_not_starts_with: String
+  passwordEnvironmentVariable_ends_with: String
+  passwordEnvironmentVariable_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -405,15 +405,15 @@ input SystemUserLoginWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  AND: [SystemUserLoginWhereInput!]
-  OR: [SystemUserLoginWhereInput!]
-  NOT: [SystemUserLoginWhereInput!]
+  AND: [SystemLoginWhereInput!]
+  OR: [SystemLoginWhereInput!]
+  NOT: [SystemLoginWhereInput!]
 }
 
-input SystemUserLoginWhereUniqueInput {
+input SystemLoginWhereUniqueInput {
   id: ID
-  environmentVariable: String
-  systemUsername: String
+  username: String
+  passwordEnvironmentVariable: String
 }
 
 type User {
@@ -421,7 +421,7 @@ type User {
   displayName: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-  systemUserLogin: SystemUserLogin
+  systemLogin: SystemLogin
   localLogin: LocalLogin
 }
 
@@ -433,7 +433,7 @@ type UserConnection {
 
 input UserCreateInput {
   displayName: String!
-  systemUserLogin: SystemUserLoginCreateOneWithoutUserInput
+  systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
 }
 
@@ -442,17 +442,17 @@ input UserCreateOneWithoutLocalLoginInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutSystemUserLoginInput {
-  create: UserCreateWithoutSystemUserLoginInput
+input UserCreateOneWithoutSystemLoginInput {
+  create: UserCreateWithoutSystemLoginInput
   connect: UserWhereUniqueInput
 }
 
 input UserCreateWithoutLocalLoginInput {
   displayName: String!
-  systemUserLogin: SystemUserLoginCreateOneWithoutUserInput
+  systemLogin: SystemLoginCreateOneWithoutUserInput
 }
 
-input UserCreateWithoutSystemUserLoginInput {
+input UserCreateWithoutSystemLoginInput {
   displayName: String!
   localLogin: LocalLoginCreateOneWithoutUserInput
 }
@@ -500,7 +500,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   displayName: String
-  systemUserLogin: SystemUserLoginUpdateOneWithoutUserInput
+  systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
 }
 
@@ -511,19 +511,19 @@ input UserUpdateOneRequiredWithoutLocalLoginInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutSystemUserLoginInput {
-  create: UserCreateWithoutSystemUserLoginInput
-  update: UserUpdateWithoutSystemUserLoginDataInput
-  upsert: UserUpsertWithoutSystemUserLoginInput
+input UserUpdateOneRequiredWithoutSystemLoginInput {
+  create: UserCreateWithoutSystemLoginInput
+  update: UserUpdateWithoutSystemLoginDataInput
+  upsert: UserUpsertWithoutSystemLoginInput
   connect: UserWhereUniqueInput
 }
 
 input UserUpdateWithoutLocalLoginDataInput {
   displayName: String
-  systemUserLogin: SystemUserLoginUpdateOneWithoutUserInput
+  systemLogin: SystemLoginUpdateOneWithoutUserInput
 }
 
-input UserUpdateWithoutSystemUserLoginDataInput {
+input UserUpdateWithoutSystemLoginDataInput {
   displayName: String
   localLogin: LocalLoginUpdateOneWithoutUserInput
 }
@@ -533,9 +533,9 @@ input UserUpsertWithoutLocalLoginInput {
   create: UserCreateWithoutLocalLoginInput!
 }
 
-input UserUpsertWithoutSystemUserLoginInput {
-  update: UserUpdateWithoutSystemUserLoginDataInput!
-  create: UserCreateWithoutSystemUserLoginInput!
+input UserUpsertWithoutSystemLoginInput {
+  update: UserUpdateWithoutSystemLoginDataInput!
+  create: UserCreateWithoutSystemLoginInput!
 }
 
 input UserWhereInput {
@@ -583,7 +583,7 @@ input UserWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  systemUserLogin: SystemUserLoginWhereInput
+  systemLogin: SystemLoginWhereInput
   localLogin: LocalLoginWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]

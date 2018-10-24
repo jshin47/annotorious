@@ -1,9 +1,9 @@
 mutation {
 
-  createSystemUser: createSystemUserLogin(
+  createSystemLogin: createSystemLogin(
     data: {
-      systemUsername: "SYSTEM",
-      environmentVariable: "V_SYSTEM",
+      username: "SYSTEM",
+      passwordEnvironmentVariable: "V_SYSTEM",
       user: {
         create: {
           displayName: "System User",

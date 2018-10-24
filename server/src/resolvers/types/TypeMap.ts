@@ -4,7 +4,7 @@ import { QueryParent } from "../Query";
 import { MutationParent } from "../Mutation";
 import { AuthPayloadParent } from "../AuthPayload";
 import { UserParent } from "../User";
-import { SystemUserLoginParent } from "../SystemUserLogin";
+import { SystemLoginParent } from "../SystemLogin";
 import { LocalLoginParent } from "../LocalLogin";
 
 import { Context } from "./context";
@@ -15,6 +15,6 @@ export interface TypeMap extends ITypeMap {
   MutationParent: MutationParent;
   AuthPayloadParent: AuthPayloadParent;
   UserParent: UserParent;
-  SystemUserLoginParent: SystemUserLoginParent;
+  SystemLoginParent: SystemLoginParent;
   LocalLoginParent: LocalLoginParent;
 }

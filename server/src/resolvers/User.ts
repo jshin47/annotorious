@@ -2,6 +2,8 @@ import { UserResolvers } from "../generated/resolvers";
 import { TypeMap } from "./types/TypeMap";
 import { SystemLoginParent } from "./SystemLogin";
 import { LocalLoginParent } from "./LocalLogin";
+import { AnnotationTaskParent } from "./AnnotationTask";
+import { AnnotationParent } from "./Annotation";
 
 export interface UserParent {
   id: string;
@@ -10,6 +12,8 @@ export interface UserParent {
   updatedAt: string;
   systemLogin?: SystemLoginParent;
   localLogin?: LocalLoginParent;
+  assignedAnnotationTasks: AnnotationTaskParent[];
+  annotations: AnnotationParent[];
 }
 
 export const User: UserResolvers.Type<TypeMap> = {
@@ -17,6 +21,8 @@ export const User: UserResolvers.Type<TypeMap> = {
   displayName: parent => parent.displayName,
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt,
-  systemLogin: parent => parent.systemLogin,
-  localLogin: parent => parent.localLogin
+  systemLogin: (parent, args, context: any) => context.db.user({id: parent.id}).systemLogin(),
+  localLogin: parent => parent.localLogin,
+  assignedAnnotationTasks: (parent, args) => parent.assignedAnnotationTasks,
+  annotations: (parent, args) => parent.annotations
 };

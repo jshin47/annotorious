@@ -5,11 +5,41 @@ type Query {
 }
 
 type Mutation {
-    login(username: String!, password: String!): AuthPayload
-    createUser(username: String!, password: String!): AuthPayload
+    login(username: String!, password: String!): AuthPayload!
+    createUser(username: String!, password: String!): AuthPayload!
+
+    defineImageAnnotationTask(data: DefineImageAnnotationTaskInput!): AnnotationTask!
+    annotateImage(data: AnnotateImageInput!): Annotation!
 }
+
+
+
+
 
 type AuthPayload {
     token: String!
     user: User!
 }
+
+
+
+
+
+input AnnotateImageInput {
+    subjectId: ID!
+    data: Json!
+    taskId: ID
+}
+
+input DefineImageAnnotationTaskInput {
+    assignees: [String!]!
+    subjects: [AnnotatableImageInput!]!
+    requirements: Json!
+}
+
+input AnnotatableImageInput {
+    id: ID
+    imageUri: String
+}
+
+scalar Json

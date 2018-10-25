@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import {AuthPayloadParent} from "../AuthPayload";
-import {signJwt} from '../../utilities/JwtUtilities';
+import {signJwt} from '../../utilities/AuthenticationUtilities';
 
 export async function createUser(parent, { username, password }: { username: string, password: string }, context, info): Promise<AuthPayloadParent> {
 
@@ -13,10 +13,10 @@ export async function createUser(parent, { username, password }: { username: str
       }}});
   return {
     user,
-    token: signJwt({ userId: user.id }),
+    token: signJwt({ userId: user.id}),
   };
 
-  throw new Error('Invalid user')
+  throw new Error('Invalid username')
 }
 
 export default createUser;

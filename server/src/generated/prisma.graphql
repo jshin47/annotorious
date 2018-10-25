@@ -1,5 +1,21 @@
 # source: http://localhost:4466
-# timestamp: Tue Oct 23 2018 23:01:48 GMT-0400 (Eastern Daylight Time)
+# timestamp: Wed Oct 24 2018 04:37:32 GMT-0400 (Eastern Daylight Time)
+
+type AggregateAnnotatable {
+  count: Int!
+}
+
+type AggregateAnnotation {
+  count: Int!
+}
+
+type AggregateAnnotationTask {
+  count: Int!
+}
+
+type AggregateImage {
+  count: Int!
+}
 
 type AggregateLocalLogin {
   count: Int!
@@ -13,12 +29,1105 @@ type AggregateUser {
   count: Int!
 }
 
+type Annotatable implements Node {
+  id: ID!
+  displayName: String
+  text: String
+  image: Image
+  tasks(where: AnnotationTaskWhereInput, orderBy: AnnotationTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AnnotationTask!]
+}
+
+"""A connection to a list of items."""
+type AnnotatableConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AnnotatableEdge]!
+  aggregate: AggregateAnnotatable!
+}
+
+input AnnotatableCreateInput {
+  displayName: String
+  text: String
+  image: ImageCreateOneInput
+  tasks: AnnotationTaskCreateManyWithoutSubjectsInput
+}
+
+input AnnotatableCreateManyWithoutTasksInput {
+  create: [AnnotatableCreateWithoutTasksInput!]
+  connect: [AnnotatableWhereUniqueInput!]
+}
+
+input AnnotatableCreateOneInput {
+  create: AnnotatableCreateInput
+  connect: AnnotatableWhereUniqueInput
+}
+
+input AnnotatableCreateWithoutTasksInput {
+  displayName: String
+  text: String
+  image: ImageCreateOneInput
+}
+
+"""An edge in a connection."""
+type AnnotatableEdge {
+  """The item at the end of the edge."""
+  node: Annotatable!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AnnotatableOrderByInput {
+  id_ASC
+  id_DESC
+  displayName_ASC
+  displayName_DESC
+  text_ASC
+  text_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type AnnotatablePreviousValues {
+  id: ID!
+  displayName: String
+  text: String
+}
+
+type AnnotatableSubscriptionPayload {
+  mutation: MutationType!
+  node: Annotatable
+  updatedFields: [String!]
+  previousValues: AnnotatablePreviousValues
+}
+
+input AnnotatableSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnnotatableSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnnotatableSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnnotatableSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AnnotatableWhereInput
+}
+
+input AnnotatableUpdateDataInput {
+  displayName: String
+  text: String
+  image: ImageUpdateOneInput
+  tasks: AnnotationTaskUpdateManyWithoutSubjectsInput
+}
+
+input AnnotatableUpdateInput {
+  displayName: String
+  text: String
+  image: ImageUpdateOneInput
+  tasks: AnnotationTaskUpdateManyWithoutSubjectsInput
+}
+
+input AnnotatableUpdateManyWithoutTasksInput {
+  create: [AnnotatableCreateWithoutTasksInput!]
+  connect: [AnnotatableWhereUniqueInput!]
+  disconnect: [AnnotatableWhereUniqueInput!]
+  delete: [AnnotatableWhereUniqueInput!]
+  update: [AnnotatableUpdateWithWhereUniqueWithoutTasksInput!]
+  upsert: [AnnotatableUpsertWithWhereUniqueWithoutTasksInput!]
+}
+
+input AnnotatableUpdateOneRequiredInput {
+  create: AnnotatableCreateInput
+  connect: AnnotatableWhereUniqueInput
+  update: AnnotatableUpdateDataInput
+  upsert: AnnotatableUpsertNestedInput
+}
+
+input AnnotatableUpdateWithoutTasksDataInput {
+  displayName: String
+  text: String
+  image: ImageUpdateOneInput
+}
+
+input AnnotatableUpdateWithWhereUniqueWithoutTasksInput {
+  where: AnnotatableWhereUniqueInput!
+  data: AnnotatableUpdateWithoutTasksDataInput!
+}
+
+input AnnotatableUpsertNestedInput {
+  update: AnnotatableUpdateDataInput!
+  create: AnnotatableCreateInput!
+}
+
+input AnnotatableUpsertWithWhereUniqueWithoutTasksInput {
+  where: AnnotatableWhereUniqueInput!
+  update: AnnotatableUpdateWithoutTasksDataInput!
+  create: AnnotatableCreateWithoutTasksInput!
+}
+
+input AnnotatableWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnnotatableWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnnotatableWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnnotatableWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  displayName: String
+
+  """All values that are not equal to given value."""
+  displayName_not: String
+
+  """All values that are contained in given list."""
+  displayName_in: [String!]
+
+  """All values that are not contained in given list."""
+  displayName_not_in: [String!]
+
+  """All values less than the given value."""
+  displayName_lt: String
+
+  """All values less than or equal the given value."""
+  displayName_lte: String
+
+  """All values greater than the given value."""
+  displayName_gt: String
+
+  """All values greater than or equal the given value."""
+  displayName_gte: String
+
+  """All values containing the given string."""
+  displayName_contains: String
+
+  """All values not containing the given string."""
+  displayName_not_contains: String
+
+  """All values starting with the given string."""
+  displayName_starts_with: String
+
+  """All values not starting with the given string."""
+  displayName_not_starts_with: String
+
+  """All values ending with the given string."""
+  displayName_ends_with: String
+
+  """All values not ending with the given string."""
+  displayName_not_ends_with: String
+  text: String
+
+  """All values that are not equal to given value."""
+  text_not: String
+
+  """All values that are contained in given list."""
+  text_in: [String!]
+
+  """All values that are not contained in given list."""
+  text_not_in: [String!]
+
+  """All values less than the given value."""
+  text_lt: String
+
+  """All values less than or equal the given value."""
+  text_lte: String
+
+  """All values greater than the given value."""
+  text_gt: String
+
+  """All values greater than or equal the given value."""
+  text_gte: String
+
+  """All values containing the given string."""
+  text_contains: String
+
+  """All values not containing the given string."""
+  text_not_contains: String
+
+  """All values starting with the given string."""
+  text_starts_with: String
+
+  """All values not starting with the given string."""
+  text_not_starts_with: String
+
+  """All values ending with the given string."""
+  text_ends_with: String
+
+  """All values not ending with the given string."""
+  text_not_ends_with: String
+  image: ImageWhereInput
+  tasks_every: AnnotationTaskWhereInput
+  tasks_some: AnnotationTaskWhereInput
+  tasks_none: AnnotationTaskWhereInput
+}
+
+input AnnotatableWhereUniqueInput {
+  id: ID
+}
+
+type Annotation implements Node {
+  id: ID!
+  annotator: User!
+  subject: Annotatable!
+  task: AnnotationTask
+  data: Json
+}
+
+"""A connection to a list of items."""
+type AnnotationConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AnnotationEdge]!
+  aggregate: AggregateAnnotation!
+}
+
+input AnnotationCreateInput {
+  data: Json
+  annotator: UserCreateOneWithoutAnnotationsInput!
+  subject: AnnotatableCreateOneInput!
+  task: AnnotationTaskCreateOneInput
+}
+
+input AnnotationCreateManyWithoutAnnotatorInput {
+  create: [AnnotationCreateWithoutAnnotatorInput!]
+  connect: [AnnotationWhereUniqueInput!]
+}
+
+input AnnotationCreateWithoutAnnotatorInput {
+  data: Json
+  subject: AnnotatableCreateOneInput!
+  task: AnnotationTaskCreateOneInput
+}
+
+"""An edge in a connection."""
+type AnnotationEdge {
+  """The item at the end of the edge."""
+  node: Annotation!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AnnotationOrderByInput {
+  id_ASC
+  id_DESC
+  data_ASC
+  data_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type AnnotationPreviousValues {
+  id: ID!
+  data: Json
+}
+
+type AnnotationSubscriptionPayload {
+  mutation: MutationType!
+  node: Annotation
+  updatedFields: [String!]
+  previousValues: AnnotationPreviousValues
+}
+
+input AnnotationSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnnotationSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnnotationSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnnotationSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AnnotationWhereInput
+}
+
+type AnnotationTask implements Node {
+  id: ID!
+  assignees(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  displayName: String!
+  subjects(where: AnnotatableWhereInput, orderBy: AnnotatableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Annotatable!]
+  requirements: Json
+}
+
+"""A connection to a list of items."""
+type AnnotationTaskConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AnnotationTaskEdge]!
+  aggregate: AggregateAnnotationTask!
+}
+
+input AnnotationTaskCreateInput {
+  displayName: String!
+  requirements: Json
+  assignees: UserCreateManyWithoutAssignedAnnotationTasksInput
+  subjects: AnnotatableCreateManyWithoutTasksInput
+}
+
+input AnnotationTaskCreateManyWithoutAssigneesInput {
+  create: [AnnotationTaskCreateWithoutAssigneesInput!]
+  connect: [AnnotationTaskWhereUniqueInput!]
+}
+
+input AnnotationTaskCreateManyWithoutSubjectsInput {
+  create: [AnnotationTaskCreateWithoutSubjectsInput!]
+  connect: [AnnotationTaskWhereUniqueInput!]
+}
+
+input AnnotationTaskCreateOneInput {
+  create: AnnotationTaskCreateInput
+  connect: AnnotationTaskWhereUniqueInput
+}
+
+input AnnotationTaskCreateWithoutAssigneesInput {
+  displayName: String!
+  requirements: Json
+  subjects: AnnotatableCreateManyWithoutTasksInput
+}
+
+input AnnotationTaskCreateWithoutSubjectsInput {
+  displayName: String!
+  requirements: Json
+  assignees: UserCreateManyWithoutAssignedAnnotationTasksInput
+}
+
+"""An edge in a connection."""
+type AnnotationTaskEdge {
+  """The item at the end of the edge."""
+  node: AnnotationTask!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AnnotationTaskOrderByInput {
+  id_ASC
+  id_DESC
+  displayName_ASC
+  displayName_DESC
+  requirements_ASC
+  requirements_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type AnnotationTaskPreviousValues {
+  id: ID!
+  displayName: String!
+  requirements: Json
+}
+
+type AnnotationTaskSubscriptionPayload {
+  mutation: MutationType!
+  node: AnnotationTask
+  updatedFields: [String!]
+  previousValues: AnnotationTaskPreviousValues
+}
+
+input AnnotationTaskSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnnotationTaskSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnnotationTaskSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnnotationTaskSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AnnotationTaskWhereInput
+}
+
+input AnnotationTaskUpdateDataInput {
+  displayName: String
+  requirements: Json
+  assignees: UserUpdateManyWithoutAssignedAnnotationTasksInput
+  subjects: AnnotatableUpdateManyWithoutTasksInput
+}
+
+input AnnotationTaskUpdateInput {
+  displayName: String
+  requirements: Json
+  assignees: UserUpdateManyWithoutAssignedAnnotationTasksInput
+  subjects: AnnotatableUpdateManyWithoutTasksInput
+}
+
+input AnnotationTaskUpdateManyWithoutAssigneesInput {
+  create: [AnnotationTaskCreateWithoutAssigneesInput!]
+  connect: [AnnotationTaskWhereUniqueInput!]
+  disconnect: [AnnotationTaskWhereUniqueInput!]
+  delete: [AnnotationTaskWhereUniqueInput!]
+  update: [AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput!]
+  upsert: [AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput!]
+}
+
+input AnnotationTaskUpdateManyWithoutSubjectsInput {
+  create: [AnnotationTaskCreateWithoutSubjectsInput!]
+  connect: [AnnotationTaskWhereUniqueInput!]
+  disconnect: [AnnotationTaskWhereUniqueInput!]
+  delete: [AnnotationTaskWhereUniqueInput!]
+  update: [AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput!]
+  upsert: [AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput!]
+}
+
+input AnnotationTaskUpdateOneInput {
+  create: AnnotationTaskCreateInput
+  connect: AnnotationTaskWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: AnnotationTaskUpdateDataInput
+  upsert: AnnotationTaskUpsertNestedInput
+}
+
+input AnnotationTaskUpdateWithoutAssigneesDataInput {
+  displayName: String
+  requirements: Json
+  subjects: AnnotatableUpdateManyWithoutTasksInput
+}
+
+input AnnotationTaskUpdateWithoutSubjectsDataInput {
+  displayName: String
+  requirements: Json
+  assignees: UserUpdateManyWithoutAssignedAnnotationTasksInput
+}
+
+input AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput {
+  where: AnnotationTaskWhereUniqueInput!
+  data: AnnotationTaskUpdateWithoutAssigneesDataInput!
+}
+
+input AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput {
+  where: AnnotationTaskWhereUniqueInput!
+  data: AnnotationTaskUpdateWithoutSubjectsDataInput!
+}
+
+input AnnotationTaskUpsertNestedInput {
+  update: AnnotationTaskUpdateDataInput!
+  create: AnnotationTaskCreateInput!
+}
+
+input AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput {
+  where: AnnotationTaskWhereUniqueInput!
+  update: AnnotationTaskUpdateWithoutAssigneesDataInput!
+  create: AnnotationTaskCreateWithoutAssigneesInput!
+}
+
+input AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput {
+  where: AnnotationTaskWhereUniqueInput!
+  update: AnnotationTaskUpdateWithoutSubjectsDataInput!
+  create: AnnotationTaskCreateWithoutSubjectsInput!
+}
+
+input AnnotationTaskWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnnotationTaskWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnnotationTaskWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnnotationTaskWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  displayName: String
+
+  """All values that are not equal to given value."""
+  displayName_not: String
+
+  """All values that are contained in given list."""
+  displayName_in: [String!]
+
+  """All values that are not contained in given list."""
+  displayName_not_in: [String!]
+
+  """All values less than the given value."""
+  displayName_lt: String
+
+  """All values less than or equal the given value."""
+  displayName_lte: String
+
+  """All values greater than the given value."""
+  displayName_gt: String
+
+  """All values greater than or equal the given value."""
+  displayName_gte: String
+
+  """All values containing the given string."""
+  displayName_contains: String
+
+  """All values not containing the given string."""
+  displayName_not_contains: String
+
+  """All values starting with the given string."""
+  displayName_starts_with: String
+
+  """All values not starting with the given string."""
+  displayName_not_starts_with: String
+
+  """All values ending with the given string."""
+  displayName_ends_with: String
+
+  """All values not ending with the given string."""
+  displayName_not_ends_with: String
+  assignees_every: UserWhereInput
+  assignees_some: UserWhereInput
+  assignees_none: UserWhereInput
+  subjects_every: AnnotatableWhereInput
+  subjects_some: AnnotatableWhereInput
+  subjects_none: AnnotatableWhereInput
+}
+
+input AnnotationTaskWhereUniqueInput {
+  id: ID
+}
+
+input AnnotationUpdateInput {
+  data: Json
+  annotator: UserUpdateOneRequiredWithoutAnnotationsInput
+  subject: AnnotatableUpdateOneRequiredInput
+  task: AnnotationTaskUpdateOneInput
+}
+
+input AnnotationUpdateManyWithoutAnnotatorInput {
+  create: [AnnotationCreateWithoutAnnotatorInput!]
+  connect: [AnnotationWhereUniqueInput!]
+  disconnect: [AnnotationWhereUniqueInput!]
+  delete: [AnnotationWhereUniqueInput!]
+  update: [AnnotationUpdateWithWhereUniqueWithoutAnnotatorInput!]
+  upsert: [AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput!]
+}
+
+input AnnotationUpdateWithoutAnnotatorDataInput {
+  data: Json
+  subject: AnnotatableUpdateOneRequiredInput
+  task: AnnotationTaskUpdateOneInput
+}
+
+input AnnotationUpdateWithWhereUniqueWithoutAnnotatorInput {
+  where: AnnotationWhereUniqueInput!
+  data: AnnotationUpdateWithoutAnnotatorDataInput!
+}
+
+input AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput {
+  where: AnnotationWhereUniqueInput!
+  update: AnnotationUpdateWithoutAnnotatorDataInput!
+  create: AnnotationCreateWithoutAnnotatorInput!
+}
+
+input AnnotationWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnnotationWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnnotationWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnnotationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  annotator: UserWhereInput
+  subject: AnnotatableWhereInput
+  task: AnnotationTaskWhereInput
+}
+
+input AnnotationWhereUniqueInput {
+  id: ID
+}
+
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
 }
 
 scalar DateTime
+
+type Image implements Node {
+  id: ID!
+  uri: String!
+  thumbnailUri: String
+  caption: String
+}
+
+"""A connection to a list of items."""
+type ImageConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ImageEdge]!
+  aggregate: AggregateImage!
+}
+
+input ImageCreateInput {
+  uri: String!
+  thumbnailUri: String
+  caption: String
+}
+
+input ImageCreateOneInput {
+  create: ImageCreateInput
+  connect: ImageWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type ImageEdge {
+  """The item at the end of the edge."""
+  node: Image!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ImageOrderByInput {
+  id_ASC
+  id_DESC
+  uri_ASC
+  uri_DESC
+  thumbnailUri_ASC
+  thumbnailUri_DESC
+  caption_ASC
+  caption_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ImagePreviousValues {
+  id: ID!
+  uri: String!
+  thumbnailUri: String
+  caption: String
+}
+
+type ImageSubscriptionPayload {
+  mutation: MutationType!
+  node: Image
+  updatedFields: [String!]
+  previousValues: ImagePreviousValues
+}
+
+input ImageSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ImageSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ImageSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ImageSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ImageWhereInput
+}
+
+input ImageUpdateDataInput {
+  uri: String
+  thumbnailUri: String
+  caption: String
+}
+
+input ImageUpdateInput {
+  uri: String
+  thumbnailUri: String
+  caption: String
+}
+
+input ImageUpdateOneInput {
+  create: ImageCreateInput
+  connect: ImageWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: ImageUpdateDataInput
+  upsert: ImageUpsertNestedInput
+}
+
+input ImageUpsertNestedInput {
+  update: ImageUpdateDataInput!
+  create: ImageCreateInput!
+}
+
+input ImageWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ImageWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ImageWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ImageWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  uri: String
+
+  """All values that are not equal to given value."""
+  uri_not: String
+
+  """All values that are contained in given list."""
+  uri_in: [String!]
+
+  """All values that are not contained in given list."""
+  uri_not_in: [String!]
+
+  """All values less than the given value."""
+  uri_lt: String
+
+  """All values less than or equal the given value."""
+  uri_lte: String
+
+  """All values greater than the given value."""
+  uri_gt: String
+
+  """All values greater than or equal the given value."""
+  uri_gte: String
+
+  """All values containing the given string."""
+  uri_contains: String
+
+  """All values not containing the given string."""
+  uri_not_contains: String
+
+  """All values starting with the given string."""
+  uri_starts_with: String
+
+  """All values not starting with the given string."""
+  uri_not_starts_with: String
+
+  """All values ending with the given string."""
+  uri_ends_with: String
+
+  """All values not ending with the given string."""
+  uri_not_ends_with: String
+  thumbnailUri: String
+
+  """All values that are not equal to given value."""
+  thumbnailUri_not: String
+
+  """All values that are contained in given list."""
+  thumbnailUri_in: [String!]
+
+  """All values that are not contained in given list."""
+  thumbnailUri_not_in: [String!]
+
+  """All values less than the given value."""
+  thumbnailUri_lt: String
+
+  """All values less than or equal the given value."""
+  thumbnailUri_lte: String
+
+  """All values greater than the given value."""
+  thumbnailUri_gt: String
+
+  """All values greater than or equal the given value."""
+  thumbnailUri_gte: String
+
+  """All values containing the given string."""
+  thumbnailUri_contains: String
+
+  """All values not containing the given string."""
+  thumbnailUri_not_contains: String
+
+  """All values starting with the given string."""
+  thumbnailUri_starts_with: String
+
+  """All values not starting with the given string."""
+  thumbnailUri_not_starts_with: String
+
+  """All values ending with the given string."""
+  thumbnailUri_ends_with: String
+
+  """All values not ending with the given string."""
+  thumbnailUri_not_ends_with: String
+  caption: String
+
+  """All values that are not equal to given value."""
+  caption_not: String
+
+  """All values that are contained in given list."""
+  caption_in: [String!]
+
+  """All values that are not contained in given list."""
+  caption_not_in: [String!]
+
+  """All values less than the given value."""
+  caption_lt: String
+
+  """All values less than or equal the given value."""
+  caption_lte: String
+
+  """All values greater than the given value."""
+  caption_gt: String
+
+  """All values greater than or equal the given value."""
+  caption_gte: String
+
+  """All values containing the given string."""
+  caption_contains: String
+
+  """All values not containing the given string."""
+  caption_not_contains: String
+
+  """All values starting with the given string."""
+  caption_starts_with: String
+
+  """All values not starting with the given string."""
+  caption_not_starts_with: String
+
+  """All values ending with the given string."""
+  caption_ends_with: String
+
+  """All values not ending with the given string."""
+  caption_not_ends_with: String
+}
+
+input ImageWhereUniqueInput {
+  id: ID
+  uri: String
+}
+
+"""Raw JSON value"""
+scalar Json
 
 type LocalLogin implements Node {
   id: ID!
@@ -340,21 +1449,45 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createSystemLogin(data: SystemLoginCreateInput!): SystemLogin!
   createLocalLogin(data: LocalLoginCreateInput!): LocalLogin!
+  createAnnotation(data: AnnotationCreateInput!): Annotation!
+  createAnnotationTask(data: AnnotationTaskCreateInput!): AnnotationTask!
+  createAnnotatable(data: AnnotatableCreateInput!): Annotatable!
+  createImage(data: ImageCreateInput!): Image!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateSystemLogin(data: SystemLoginUpdateInput!, where: SystemLoginWhereUniqueInput!): SystemLogin
   updateLocalLogin(data: LocalLoginUpdateInput!, where: LocalLoginWhereUniqueInput!): LocalLogin
+  updateAnnotation(data: AnnotationUpdateInput!, where: AnnotationWhereUniqueInput!): Annotation
+  updateAnnotationTask(data: AnnotationTaskUpdateInput!, where: AnnotationTaskWhereUniqueInput!): AnnotationTask
+  updateAnnotatable(data: AnnotatableUpdateInput!, where: AnnotatableWhereUniqueInput!): Annotatable
+  updateImage(data: ImageUpdateInput!, where: ImageWhereUniqueInput!): Image
   deleteUser(where: UserWhereUniqueInput!): User
   deleteSystemLogin(where: SystemLoginWhereUniqueInput!): SystemLogin
   deleteLocalLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
+  deleteAnnotation(where: AnnotationWhereUniqueInput!): Annotation
+  deleteAnnotationTask(where: AnnotationTaskWhereUniqueInput!): AnnotationTask
+  deleteAnnotatable(where: AnnotatableWhereUniqueInput!): Annotatable
+  deleteImage(where: ImageWhereUniqueInput!): Image
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertSystemLogin(where: SystemLoginWhereUniqueInput!, create: SystemLoginCreateInput!, update: SystemLoginUpdateInput!): SystemLogin!
   upsertLocalLogin(where: LocalLoginWhereUniqueInput!, create: LocalLoginCreateInput!, update: LocalLoginUpdateInput!): LocalLogin!
+  upsertAnnotation(where: AnnotationWhereUniqueInput!, create: AnnotationCreateInput!, update: AnnotationUpdateInput!): Annotation!
+  upsertAnnotationTask(where: AnnotationTaskWhereUniqueInput!, create: AnnotationTaskCreateInput!, update: AnnotationTaskUpdateInput!): AnnotationTask!
+  upsertAnnotatable(where: AnnotatableWhereUniqueInput!, create: AnnotatableCreateInput!, update: AnnotatableUpdateInput!): Annotatable!
+  upsertImage(where: ImageWhereUniqueInput!, create: ImageCreateInput!, update: ImageUpdateInput!): Image!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManySystemLogins(data: SystemLoginUpdateInput!, where: SystemLoginWhereInput): BatchPayload!
   updateManyLocalLogins(data: LocalLoginUpdateInput!, where: LocalLoginWhereInput): BatchPayload!
+  updateManyAnnotations(data: AnnotationUpdateInput!, where: AnnotationWhereInput): BatchPayload!
+  updateManyAnnotationTasks(data: AnnotationTaskUpdateInput!, where: AnnotationTaskWhereInput): BatchPayload!
+  updateManyAnnotatables(data: AnnotatableUpdateInput!, where: AnnotatableWhereInput): BatchPayload!
+  updateManyImages(data: ImageUpdateInput!, where: ImageWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManySystemLogins(where: SystemLoginWhereInput): BatchPayload!
   deleteManyLocalLogins(where: LocalLoginWhereInput): BatchPayload!
+  deleteManyAnnotations(where: AnnotationWhereInput): BatchPayload!
+  deleteManyAnnotationTasks(where: AnnotationTaskWhereInput): BatchPayload!
+  deleteManyAnnotatables(where: AnnotatableWhereInput): BatchPayload!
+  deleteManyImages(where: ImageWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -388,12 +1521,24 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   systemLogins(where: SystemLoginWhereInput, orderBy: SystemLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SystemLogin]!
   localLogins(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LocalLogin]!
+  annotations(where: AnnotationWhereInput, orderBy: AnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Annotation]!
+  annotationTasks(where: AnnotationTaskWhereInput, orderBy: AnnotationTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AnnotationTask]!
+  annotatables(where: AnnotatableWhereInput, orderBy: AnnotatableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Annotatable]!
+  images(where: ImageWhereInput, orderBy: ImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Image]!
   user(where: UserWhereUniqueInput!): User
   systemLogin(where: SystemLoginWhereUniqueInput!): SystemLogin
   localLogin(where: LocalLoginWhereUniqueInput!): LocalLogin
+  annotation(where: AnnotationWhereUniqueInput!): Annotation
+  annotationTask(where: AnnotationTaskWhereUniqueInput!): AnnotationTask
+  annotatable(where: AnnotatableWhereUniqueInput!): Annotatable
+  image(where: ImageWhereUniqueInput!): Image
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   systemLoginsConnection(where: SystemLoginWhereInput, orderBy: SystemLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SystemLoginConnection!
   localLoginsConnection(where: LocalLoginWhereInput, orderBy: LocalLoginOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocalLoginConnection!
+  annotationsConnection(where: AnnotationWhereInput, orderBy: AnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnnotationConnection!
+  annotationTasksConnection(where: AnnotationTaskWhereInput, orderBy: AnnotationTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnnotationTaskConnection!
+  annotatablesConnection(where: AnnotatableWhereInput, orderBy: AnnotatableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnnotatableConnection!
+  imagesConnection(where: ImageWhereInput, orderBy: ImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImageConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -406,6 +1551,10 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   systemLogin(where: SystemLoginSubscriptionWhereInput): SystemLoginSubscriptionPayload
   localLogin(where: LocalLoginSubscriptionWhereInput): LocalLoginSubscriptionPayload
+  annotation(where: AnnotationSubscriptionWhereInput): AnnotationSubscriptionPayload
+  annotationTask(where: AnnotationTaskSubscriptionWhereInput): AnnotationTaskSubscriptionPayload
+  annotatable(where: AnnotatableSubscriptionWhereInput): AnnotatableSubscriptionPayload
+  image(where: ImageSubscriptionWhereInput): ImageSubscriptionPayload
 }
 
 type SystemLogin implements Node {
@@ -726,6 +1875,8 @@ type User implements Node {
   updatedAt: DateTime!
   systemLogin: SystemLogin
   localLogin: LocalLogin
+  assignedAnnotationTasks(where: AnnotationTaskWhereInput, orderBy: AnnotationTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AnnotationTask!]
+  annotations(where: AnnotationWhereInput, orderBy: AnnotationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Annotation!]
 }
 
 """A connection to a list of items."""
@@ -742,6 +1893,18 @@ input UserCreateInput {
   displayName: String!
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
+  annotations: AnnotationCreateManyWithoutAnnotatorInput
+}
+
+input UserCreateManyWithoutAssignedAnnotationTasksInput {
+  create: [UserCreateWithoutAssignedAnnotationTasksInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateOneWithoutAnnotationsInput {
+  create: UserCreateWithoutAnnotationsInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutLocalLoginInput {
@@ -754,14 +1917,32 @@ input UserCreateOneWithoutSystemLoginInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateWithoutAnnotationsInput {
+  displayName: String!
+  systemLogin: SystemLoginCreateOneWithoutUserInput
+  localLogin: LocalLoginCreateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
+}
+
+input UserCreateWithoutAssignedAnnotationTasksInput {
+  displayName: String!
+  systemLogin: SystemLoginCreateOneWithoutUserInput
+  localLogin: LocalLoginCreateOneWithoutUserInput
+  annotations: AnnotationCreateManyWithoutAnnotatorInput
+}
+
 input UserCreateWithoutLocalLoginInput {
   displayName: String!
   systemLogin: SystemLoginCreateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
+  annotations: AnnotationCreateManyWithoutAnnotatorInput
 }
 
 input UserCreateWithoutSystemLoginInput {
   displayName: String!
   localLogin: LocalLoginCreateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
+  annotations: AnnotationCreateManyWithoutAnnotatorInput
 }
 
 """An edge in a connection."""
@@ -834,6 +2015,24 @@ input UserUpdateInput {
   displayName: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
+  annotations: AnnotationUpdateManyWithoutAnnotatorInput
+}
+
+input UserUpdateManyWithoutAssignedAnnotationTasksInput {
+  create: [UserCreateWithoutAssignedAnnotationTasksInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput!]
+}
+
+input UserUpdateOneRequiredWithoutAnnotationsInput {
+  create: UserCreateWithoutAnnotationsInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutAnnotationsDataInput
+  upsert: UserUpsertWithoutAnnotationsInput
 }
 
 input UserUpdateOneRequiredWithoutLocalLoginInput {
@@ -850,14 +2049,42 @@ input UserUpdateOneRequiredWithoutSystemLoginInput {
   upsert: UserUpsertWithoutSystemLoginInput
 }
 
+input UserUpdateWithoutAnnotationsDataInput {
+  displayName: String
+  systemLogin: SystemLoginUpdateOneWithoutUserInput
+  localLogin: LocalLoginUpdateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
+}
+
+input UserUpdateWithoutAssignedAnnotationTasksDataInput {
+  displayName: String
+  systemLogin: SystemLoginUpdateOneWithoutUserInput
+  localLogin: LocalLoginUpdateOneWithoutUserInput
+  annotations: AnnotationUpdateManyWithoutAnnotatorInput
+}
+
 input UserUpdateWithoutLocalLoginDataInput {
   displayName: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
+  annotations: AnnotationUpdateManyWithoutAnnotatorInput
 }
 
 input UserUpdateWithoutSystemLoginDataInput {
   displayName: String
   localLogin: LocalLoginUpdateOneWithoutUserInput
+  assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
+  annotations: AnnotationUpdateManyWithoutAnnotatorInput
+}
+
+input UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutAssignedAnnotationTasksDataInput!
+}
+
+input UserUpsertWithoutAnnotationsInput {
+  update: UserUpdateWithoutAnnotationsDataInput!
+  create: UserCreateWithoutAnnotationsInput!
 }
 
 input UserUpsertWithoutLocalLoginInput {
@@ -868,6 +2095,12 @@ input UserUpsertWithoutLocalLoginInput {
 input UserUpsertWithoutSystemLoginInput {
   update: UserUpdateWithoutSystemLoginDataInput!
   create: UserCreateWithoutSystemLoginInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutAssignedAnnotationTasksDataInput!
+  create: UserCreateWithoutAssignedAnnotationTasksInput!
 }
 
 input UserWhereInput {
@@ -1005,6 +2238,12 @@ input UserWhereInput {
   updatedAt_gte: DateTime
   systemLogin: SystemLoginWhereInput
   localLogin: LocalLoginWhereInput
+  assignedAnnotationTasks_every: AnnotationTaskWhereInput
+  assignedAnnotationTasks_some: AnnotationTaskWhereInput
+  assignedAnnotationTasks_none: AnnotationTaskWhereInput
+  annotations_every: AnnotationWhereInput
+  annotations_some: AnnotationWhereInput
+  annotations_none: AnnotationWhereInput
 }
 
 input UserWhereUniqueInput {

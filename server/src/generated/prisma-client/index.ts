@@ -11,6 +11,10 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  annotatable: (where?: AnnotatableWhereInput) => Promise<boolean>;
+  annotation: (where?: AnnotationWhereInput) => Promise<boolean>;
+  annotationTask: (where?: AnnotationTaskWhereInput) => Promise<boolean>;
+  image: (where?: ImageWhereInput) => Promise<boolean>;
   localLogin: (where?: LocalLoginWhereInput) => Promise<boolean>;
   systemLogin: (where?: SystemLoginWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
@@ -34,6 +38,98 @@ export interface Prisma {
    * Queries
    */
 
+  annotatable: (where: AnnotatableWhereUniqueInput) => Annotatable;
+  annotatables: (
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<AnnotatableNode>>;
+  annotatablesConnection: (
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => AnnotatableConnection;
+  annotation: (where: AnnotationWhereUniqueInput) => Annotation;
+  annotations: (
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<AnnotationNode>>;
+  annotationsConnection: (
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => AnnotationConnection;
+  annotationTask: (where: AnnotationTaskWhereUniqueInput) => AnnotationTask;
+  annotationTasks: (
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<AnnotationTaskNode>>;
+  annotationTasksConnection: (
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => AnnotationTaskConnection;
+  image: (where: ImageWhereUniqueInput) => Image;
+  images: (
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<ImageNode>>;
+  imagesConnection: (
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ImageConnection;
   localLogin: (where: LocalLoginWhereUniqueInput) => LocalLogin;
   localLogins: (
     args?: {
@@ -109,6 +205,75 @@ export interface Prisma {
    * Mutations
    */
 
+  createAnnotatable: (data: AnnotatableCreateInput) => Annotatable;
+  updateAnnotatable: (
+    args: { data: AnnotatableUpdateInput; where: AnnotatableWhereUniqueInput }
+  ) => Annotatable;
+  updateManyAnnotatables: (
+    args: { data: AnnotatableUpdateInput; where?: AnnotatableWhereInput }
+  ) => BatchPayload;
+  upsertAnnotatable: (
+    args: {
+      where: AnnotatableWhereUniqueInput;
+      create: AnnotatableCreateInput;
+      update: AnnotatableUpdateInput;
+    }
+  ) => Annotatable;
+  deleteAnnotatable: (where: AnnotatableWhereUniqueInput) => Annotatable;
+  deleteManyAnnotatables: (where?: AnnotatableWhereInput) => BatchPayload;
+  createAnnotation: (data: AnnotationCreateInput) => Annotation;
+  updateAnnotation: (
+    args: { data: AnnotationUpdateInput; where: AnnotationWhereUniqueInput }
+  ) => Annotation;
+  updateManyAnnotations: (
+    args: { data: AnnotationUpdateInput; where?: AnnotationWhereInput }
+  ) => BatchPayload;
+  upsertAnnotation: (
+    args: {
+      where: AnnotationWhereUniqueInput;
+      create: AnnotationCreateInput;
+      update: AnnotationUpdateInput;
+    }
+  ) => Annotation;
+  deleteAnnotation: (where: AnnotationWhereUniqueInput) => Annotation;
+  deleteManyAnnotations: (where?: AnnotationWhereInput) => BatchPayload;
+  createAnnotationTask: (data: AnnotationTaskCreateInput) => AnnotationTask;
+  updateAnnotationTask: (
+    args: {
+      data: AnnotationTaskUpdateInput;
+      where: AnnotationTaskWhereUniqueInput;
+    }
+  ) => AnnotationTask;
+  updateManyAnnotationTasks: (
+    args: { data: AnnotationTaskUpdateInput; where?: AnnotationTaskWhereInput }
+  ) => BatchPayload;
+  upsertAnnotationTask: (
+    args: {
+      where: AnnotationTaskWhereUniqueInput;
+      create: AnnotationTaskCreateInput;
+      update: AnnotationTaskUpdateInput;
+    }
+  ) => AnnotationTask;
+  deleteAnnotationTask: (
+    where: AnnotationTaskWhereUniqueInput
+  ) => AnnotationTask;
+  deleteManyAnnotationTasks: (where?: AnnotationTaskWhereInput) => BatchPayload;
+  createImage: (data: ImageCreateInput) => Image;
+  updateImage: (
+    args: { data: ImageUpdateInput; where: ImageWhereUniqueInput }
+  ) => Image;
+  updateManyImages: (
+    args: { data: ImageUpdateInput; where?: ImageWhereInput }
+  ) => BatchPayload;
+  upsertImage: (
+    args: {
+      where: ImageWhereUniqueInput;
+      create: ImageCreateInput;
+      update: ImageUpdateInput;
+    }
+  ) => Image;
+  deleteImage: (where: ImageWhereUniqueInput) => Image;
+  deleteManyImages: (where?: ImageWhereInput) => BatchPayload;
   createLocalLogin: (data: LocalLoginCreateInput) => LocalLogin;
   updateLocalLogin: (
     args: { data: LocalLoginUpdateInput; where: LocalLoginWhereUniqueInput }
@@ -166,6 +331,18 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  annotatable: (
+    where?: AnnotatableSubscriptionWhereInput
+  ) => AnnotatableSubscriptionPayloadSubscription;
+  annotation: (
+    where?: AnnotationSubscriptionWhereInput
+  ) => AnnotationSubscriptionPayloadSubscription;
+  annotationTask: (
+    where?: AnnotationTaskSubscriptionWhereInput
+  ) => AnnotationTaskSubscriptionPayloadSubscription;
+  image: (
+    where?: ImageSubscriptionWhereInput
+  ) => ImageSubscriptionPayloadSubscription;
   localLogin: (
     where?: LocalLoginSubscriptionWhereInput
   ) => LocalLoginSubscriptionPayloadSubscription;
@@ -184,6 +361,64 @@ export interface ClientConstructor<T> {
 /**
  * Types
  */
+
+export type AnnotationTaskOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "requirements_ASC"
+  | "requirements_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type AnnotationOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "data_ASC"
+  | "data_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type AnnotatableOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "text_ASC"
+  | "text_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ImageOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "uri_ASC"
+  | "uri_DESC"
+  | "thumbnailUri_ASC"
+  | "thumbnailUri_DESC"
+  | "caption_ASC"
+  | "caption_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type LocalLoginOrderByInput =
   | "id_ASC"
@@ -209,60 +444,24 @@ export type SystemLoginOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "displayName_ASC"
-  | "displayName_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface LocalLoginUpdateInput {
-  user?: UserUpdateOneRequiredWithoutLocalLoginInput;
-  username?: String;
-  hashword?: String;
+export interface AnnotationTaskUpdateWithoutSubjectsDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  requirements?: Json;
 }
 
-export type LocalLoginWhereUniqueInput = AtLeastOne<{
+export type AnnotatableWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  username?: String;
 }>;
 
-export interface LocalLoginCreateWithoutUserInput {
-  username: String;
-  hashword: String;
+export interface SystemLoginUpdateWithoutUserDataInput {
+  username?: String;
+  passwordEnvironmentVariable?: String;
 }
 
-export interface SystemLoginCreateInput {
-  user: UserCreateOneWithoutSystemLoginInput;
-  username: String;
-  passwordEnvironmentVariable: String;
-}
-
-export interface LocalLoginCreateOneWithoutUserInput {
-  create?: LocalLoginCreateWithoutUserInput;
-  connect?: LocalLoginWhereUniqueInput;
-}
-
-export interface SystemLoginUpdateOneWithoutUserInput {
-  create?: SystemLoginCreateWithoutUserInput;
-  update?: SystemLoginUpdateWithoutUserDataInput;
-  upsert?: SystemLoginUpsertWithoutUserInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: SystemLoginWhereUniqueInput;
-}
-
-export interface UserCreateWithoutSystemLoginInput {
-  displayName: String;
-  localLogin?: LocalLoginCreateOneWithoutUserInput;
-}
-
-export interface SystemLoginWhereInput {
+export interface AnnotationWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -277,35 +476,199 @@ export interface SystemLoginWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  user?: UserWhereInput;
-  username?: String;
-  username_not?: String;
-  username_in?: String[] | String;
-  username_not_in?: String[] | String;
-  username_lt?: String;
-  username_lte?: String;
-  username_gt?: String;
-  username_gte?: String;
-  username_contains?: String;
-  username_not_contains?: String;
-  username_starts_with?: String;
-  username_not_starts_with?: String;
-  username_ends_with?: String;
-  username_not_ends_with?: String;
-  passwordEnvironmentVariable?: String;
-  passwordEnvironmentVariable_not?: String;
-  passwordEnvironmentVariable_in?: String[] | String;
-  passwordEnvironmentVariable_not_in?: String[] | String;
-  passwordEnvironmentVariable_lt?: String;
-  passwordEnvironmentVariable_lte?: String;
-  passwordEnvironmentVariable_gt?: String;
-  passwordEnvironmentVariable_gte?: String;
-  passwordEnvironmentVariable_contains?: String;
-  passwordEnvironmentVariable_not_contains?: String;
-  passwordEnvironmentVariable_starts_with?: String;
-  passwordEnvironmentVariable_not_starts_with?: String;
-  passwordEnvironmentVariable_ends_with?: String;
-  passwordEnvironmentVariable_not_ends_with?: String;
+  annotator?: UserWhereInput;
+  subject?: AnnotatableWhereInput;
+  task?: AnnotationTaskWhereInput;
+  AND?: AnnotationWhereInput[] | AnnotationWhereInput;
+  OR?: AnnotationWhereInput[] | AnnotationWhereInput;
+  NOT?: AnnotationWhereInput[] | AnnotationWhereInput;
+}
+
+export interface SystemLoginUpsertWithoutUserInput {
+  update: SystemLoginUpdateWithoutUserDataInput;
+  create: SystemLoginCreateWithoutUserInput;
+}
+
+export interface ImageWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  uri?: String;
+  uri_not?: String;
+  uri_in?: String[] | String;
+  uri_not_in?: String[] | String;
+  uri_lt?: String;
+  uri_lte?: String;
+  uri_gt?: String;
+  uri_gte?: String;
+  uri_contains?: String;
+  uri_not_contains?: String;
+  uri_starts_with?: String;
+  uri_not_starts_with?: String;
+  uri_ends_with?: String;
+  uri_not_ends_with?: String;
+  thumbnailUri?: String;
+  thumbnailUri_not?: String;
+  thumbnailUri_in?: String[] | String;
+  thumbnailUri_not_in?: String[] | String;
+  thumbnailUri_lt?: String;
+  thumbnailUri_lte?: String;
+  thumbnailUri_gt?: String;
+  thumbnailUri_gte?: String;
+  thumbnailUri_contains?: String;
+  thumbnailUri_not_contains?: String;
+  thumbnailUri_starts_with?: String;
+  thumbnailUri_not_starts_with?: String;
+  thumbnailUri_ends_with?: String;
+  thumbnailUri_not_ends_with?: String;
+  caption?: String;
+  caption_not?: String;
+  caption_in?: String[] | String;
+  caption_not_in?: String[] | String;
+  caption_lt?: String;
+  caption_lte?: String;
+  caption_gt?: String;
+  caption_gte?: String;
+  caption_contains?: String;
+  caption_not_contains?: String;
+  caption_starts_with?: String;
+  caption_not_starts_with?: String;
+  caption_ends_with?: String;
+  caption_not_ends_with?: String;
+  AND?: ImageWhereInput[] | ImageWhereInput;
+  OR?: ImageWhereInput[] | ImageWhereInput;
+  NOT?: ImageWhereInput[] | ImageWhereInput;
+}
+
+export interface UserCreateWithoutAssignedAnnotationTasksInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+}
+
+export interface UserCreateWithoutAnnotationsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+}
+
+export interface SystemLoginCreateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput;
+  connect?: SystemLoginWhereUniqueInput;
+}
+
+export interface LocalLoginUpdateOneWithoutUserInput {
+  create?: LocalLoginCreateWithoutUserInput;
+  update?: LocalLoginUpdateWithoutUserDataInput;
+  upsert?: LocalLoginUpsertWithoutUserInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: LocalLoginWhereUniqueInput;
+}
+
+export interface SystemLoginCreateWithoutUserInput {
+  username: String;
+  passwordEnvironmentVariable: String;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface LocalLoginCreateOneWithoutUserInput {
+  create?: LocalLoginCreateWithoutUserInput;
+  connect?: LocalLoginWhereUniqueInput;
+}
+
+export interface LocalLoginSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: LocalLoginWhereInput;
+  AND?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
+  OR?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
+  NOT?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
+}
+
+export interface LocalLoginCreateWithoutUserInput {
+  username: String;
+  hashword: String;
+}
+
+export interface AnnotationTaskSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: AnnotationTaskWhereInput;
+  AND?:
+    | AnnotationTaskSubscriptionWhereInput[]
+    | AnnotationTaskSubscriptionWhereInput;
+  OR?:
+    | AnnotationTaskSubscriptionWhereInput[]
+    | AnnotationTaskSubscriptionWhereInput;
+  NOT?:
+    | AnnotationTaskSubscriptionWhereInput[]
+    | AnnotationTaskSubscriptionWhereInput;
+}
+
+export interface AnnotationCreateManyWithoutAnnotatorInput {
+  create?:
+    | AnnotationCreateWithoutAnnotatorInput[]
+    | AnnotationCreateWithoutAnnotatorInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+}
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -322,32 +685,36 @@ export interface SystemLoginWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  AND?: SystemLoginWhereInput[] | SystemLoginWhereInput;
-  OR?: SystemLoginWhereInput[] | SystemLoginWhereInput;
-  NOT?: SystemLoginWhereInput[] | SystemLoginWhereInput;
+  systemLogin?: SystemLoginWhereInput;
+  localLogin?: LocalLoginWhereInput;
+  assignedAnnotationTasks_every?: AnnotationTaskWhereInput;
+  assignedAnnotationTasks_some?: AnnotationTaskWhereInput;
+  assignedAnnotationTasks_none?: AnnotationTaskWhereInput;
+  annotations_every?: AnnotationWhereInput;
+  annotations_some?: AnnotationWhereInput;
+  annotations_none?: AnnotationWhereInput;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface SystemLoginSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: SystemLoginWhereInput;
-  AND?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
-  OR?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
-  NOT?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+export interface AnnotationCreateWithoutAnnotatorInput {
+  subject: AnnotatableCreateOneInput;
+  task?: AnnotationTaskCreateOneInput;
+  data?: Json;
 }
 
 export interface UserUpdateInput {
   displayName?: String;
   systemLogin?: SystemLoginUpdateOneWithoutUserInput;
   localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
 }
 
-export interface LocalLoginCreateInput {
-  user: UserCreateOneWithoutLocalLoginInput;
-  username: String;
-  hashword: String;
+export interface AnnotatableCreateOneInput {
+  create?: AnnotatableCreateInput;
+  connect?: AnnotatableWhereUniqueInput;
 }
 
 export interface UserUpsertWithoutSystemLoginInput {
@@ -355,46 +722,20 @@ export interface UserUpsertWithoutSystemLoginInput {
   create: UserCreateWithoutSystemLoginInput;
 }
 
-export interface UserCreateOneWithoutLocalLoginInput {
-  create?: UserCreateWithoutLocalLoginInput;
-  connect?: UserWhereUniqueInput;
+export interface AnnotationTaskCreateOneInput {
+  create?: AnnotationTaskCreateInput;
+  connect?: AnnotationTaskWhereUniqueInput;
 }
 
-export type SystemLoginWhereUniqueInput = AtLeastOne<{
+export type AnnotationWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  username?: String;
-  passwordEnvironmentVariable?: String;
 }>;
 
-export interface UserCreateWithoutLocalLoginInput {
+export interface AnnotationTaskCreateInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
   displayName: String;
-  systemLogin?: SystemLoginCreateOneWithoutUserInput;
-}
-
-export interface LocalLoginUpdateOneWithoutUserInput {
-  create?: LocalLoginCreateWithoutUserInput;
-  update?: LocalLoginUpdateWithoutUserDataInput;
-  upsert?: LocalLoginUpsertWithoutUserInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: LocalLoginWhereUniqueInput;
-}
-
-export interface SystemLoginCreateOneWithoutUserInput {
-  create?: SystemLoginCreateWithoutUserInput;
-  connect?: SystemLoginWhereUniqueInput;
-}
-
-export interface UserUpdateOneRequiredWithoutSystemLoginInput {
-  create?: UserCreateWithoutSystemLoginInput;
-  update?: UserUpdateWithoutSystemLoginDataInput;
-  upsert?: UserUpsertWithoutSystemLoginInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface SystemLoginCreateWithoutUserInput {
-  username: String;
-  passwordEnvironmentVariable: String;
+  subjects?: AnnotatableCreateManyWithoutTasksInput;
+  requirements?: Json;
 }
 
 export interface SystemLoginUpdateInput {
@@ -403,58 +744,244 @@ export interface SystemLoginUpdateInput {
   passwordEnvironmentVariable?: String;
 }
 
-export interface UserCreateOneWithoutSystemLoginInput {
-  create?: UserCreateWithoutSystemLoginInput;
-  connect?: UserWhereUniqueInput;
+export interface AnnotatableCreateManyWithoutTasksInput {
+  create?:
+    | AnnotatableCreateWithoutTasksInput[]
+    | AnnotatableCreateWithoutTasksInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export type AnnotationTaskWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface AnnotatableCreateWithoutTasksInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
 }
 
-export interface UserUpdateOneRequiredWithoutLocalLoginInput {
-  create?: UserCreateWithoutLocalLoginInput;
-  update?: UserUpdateWithoutLocalLoginDataInput;
-  upsert?: UserUpsertWithoutLocalLoginInput;
-  connect?: UserWhereUniqueInput;
+export interface SystemLoginCreateInput {
+  user: UserCreateOneWithoutSystemLoginInput;
+  username: String;
+  passwordEnvironmentVariable: String;
 }
 
-export interface UserCreateInput {
-  displayName: String;
-  systemLogin?: SystemLoginCreateOneWithoutUserInput;
-  localLogin?: LocalLoginCreateOneWithoutUserInput;
+export interface AnnotatableUpdateInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+}
+
+export type ImageWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  uri?: String;
+}>;
+
+export interface ImageUpdateOneInput {
+  create?: ImageCreateInput;
+  update?: ImageUpdateDataInput;
+  upsert?: ImageUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ImageWhereUniqueInput;
 }
 
 export interface UserUpdateWithoutLocalLoginDataInput {
   displayName?: String;
   systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
 }
 
-export interface LocalLoginUpdateWithoutUserDataInput {
+export interface ImageUpdateDataInput {
+  uri?: String;
+  thumbnailUri?: String;
+  caption?: String;
+}
+
+export interface LocalLoginUpdateInput {
+  user?: UserUpdateOneRequiredWithoutLocalLoginInput;
   username?: String;
   hashword?: String;
 }
 
-export interface UserUpsertWithoutLocalLoginInput {
-  update: UserUpdateWithoutLocalLoginDataInput;
-  create: UserCreateWithoutLocalLoginInput;
+export interface ImageUpsertNestedInput {
+  update: ImageUpdateDataInput;
+  create: ImageCreateInput;
 }
 
-export interface SystemLoginUpsertWithoutUserInput {
-  update: SystemLoginUpdateWithoutUserDataInput;
-  create: SystemLoginCreateWithoutUserInput;
+export interface UserCreateWithoutLocalLoginInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
 }
 
-export interface SystemLoginUpdateWithoutUserDataInput {
+export interface AnnotationTaskUpdateManyWithoutSubjectsInput {
+  create?:
+    | AnnotationTaskCreateWithoutSubjectsInput[]
+    | AnnotationTaskCreateWithoutSubjectsInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput;
+}
+
+export interface LocalLoginCreateInput {
+  user: UserCreateOneWithoutLocalLoginInput;
+  username: String;
+  hashword: String;
+}
+
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput {
+  where: AnnotationTaskWhereUniqueInput;
+  data: AnnotationTaskUpdateWithoutSubjectsDataInput;
+}
+
+export type SystemLoginWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
   username?: String;
   passwordEnvironmentVariable?: String;
+}>;
+
+export interface UserUpdateOneRequiredWithoutAnnotationsInput {
+  create?: UserCreateWithoutAnnotationsInput;
+  update?: UserUpdateWithoutAnnotationsDataInput;
+  upsert?: UserUpsertWithoutAnnotationsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutAnnotationsInput {
+  update: UserUpdateWithoutAnnotationsDataInput;
+  create: UserCreateWithoutAnnotationsInput;
+}
+
+export interface UserUpdateManyWithoutAssignedAnnotationTasksInput {
+  create?:
+    | UserCreateWithoutAssignedAnnotationTasksInput[]
+    | UserCreateWithoutAssignedAnnotationTasksInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput[]
+    | UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput[]
+    | UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput;
+}
+
+export interface AnnotationTaskUpdateWithoutAssigneesDataInput {
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutAssignedAnnotationTasksDataInput;
+}
+
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput {
+  where: AnnotationTaskWhereUniqueInput;
+  data: AnnotationTaskUpdateWithoutAssigneesDataInput;
+}
+
+export interface UserUpdateWithoutAssignedAnnotationTasksDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+}
+
+export interface UserUpdateWithoutAnnotationsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+}
+
+export interface SystemLoginUpdateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput;
+  update?: SystemLoginUpdateWithoutUserDataInput;
+  upsert?: SystemLoginUpsertWithoutUserInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: SystemLoginWhereUniqueInput;
+}
+
+export interface AnnotatableCreateInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
+  tasks?: AnnotationTaskCreateManyWithoutSubjectsInput;
+}
+
+export interface AnnotatableWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
+  text?: String;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  image?: ImageWhereInput;
+  tasks_every?: AnnotationTaskWhereInput;
+  tasks_some?: AnnotationTaskWhereInput;
+  tasks_none?: AnnotationTaskWhereInput;
+  AND?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+  OR?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+  NOT?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+}
+
+export interface ImageCreateInput {
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
 }
 
 export interface LocalLoginWhereInput {
@@ -522,28 +1049,20 @@ export interface LocalLoginWhereInput {
   NOT?: LocalLoginWhereInput[] | LocalLoginWhereInput;
 }
 
-export interface UserUpdateWithoutSystemLoginDataInput {
-  displayName?: String;
-  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+export interface AnnotationTaskCreateWithoutSubjectsInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
+  displayName: String;
+  requirements?: Json;
 }
 
-export interface LocalLoginUpsertWithoutUserInput {
-  update: LocalLoginUpdateWithoutUserDataInput;
-  create: LocalLoginCreateWithoutUserInput;
+export interface AnnotationUpdateInput {
+  annotator?: UserUpdateOneRequiredWithoutAnnotationsInput;
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
 }
 
-export interface LocalLoginSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: LocalLoginWhereInput;
-  AND?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
-  OR?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
-  NOT?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
-}
-
-export interface UserWhereInput {
+export interface SystemLoginWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -558,20 +1077,35 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  displayName?: String;
-  displayName_not?: String;
-  displayName_in?: String[] | String;
-  displayName_not_in?: String[] | String;
-  displayName_lt?: String;
-  displayName_lte?: String;
-  displayName_gt?: String;
-  displayName_gte?: String;
-  displayName_contains?: String;
-  displayName_not_contains?: String;
-  displayName_starts_with?: String;
-  displayName_not_starts_with?: String;
-  displayName_ends_with?: String;
-  displayName_not_ends_with?: String;
+  user?: UserWhereInput;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
+  passwordEnvironmentVariable?: String;
+  passwordEnvironmentVariable_not?: String;
+  passwordEnvironmentVariable_in?: String[] | String;
+  passwordEnvironmentVariable_not_in?: String[] | String;
+  passwordEnvironmentVariable_lt?: String;
+  passwordEnvironmentVariable_lte?: String;
+  passwordEnvironmentVariable_gt?: String;
+  passwordEnvironmentVariable_gte?: String;
+  passwordEnvironmentVariable_contains?: String;
+  passwordEnvironmentVariable_not_contains?: String;
+  passwordEnvironmentVariable_starts_with?: String;
+  passwordEnvironmentVariable_not_starts_with?: String;
+  passwordEnvironmentVariable_ends_with?: String;
+  passwordEnvironmentVariable_not_ends_with?: String;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -588,16 +1122,360 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  systemLogin?: SystemLoginWhereInput;
-  localLogin?: LocalLoginWhereInput;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
+  AND?: SystemLoginWhereInput[] | SystemLoginWhereInput;
+  OR?: SystemLoginWhereInput[] | SystemLoginWhereInput;
+  NOT?: SystemLoginWhereInput[] | SystemLoginWhereInput;
+}
+
+export interface LocalLoginUpdateWithoutUserDataInput {
+  username?: String;
+  hashword?: String;
+}
+
+export interface ImageSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ImageWhereInput;
+  AND?: ImageSubscriptionWhereInput[] | ImageSubscriptionWhereInput;
+  OR?: ImageSubscriptionWhereInput[] | ImageSubscriptionWhereInput;
+  NOT?: ImageSubscriptionWhereInput[] | ImageSubscriptionWhereInput;
+}
+
+export interface LocalLoginUpsertWithoutUserInput {
+  update: LocalLoginUpdateWithoutUserDataInput;
+  create: LocalLoginCreateWithoutUserInput;
+}
+
+export interface AnnotatableSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: AnnotatableWhereInput;
+  AND?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+  OR?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+  NOT?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+}
+
+export interface AnnotationUpdateManyWithoutAnnotatorInput {
+  create?:
+    | AnnotationCreateWithoutAnnotatorInput[]
+    | AnnotationCreateWithoutAnnotatorInput;
+  delete?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  disconnect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  update?:
+    | AnnotationUpdateWithWhereUniqueWithoutAnnotatorInput[]
+    | AnnotationUpdateWithWhereUniqueWithoutAnnotatorInput;
+  upsert?:
+    | AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput[]
+    | AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput;
+}
+
+export interface UserUpdateWithoutSystemLoginDataInput {
+  displayName?: String;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+}
+
+export interface AnnotationUpdateWithWhereUniqueWithoutAnnotatorInput {
+  where: AnnotationWhereUniqueInput;
+  data: AnnotationUpdateWithoutAnnotatorDataInput;
+}
+
+export interface UserCreateWithoutSystemLoginInput {
+  displayName: String;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+}
+
+export interface AnnotationUpdateWithoutAnnotatorDataInput {
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
+}
+
+export interface UserUpsertWithoutLocalLoginInput {
+  update: UserUpdateWithoutLocalLoginDataInput;
+  create: UserCreateWithoutLocalLoginInput;
+}
+
+export interface AnnotatableUpdateOneRequiredInput {
+  create?: AnnotatableCreateInput;
+  update?: AnnotatableUpdateDataInput;
+  upsert?: AnnotatableUpsertNestedInput;
+  connect?: AnnotatableWhereUniqueInput;
+}
+
+export interface UserUpdateOneRequiredWithoutLocalLoginInput {
+  create?: UserCreateWithoutLocalLoginInput;
+  update?: UserUpdateWithoutLocalLoginDataInput;
+  upsert?: UserUpsertWithoutLocalLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotatableUpdateDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+}
+
+export interface UserCreateOneWithoutLocalLoginInput {
+  create?: UserCreateWithoutLocalLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotatableUpsertNestedInput {
+  update: AnnotatableUpdateDataInput;
+  create: AnnotatableCreateInput;
+}
+
+export interface AnnotationTaskUpdateInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+}
+
+export interface AnnotationTaskUpdateOneInput {
+  create?: AnnotationTaskCreateInput;
+  update?: AnnotationTaskUpdateDataInput;
+  upsert?: AnnotationTaskUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: AnnotationTaskWhereUniqueInput;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
+
+export interface AnnotationTaskUpdateDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+}
+
+export interface AnnotationTaskCreateManyWithoutSubjectsInput {
+  create?:
+    | AnnotationTaskCreateWithoutSubjectsInput[]
+    | AnnotationTaskCreateWithoutSubjectsInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+}
+
+export interface AnnotatableUpdateManyWithoutTasksInput {
+  create?:
+    | AnnotatableCreateWithoutTasksInput[]
+    | AnnotatableCreateWithoutTasksInput;
+  delete?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  disconnect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  update?:
+    | AnnotatableUpdateWithWhereUniqueWithoutTasksInput[]
+    | AnnotatableUpdateWithWhereUniqueWithoutTasksInput;
+  upsert?:
+    | AnnotatableUpsertWithWhereUniqueWithoutTasksInput[]
+    | AnnotatableUpsertWithWhereUniqueWithoutTasksInput;
+}
+
+export interface SystemLoginSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SystemLoginWhereInput;
+  AND?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+  OR?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+  NOT?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+}
+
+export interface AnnotatableUpdateWithWhereUniqueWithoutTasksInput {
+  where: AnnotatableWhereUniqueInput;
+  data: AnnotatableUpdateWithoutTasksDataInput;
+}
+
+export interface UserCreateInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+}
+
+export interface AnnotatableUpdateWithoutTasksDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+}
+
+export interface UserCreateOneWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotatableUpsertWithWhereUniqueWithoutTasksInput {
+  where: AnnotatableWhereUniqueInput;
+  update: AnnotatableUpdateWithoutTasksDataInput;
+  create: AnnotatableCreateWithoutTasksInput;
+}
+
+export type LocalLoginWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+}>;
+
+export interface AnnotationTaskUpsertNestedInput {
+  update: AnnotationTaskUpdateDataInput;
+  create: AnnotationTaskCreateInput;
+}
+
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutAssigneesDataInput;
+  create: AnnotationTaskCreateWithoutAssigneesInput;
+}
+
+export interface AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput {
+  where: AnnotationWhereUniqueInput;
+  update: AnnotationUpdateWithoutAnnotatorDataInput;
+  create: AnnotationCreateWithoutAnnotatorInput;
+}
+
+export interface ImageCreateOneInput {
+  create?: ImageCreateInput;
+  connect?: ImageWhereUniqueInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutAssignedAnnotationTasksDataInput;
+  create: UserCreateWithoutAssignedAnnotationTasksInput;
+}
+
+export interface AnnotationSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: AnnotationWhereInput;
+  AND?: AnnotationSubscriptionWhereInput[] | AnnotationSubscriptionWhereInput;
+  OR?: AnnotationSubscriptionWhereInput[] | AnnotationSubscriptionWhereInput;
+  NOT?: AnnotationSubscriptionWhereInput[] | AnnotationSubscriptionWhereInput;
+}
+
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutSubjectsDataInput;
+  create: AnnotationTaskCreateWithoutSubjectsInput;
+}
+
+export interface AnnotationTaskWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  assignees_every?: UserWhereInput;
+  assignees_some?: UserWhereInput;
+  assignees_none?: UserWhereInput;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
+  subjects_every?: AnnotatableWhereInput;
+  subjects_some?: AnnotatableWhereInput;
+  subjects_none?: AnnotatableWhereInput;
+  AND?: AnnotationTaskWhereInput[] | AnnotationTaskWhereInput;
+  OR?: AnnotationTaskWhereInput[] | AnnotationTaskWhereInput;
+  NOT?: AnnotationTaskWhereInput[] | AnnotationTaskWhereInput;
+}
+
+export interface UserCreateOneWithoutAnnotationsInput {
+  create?: UserCreateWithoutAnnotationsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotationCreateInput {
+  annotator: UserCreateOneWithoutAnnotationsInput;
+  subject: AnnotatableCreateOneInput;
+  task?: AnnotationTaskCreateOneInput;
+  data?: Json;
+}
+
+export interface AnnotationTaskCreateManyWithoutAssigneesInput {
+  create?:
+    | AnnotationTaskCreateWithoutAssigneesInput[]
+    | AnnotationTaskCreateWithoutAssigneesInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+}
+
+export interface AnnotationTaskCreateWithoutAssigneesInput {
+  displayName: String;
+  subjects?: AnnotatableCreateManyWithoutTasksInput;
+  requirements?: Json;
+}
+
+export interface ImageUpdateInput {
+  uri?: String;
+  thumbnailUri?: String;
+  caption?: String;
+}
+
+export interface UserUpdateOneRequiredWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput;
+  update?: UserUpdateWithoutSystemLoginDataInput;
+  upsert?: UserUpsertWithoutSystemLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateManyWithoutAssignedAnnotationTasksInput {
+  create?:
+    | UserCreateWithoutAssignedAnnotationTasksInput[]
+    | UserCreateWithoutAssignedAnnotationTasksInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface AnnotationTaskUpdateManyWithoutAssigneesInput {
+  create?:
+    | AnnotationTaskCreateWithoutAssigneesInput[]
+    | AnnotationTaskCreateWithoutAssigneesInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput;
+}
 
 export interface NodeNode {
   id: ID_Output;
@@ -628,6 +1506,600 @@ export interface UserPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface AnnotationEdgeNode {
+  cursor: String;
+}
+
+export interface AnnotationEdge
+  extends Promise<AnnotationEdgeNode>,
+    Fragmentable {
+  node: <T = Annotation>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AnnotationEdgeSubscription
+  extends Promise<AsyncIterator<AnnotationEdgeNode>>,
+    Fragmentable {
+  node: <T = AnnotationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface LocalLoginPreviousValuesNode {
+  id: ID_Output;
+  username: String;
+  hashword: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface LocalLoginPreviousValues
+  extends Promise<LocalLoginPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
+  hashword: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface LocalLoginPreviousValuesSubscription
+  extends Promise<AsyncIterator<LocalLoginPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
+  hashword: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AnnotationConnectionNode {}
+
+export interface AnnotationConnection
+  extends Promise<AnnotationConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<AnnotationEdgeNode>>>() => T;
+  aggregate: <T = AggregateAnnotation>() => T;
+}
+
+export interface AnnotationConnectionSubscription
+  extends Promise<AsyncIterator<AnnotationConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<AnnotationEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateAnnotationSubscription>() => T;
+}
+
+export interface AnnotatableEdgeNode {
+  cursor: String;
+}
+
+export interface AnnotatableEdge
+  extends Promise<AnnotatableEdgeNode>,
+    Fragmentable {
+  node: <T = Annotatable>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AnnotatableEdgeSubscription
+  extends Promise<AsyncIterator<AnnotatableEdgeNode>>,
+    Fragmentable {
+  node: <T = AnnotatableSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateAnnotatableNode {
+  count: Int;
+}
+
+export interface AggregateAnnotatable
+  extends Promise<AggregateAnnotatableNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAnnotatableSubscription
+  extends Promise<AsyncIterator<AggregateAnnotatableNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface UserSubscriptionPayload
+  extends Promise<UserSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = User>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValues>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface BatchPayloadNode {
+  count: Long;
+}
+
+export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayloadNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface UserEdgeNode {
+  cursor: String;
+}
+
+export interface UserEdge extends Promise<UserEdgeNode>, Fragmentable {
+  node: <T = User>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdgeNode>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SystemLoginPreviousValuesNode {
+  id: ID_Output;
+  username: String;
+  passwordEnvironmentVariable: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SystemLoginPreviousValues
+  extends Promise<SystemLoginPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
+  passwordEnvironmentVariable: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SystemLoginPreviousValuesSubscription
+  extends Promise<AsyncIterator<SystemLoginPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
+  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateSystemLoginNode {
+  count: Int;
+}
+
+export interface AggregateSystemLogin
+  extends Promise<AggregateSystemLoginNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSystemLoginSubscription
+  extends Promise<AsyncIterator<AggregateSystemLoginNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PageInfoNode {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfo extends Promise<PageInfoNode>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfoNode>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SystemLoginConnectionNode {}
+
+export interface SystemLoginConnection
+  extends Promise<SystemLoginConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<SystemLoginEdgeNode>>>() => T;
+  aggregate: <T = AggregateSystemLogin>() => T;
+}
+
+export interface SystemLoginConnectionSubscription
+  extends Promise<AsyncIterator<SystemLoginConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<SystemLoginEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateSystemLoginSubscription>() => T;
+}
+
+export interface AnnotatableConnectionNode {}
+
+export interface AnnotatableConnection
+  extends Promise<AnnotatableConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<AnnotatableEdgeNode>>>() => T;
+  aggregate: <T = AggregateAnnotatable>() => T;
+}
+
+export interface AnnotatableConnectionSubscription
+  extends Promise<AsyncIterator<AnnotatableConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<AnnotatableEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateAnnotatableSubscription>() => T;
+}
+
+export interface AggregateLocalLoginNode {
+  count: Int;
+}
+
+export interface AggregateLocalLogin
+  extends Promise<AggregateLocalLoginNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateLocalLoginSubscription
+  extends Promise<AsyncIterator<AggregateLocalLoginNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotatableNode {
+  id: ID_Output;
+  displayName?: String;
+  text?: String;
+}
+
+export interface Annotatable extends Promise<AnnotatableNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  text: () => Promise<String>;
+  image: <T = Image>() => T;
+  tasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AnnotatableSubscription
+  extends Promise<AsyncIterator<AnnotatableNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+  image: <T = ImageSubscription>() => T;
+  tasks: <T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface LocalLoginConnectionNode {}
+
+export interface LocalLoginConnection
+  extends Promise<LocalLoginConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<LocalLoginEdgeNode>>>() => T;
+  aggregate: <T = AggregateLocalLogin>() => T;
+}
+
+export interface LocalLoginConnectionSubscription
+  extends Promise<AsyncIterator<LocalLoginConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<LocalLoginEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateLocalLoginSubscription>() => T;
+}
+
+export interface AnnotatableSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface AnnotatableSubscriptionPayload
+  extends Promise<AnnotatableSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Annotatable>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AnnotatablePreviousValues>() => T;
+}
+
+export interface AnnotatableSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnnotatableSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AnnotatableSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AnnotatablePreviousValuesSubscription>() => T;
+}
+
+export interface AggregateImageNode {
+  count: Int;
+}
+
+export interface AggregateImage
+  extends Promise<AggregateImageNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateImageSubscription
+  extends Promise<AsyncIterator<AggregateImageNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotatablePreviousValuesNode {
+  id: ID_Output;
+  displayName?: String;
+  text?: String;
+}
+
+export interface AnnotatablePreviousValues
+  extends Promise<AnnotatablePreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  text: () => Promise<String>;
+}
+
+export interface AnnotatablePreviousValuesSubscription
+  extends Promise<AsyncIterator<AnnotatablePreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ImageConnectionNode {}
+
+export interface ImageConnection
+  extends Promise<ImageConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<ImageEdgeNode>>>() => T;
+  aggregate: <T = AggregateImage>() => T;
+}
+
+export interface ImageConnectionSubscription
+  extends Promise<AsyncIterator<ImageConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<ImageEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateImageSubscription>() => T;
+}
+
+export interface SystemLoginSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface SystemLoginSubscriptionPayload
+  extends Promise<SystemLoginSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SystemLogin>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SystemLoginPreviousValues>() => T;
+}
+
+export interface SystemLoginSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SystemLoginSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SystemLoginSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SystemLoginPreviousValuesSubscription>() => T;
+}
+
+export interface AnnotationTaskEdgeNode {
+  cursor: String;
+}
+
+export interface AnnotationTaskEdge
+  extends Promise<AnnotationTaskEdgeNode>,
+    Fragmentable {
+  node: <T = AnnotationTask>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AnnotationTaskEdgeSubscription
+  extends Promise<AsyncIterator<AnnotationTaskEdgeNode>>,
+    Fragmentable {
+  node: <T = AnnotationTaskSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotationSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface AnnotationSubscriptionPayload
+  extends Promise<AnnotationSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Annotation>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AnnotationPreviousValues>() => T;
+}
+
+export interface AnnotationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnnotationSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AnnotationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AnnotationPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateAnnotationNode {
+  count: Int;
+}
+
+export interface AggregateAnnotation
+  extends Promise<AggregateAnnotationNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAnnotationSubscription
+  extends Promise<AsyncIterator<AggregateAnnotationNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotationPreviousValuesNode {
+  id: ID_Output;
+  data?: Json;
+}
+
+export interface AnnotationPreviousValues
+  extends Promise<AnnotationPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  data: () => Promise<Json>;
+}
+
+export interface AnnotationPreviousValuesSubscription
+  extends Promise<AsyncIterator<AnnotationPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  data: () => Promise<AsyncIterator<Json>>;
+}
+
+export interface AggregateUserNode {
+  count: Int;
+}
+
+export interface AggregateUser
+  extends Promise<AggregateUserNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUserNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotationNode {
+  id: ID_Output;
+  data?: Json;
+}
+
+export interface Annotation extends Promise<AnnotationNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  annotator: <T = User>() => T;
+  subject: <T = Annotatable>() => T;
+  task: <T = AnnotationTask>() => T;
+  data: () => Promise<Json>;
+}
+
+export interface AnnotationSubscription
+  extends Promise<AsyncIterator<AnnotationNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  annotator: <T = UserSubscription>() => T;
+  subject: <T = AnnotatableSubscription>() => T;
+  task: <T = AnnotationTaskSubscription>() => T;
+  data: () => Promise<AsyncIterator<Json>>;
+}
+
+export interface SystemLoginEdgeNode {
+  cursor: String;
+}
+
+export interface SystemLoginEdge
+  extends Promise<SystemLoginEdgeNode>,
+    Fragmentable {
+  node: <T = SystemLogin>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SystemLoginEdgeSubscription
+  extends Promise<AsyncIterator<SystemLoginEdgeNode>>,
+    Fragmentable {
+  node: <T = SystemLoginSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotationTaskSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface AnnotationTaskSubscriptionPayload
+  extends Promise<AnnotationTaskSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AnnotationTask>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AnnotationTaskPreviousValues>() => T;
+}
+
+export interface AnnotationTaskSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnnotationTaskSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AnnotationTaskSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AnnotationTaskPreviousValuesSubscription>() => T;
+}
+
 export interface LocalLoginEdgeNode {
   cursor: String;
 }
@@ -643,6 +2115,44 @@ export interface LocalLoginEdgeSubscription
   extends Promise<AsyncIterator<LocalLoginEdgeNode>>,
     Fragmentable {
   node: <T = LocalLoginSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotationTaskPreviousValuesNode {
+  id: ID_Output;
+  displayName: String;
+  requirements?: Json;
+}
+
+export interface AnnotationTaskPreviousValues
+  extends Promise<AnnotationTaskPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  requirements: () => Promise<Json>;
+}
+
+export interface AnnotationTaskPreviousValuesSubscription
+  extends Promise<AsyncIterator<AnnotationTaskPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  requirements: () => Promise<AsyncIterator<Json>>;
+}
+
+export interface ImageEdgeNode {
+  cursor: String;
+}
+
+export interface ImageEdge extends Promise<ImageEdgeNode>, Fragmentable {
+  node: <T = Image>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ImageEdgeSubscription
+  extends Promise<AsyncIterator<ImageEdgeNode>>,
+    Fragmentable {
+  node: <T = ImageSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
@@ -674,57 +2184,24 @@ export interface SystemLoginSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface BatchPayloadNode {
-  count: Long;
-}
+export interface AnnotationTaskConnectionNode {}
 
-export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayloadNode>>,
+export interface AnnotationTaskConnection
+  extends Promise<AnnotationTaskConnectionNode>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<AnnotationTaskEdgeNode>>>() => T;
+  aggregate: <T = AggregateAnnotationTask>() => T;
 }
 
-export interface SystemLoginSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface SystemLoginSubscriptionPayload
-  extends Promise<SystemLoginSubscriptionPayloadNode>,
+export interface AnnotationTaskConnectionSubscription
+  extends Promise<AsyncIterator<AnnotationTaskConnectionNode>>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = SystemLogin>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = SystemLoginPreviousValues>() => T;
-}
-
-export interface SystemLoginSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SystemLoginSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SystemLoginSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SystemLoginPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateUserNode {
-  count: Int;
-}
-
-export interface AggregateUser
-  extends Promise<AggregateUserNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUserNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateAnnotationTaskSubscription>() => T;
 }
 
 export interface UserConnectionNode {}
@@ -743,139 +2220,6 @@ export interface UserConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<Array<UserEdgeSubscription>>>>() => T;
   aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface PageInfoNode {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfo extends Promise<PageInfoNode>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfoNode>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateSystemLoginNode {
-  count: Int;
-}
-
-export interface AggregateSystemLogin
-  extends Promise<AggregateSystemLoginNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSystemLoginSubscription
-  extends Promise<AsyncIterator<AggregateSystemLoginNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface LocalLoginConnectionNode {}
-
-export interface LocalLoginConnection
-  extends Promise<LocalLoginConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<LocalLoginEdgeNode>>>() => T;
-  aggregate: <T = AggregateLocalLogin>() => T;
-}
-
-export interface LocalLoginConnectionSubscription
-  extends Promise<AsyncIterator<LocalLoginConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<LocalLoginEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregateLocalLoginSubscription>() => T;
-}
-
-export interface SystemLoginConnectionNode {}
-
-export interface SystemLoginConnection
-  extends Promise<SystemLoginConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<SystemLoginEdgeNode>>>() => T;
-  aggregate: <T = AggregateSystemLogin>() => T;
-}
-
-export interface SystemLoginConnectionSubscription
-  extends Promise<AsyncIterator<SystemLoginConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<Array<SystemLoginEdgeSubscription>>>
-  >() => T;
-  aggregate: <T = AggregateSystemLoginSubscription>() => T;
-}
-
-export interface SystemLoginPreviousValuesNode {
-  id: ID_Output;
-  username: String;
-  passwordEnvironmentVariable: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface SystemLoginPreviousValues
-  extends Promise<SystemLoginPreviousValuesNode>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  username: () => Promise<String>;
-  passwordEnvironmentVariable: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface SystemLoginPreviousValuesSubscription
-  extends Promise<AsyncIterator<SystemLoginPreviousValuesNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  username: () => Promise<AsyncIterator<String>>;
-  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface LocalLoginPreviousValuesNode {
-  id: ID_Output;
-  username: String;
-  hashword: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface LocalLoginPreviousValues
-  extends Promise<LocalLoginPreviousValuesNode>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  username: () => Promise<String>;
-  hashword: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface LocalLoginPreviousValuesSubscription
-  extends Promise<AsyncIterator<LocalLoginPreviousValuesNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  username: () => Promise<AsyncIterator<String>>;
-  hashword: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface LocalLoginSubscriptionPayloadNode {
@@ -899,74 +2243,6 @@ export interface LocalLoginSubscriptionPayloadSubscription
   node: <T = LocalLoginSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
   previousValues: <T = LocalLoginPreviousValuesSubscription>() => T;
-}
-
-export interface UserSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface UserSubscriptionPayload
-  extends Promise<UserSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = User>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValues>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface UserNode {
-  id: ID_Output;
-  displayName: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface User extends Promise<UserNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  displayName: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  systemLogin: <T = SystemLogin>() => T;
-  localLogin: <T = LocalLogin>() => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<UserNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  displayName: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  systemLogin: <T = SystemLoginSubscription>() => T;
-  localLogin: <T = LocalLoginSubscription>() => T;
-}
-
-export interface SystemLoginEdgeNode {
-  cursor: String;
-}
-
-export interface SystemLoginEdge
-  extends Promise<SystemLoginEdgeNode>,
-    Fragmentable {
-  node: <T = SystemLogin>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SystemLoginEdgeSubscription
-  extends Promise<AsyncIterator<SystemLoginEdgeNode>>,
-    Fragmentable {
-  node: <T = SystemLoginSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface LocalLoginNode {
@@ -997,42 +2273,236 @@ export interface LocalLoginSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface UserEdgeNode {
-  cursor: String;
+export interface ImagePreviousValuesNode {
+  id: ID_Output;
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
 }
 
-export interface UserEdge extends Promise<UserEdgeNode>, Fragmentable {
-  node: <T = User>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdgeNode>>,
+export interface ImagePreviousValues
+  extends Promise<ImagePreviousValuesNode>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  uri: () => Promise<String>;
+  thumbnailUri: () => Promise<String>;
+  caption: () => Promise<String>;
 }
 
-export interface AggregateLocalLoginNode {
+export interface ImagePreviousValuesSubscription
+  extends Promise<AsyncIterator<ImagePreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  uri: () => Promise<AsyncIterator<String>>;
+  thumbnailUri: () => Promise<AsyncIterator<String>>;
+  caption: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ImageSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface ImageSubscriptionPayload
+  extends Promise<ImageSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Image>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ImagePreviousValues>() => T;
+}
+
+export interface ImageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ImageSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ImageSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ImagePreviousValuesSubscription>() => T;
+}
+
+export interface UserNode {
+  id: ID_Output;
+  displayName: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface User extends Promise<UserNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  systemLogin: <T = SystemLogin>() => T;
+  localLogin: <T = LocalLogin>() => T;
+  assignedAnnotationTasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  annotations: <T = Promise<Array<AnnotationNode>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<UserNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  systemLogin: <T = SystemLoginSubscription>() => T;
+  localLogin: <T = LocalLoginSubscription>() => T;
+  assignedAnnotationTasks: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>
+  >(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  annotations: <T = Promise<AsyncIterator<Array<AnnotationSubscription>>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AnnotationTaskNode {
+  id: ID_Output;
+  displayName: String;
+  requirements?: Json;
+}
+
+export interface AnnotationTask
+  extends Promise<AnnotationTaskNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  assignees: <T = Promise<Array<UserNode>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  displayName: () => Promise<String>;
+  subjects: <T = Promise<Array<AnnotatableNode>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  requirements: () => Promise<Json>;
+}
+
+export interface AnnotationTaskSubscription
+  extends Promise<AsyncIterator<AnnotationTaskNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  assignees: <T = Promise<AsyncIterator<Array<UserSubscription>>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  displayName: () => Promise<AsyncIterator<String>>;
+  subjects: <T = Promise<AsyncIterator<Array<AnnotatableSubscription>>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  requirements: () => Promise<AsyncIterator<Json>>;
+}
+
+export interface AggregateAnnotationTaskNode {
   count: Int;
 }
 
-export interface AggregateLocalLogin
-  extends Promise<AggregateLocalLoginNode>,
+export interface AggregateAnnotationTask
+  extends Promise<AggregateAnnotationTaskNode>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateLocalLoginSubscription
-  extends Promise<AsyncIterator<AggregateLocalLoginNode>>,
+export interface AggregateAnnotationTaskSubscription
+  extends Promise<AsyncIterator<AggregateAnnotationTaskNode>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface ImageNode {
+  id: ID_Output;
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
+}
+
+export interface Image extends Promise<ImageNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  uri: () => Promise<String>;
+  thumbnailUri: () => Promise<String>;
+  caption: () => Promise<String>;
+}
+
+export interface ImageSubscription
+  extends Promise<AsyncIterator<ImageNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  uri: () => Promise<AsyncIterator<String>>;
+  thumbnailUri: () => Promise<AsyncIterator<String>>;
+  caption: () => Promise<AsyncIterator<String>>;
+}
+
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Boolean = boolean;
+export type Int = number;
 
 export type Long = string;
 
@@ -1048,6 +2518,13 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+export type Json = any;
+
+/*
 DateTime scalar input type, allowing Date
 */
 export type DateTimeInput = Date | string;
@@ -1056,11 +2533,6 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
 
 /**
  * Type Defs

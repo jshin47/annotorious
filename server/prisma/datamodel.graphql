@@ -6,13 +6,16 @@ type User {
     createdAt: DateTime!
     updatedAt: DateTime!
 
-    systemLogin: SystemLogin @unique
+    systemLogin: SystemLogin @unique @relation(name: "SystemLoginUser")
     localLogin: LocalLogin @unique
+
+    assignedAnnotationTasks: [AnnotationTask!]! @relation(name: "Assignees")
+    annotations: [Annotation!]! @relation(name: "Annotator")
 }
 
 type SystemLogin {
     id: ID! @unique
-    user: User!
+    user: User! @relation(name: "SystemLoginUser")
     username: String! @unique
     passwordEnvironmentVariable: String! @unique
 
@@ -28,5 +31,42 @@ type LocalLogin {
 
     createdAt: DateTime!
     updatedAt: DateTime!
+}
+
+type Annotatable {
+    id: ID! @unique
+    displayName: String
+
+    text: String
+    image: Image @unique
+
+    tasks: [AnnotationTask!]!
+}
+
+type Image {
+    id: ID! @unique
+    uri: String! @unique
+
+    thumbnailUri: String
+    caption: String
+}
+
+type Annotation {
+    id: ID! @unique
+    annotator: User! @relation(name: "Annotator")
+    subject: Annotatable!
+    task: AnnotationTask
+
+    data: Json
+}
+
+type AnnotationTask {
+    id: ID! @unique
+    assignees: [User!]! @relation(name: "Assignees")
+
+    displayName: String!
+
+    subjects: [Annotatable!]!
+    requirements: Json
 }
 

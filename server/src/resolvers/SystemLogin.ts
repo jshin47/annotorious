@@ -13,7 +13,7 @@ export interface SystemLoginParent {
 
 export const SystemLogin: SystemLoginResolvers.Type<TypeMap> = {
   id: parent => parent.id,
-  user: parent => parent.user,
+  user: (parent, args, context: any) => context.db.systemLogin({ id: parent.id }).user(),
   username: parent => parent.username,
   passwordEnvironmentVariable: parent => parent.passwordEnvironmentVariable,
   createdAt: parent => parent.createdAt,

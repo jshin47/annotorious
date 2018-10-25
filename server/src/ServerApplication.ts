@@ -3,6 +3,7 @@ import { resolvers } from './resolvers'
 import corsMiddleware from 'cors'
 import {Prisma as PrismaBindings } from "./generated/prisma";
 import {Prisma} from "./generated/prisma-client";
+import GraphQLJSON from 'graphql-type-json';
 
 export class ServerApplication {
     public app: GraphQLServer;
@@ -25,9 +26,14 @@ export class ServerApplication {
           bindings,
         });
 
+        const allResolvers = {
+          ...resolvers,
+          Json: GraphQLJSON,
+        };
+
         this.app = new GraphQLServer({
           typeDefs: './src/schema.graphql',
-          resolvers,
+          resolvers: allResolvers,
           context,
           resolverValidationOptions: {
             requireResolversForResolveType: false

@@ -3,9 +3,9 @@ import { TypeMap } from "./types/TypeMap";
 import { UserParent } from "./User";
 import { AnnotatableParent } from "./Annotatable";
 import { AnnotationTaskParent } from "./AnnotationTask";
-import {ClassificationLabelParent} from '../resolvers_generated/ClassificationLabel';
-import {GroupParent} from '../resolvers_generated/Group';
-import {CgPointParent} from '../resolvers_generated/CgPoint';
+import { ClassificationLabelParent } from "./ClassificationLabel";
+import { CgPointParent } from "./CgPoint";
+import { GroupParent } from "./Group";
 
 export interface AnnotationParent {
   id: string;
@@ -27,9 +27,9 @@ export interface AnnotationParent {
 
 export const Annotation: AnnotationResolvers.Type<TypeMap> = {
   id: parent => parent.id,
-  annotator: (parent, args, context: any) => context.db.annotation({id: parent.id}).annotator(),
-  subject: (parent, args, context: any) => context.db.annotation({id: parent.id}).subject(),
-  task: (parent, args, context: any) => context.db.annotation({id: parent.id}).task(),
+  annotator: parent => parent.annotator,
+  subject: parent => parent.subject,
+  task: parent => parent.task,
   data: parent => parent.data,
   classificationLabels: (parent, args) => parent.classificationLabels,
   svgBounds: parent => parent.svgBounds,
@@ -40,6 +40,5 @@ export const Annotation: AnnotationResolvers.Type<TypeMap> = {
   anyoneCanSuggestRevision: parent => parent.anyoneCanSuggestRevision,
   creator: parent => parent.creator,
   createdAt: parent => parent.createdAt,
-  updatedAt: parent => parent.updatedAt,
-
+  updatedAt: parent => parent.updatedAt
 };

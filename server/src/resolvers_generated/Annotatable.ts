@@ -2,8 +2,8 @@ import { AnnotatableResolvers } from "../generated/resolvers";
 import { TypeMap } from "./types/TypeMap";
 import { ImageParent } from "./Image";
 import { AnnotationTaskParent } from "./AnnotationTask";
-import {GroupParent} from '../resolvers_generated/Group';
-import {UserParent} from '../resolvers_generated/User';
+import { UserParent } from "./User";
+import { GroupParent } from "./Group";
 
 export interface AnnotatableParent {
   id: string;
@@ -24,6 +24,7 @@ export const Annotatable: AnnotatableResolvers.Type<TypeMap> = {
   id: parent => parent.id,
   displayName: parent => parent.displayName,
   text: parent => parent.text,
+  image: parent => parent.image,
   tasks: (parent, args) => parent.tasks,
   owner: parent => parent.owner,
   group: parent => parent.group,
@@ -31,6 +32,5 @@ export const Annotatable: AnnotatableResolvers.Type<TypeMap> = {
   anyoneCanAnnotate: parent => parent.anyoneCanAnnotate,
   creator: parent => parent.creator,
   createdAt: parent => parent.createdAt,
-  updatedAt: parent => parent.updatedAt,
-  image: (parent, args, context:any) => context.db.annotatable({ id: parent.id }).image(),
+  updatedAt: parent => parent.updatedAt
 };

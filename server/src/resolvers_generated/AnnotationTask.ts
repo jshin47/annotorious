@@ -2,9 +2,9 @@ import { AnnotationTaskResolvers } from "../generated/resolvers";
 import { TypeMap } from "./types/TypeMap";
 import { UserParent } from "./User";
 import { AnnotatableParent } from "./Annotatable";
-import {ClassificationLabelParent} from '../resolvers_generated/ClassificationLabel';
-import {GroupParent} from '../resolvers_generated/Group';
-import {ClassificationContextParent} from '../resolvers_generated/ClassificationContext';
+import { ClassificationContextParent } from "./ClassificationContext";
+import { ClassificationLabelParent } from "./ClassificationLabel";
+import { GroupParent } from "./Group";
 
 export interface AnnotationTaskParent {
   id: string;
@@ -25,9 +25,9 @@ export interface AnnotationTaskParent {
 
 export const AnnotationTask: AnnotationTaskResolvers.Type<TypeMap> = {
   id: parent => parent.id,
-  assignees: (parent, args, context: any) => context.db.annotationTask({id: parent.id}).assignees(),
+  assignees: (parent, args) => parent.assignees,
   displayName: parent => parent.displayName,
-  subjects: (parent, args, context: any) => context.db.annotationTask({id: parent.id}).subjects(),
+  subjects: (parent, args) => parent.subjects,
   requirements: parent => parent.requirements,
   classificationContexts: (parent, args) => parent.classificationContexts,
   classificationLabels: (parent, args) => parent.classificationLabels,

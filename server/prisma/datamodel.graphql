@@ -3,14 +3,32 @@ type User {
 
     displayName: String!
 
-    createdAt: DateTime!
-    updatedAt: DateTime!
-
     systemLogin: SystemLogin @unique @relation(name: "SystemLoginUser")
     localLogin: LocalLogin @unique
 
-    assignedAnnotationTasks: [AnnotationTask!]! @relation(name: "Assignees")
-    annotations: [Annotation!]! @relation(name: "Annotator")
+    assignedAnnotationTasks: [AnnotationTask!]! @relation(name: "AnnotationTaskAssignees")
+    annotations: [Annotation!]! @relation(name: "AnnotationAnnotator")
+
+    ownedGroups: [Group!]! @relation(name: "GroupOwner")
+    createdGroups: [Group!]! @relation(name: "GroupCreator")
+    memberOfGroups: [Group!]! @relation(name: "GroupMemberUsers")
+    managerOfGroups: [Group!]! @relation(name: "GroupManagerUsers")
+
+    ownedAnnotatables: [Annotatable!]! @relation(name: "AnnotatableOwner")
+    createdAnnotatables: [Annotatable!]! @relation(name: "AnnotatableCreator")
+    ownedImages: [Image!]! @relation(name: "ImageOwner")
+    createdImages: [Image!]! @relation(name: "ImageCreator")
+    ownedAnnotations: [Annotation!]! @relation(name: "AnnotationOwner")
+    createdAnnotations: [Annotation!]! @relation(name: "AnnotationCreator")
+    ownedAnnotationTasks: [AnnotationTask!]! @relation(name: "AnnotationTaskOwner")
+    createdAnnotationTasks: [AnnotationTask!]! @relation(name: "AnnotationTaskCreator")
+    ownedClassificationContexts: [ClassificationContext!]! @relation(name: "ClassificationContextOwner")
+    createdClassificationContexts: [ClassificationContext!]! @relation(name: "ClassificationContextCreator")
+    ownedClassificationLabels: [ClassificationLabel!]! @relation(name: "ClassificationLabelOwner")
+    createdClassificationLabels: [ClassificationLabel!]! @relation(name: "ClassificationLabelCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
 
 type SystemLogin {
@@ -33,6 +51,34 @@ type LocalLogin {
     updatedAt: DateTime!
 }
 
+type Group {
+    id: ID! @unique
+
+    displayName: String!
+
+    memberUsers: [User!]! @relation(name: "GroupMemberUsers")
+    memberGroups: [Group!]! @relation(name: "GroupMemberGroups")
+    memberOfGroups: [Group!]! @relation(name: "GroupMemberGroups")
+
+    ownedAnnotatables: [Annotatable!]! @relation(name: "AnnotatableGroup")
+    ownedImages: [Image!]! @relation(name: "ImageGroup")
+    ownedAnnotations: [Annotation!]! @relation(name: "AnnotationGroup")
+    ownedAnnotationTasks: [AnnotationTask!]! @relation(name: "AnnotationTaskGroup")
+    ownedClassificationContexts: [ClassificationContext!]! @relation(name: "ClassificationContextGroup")
+    ownedClassificationLabels: [ClassificationLabel!]! @relation(name: "ClassificationLabelGroup")
+
+
+    owner: User @relation(name: "GroupOwner")
+    managerUsers: [User!]! @relation(name: "GroupManagerUsers")
+    managerGroups: [Group!]! @relation(name: "GroupManagerGroups")
+    managerOfGroups: [Group!]! @relation(name: "GroupManagerGroups")
+
+    creator: User @relation(name: "GroupCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
 type Annotatable {
     id: ID! @unique
     displayName: String
@@ -41,6 +87,17 @@ type Annotatable {
     image: Image @unique
 
     tasks: [AnnotationTask!]!
+
+    owner: User @relation(name: "AnnotatableOwner")
+    group: Group @relation(name: "AnnotatableGroup")
+
+    anyoneCanView: Boolean! @default(value: "false")
+    anyoneCanAnnotate: Boolean! @default(value: "false")
+
+    creator: User @relation(name: "AnnotatableCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
 
 type Image {
@@ -49,24 +106,137 @@ type Image {
 
     thumbnailUri: String
     caption: String
+
+    digestSha3: String
+    digestSha2: String
+    digestSha1: String
+    digestMd5: String
+
+    sizeInBytes: Int
+
+    width: Int
+    height: Int
+
+    owner: User @relation(name: "ImageOwner")
+    group: Group @relation(name: "ImageGroup")
+
+    anyoneCanView: Boolean! @default(value: "false")
+
+    creator: User @relation(name: "ImageCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
 
 type Annotation {
     id: ID! @unique
-    annotator: User! @relation(name: "Annotator")
+    annotator: User! @relation(name: "AnnotationAnnotator")
     subject: Annotatable!
     task: AnnotationTask
 
     data: Json
+
+    classificationLabels: [ClassificationLabel!]!
+
+    svgBounds: String
+    convexHull: [CgPoint!]!
+
+    owner: User @relation(name: "AnnotationOwner")
+    group: Group @relation(name: "AnnotationGroup")
+
+    anyoneCanView: Boolean! @default(value: "false")
+    anyoneCanSuggestRevision: Boolean! @default(value: "false")
+
+    creator: User @relation(name: "AnnotationCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
 
 type AnnotationTask {
     id: ID! @unique
-    assignees: [User!]! @relation(name: "Assignees")
+    assignees: [User!]! @relation(name: "AnnotationTaskAssignees")
 
     displayName: String!
 
     subjects: [Annotatable!]!
+
     requirements: Json
+
+    classificationContexts: [ClassificationContext!]!
+    classificationLabels: [ClassificationLabel!]!
+
+    owner: User @relation(name: "AnnotationTaskOwner")
+    group: Group @relation(name: "AnnotationTaskGroup")
+
+    anyoneCanView: Boolean! @default(value: "false")
+    anyoneCanJoin: Boolean! @default(value: "false")
+
+    creator: User @relation(name: "AnnotationTaskCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
+
+type ClassificationContext {
+    id: ID! @unique
+    slug: String!
+    displayName: String!
+
+    infoHtml: String
+    infoData: Json
+
+    labels: [ClassificationLabel!]! @relation(name: "ClassificationLabelContexts")
+
+    owner: User @relation(name: "ClassificationContextOwner")
+    group: Group @relation(name: "ClassificationContextGroup")
+
+    anyoneCanUse: Boolean! @default(value: "false")
+    anyoneCanAddLabels: Boolean! @default(value: "false")
+    anyoneCanEditLabels: Boolean! @default(value: "false")
+    anyoneCanUpdateInfo: Boolean! @default(value: "false")
+
+    creator: User @relation(name: "ClassificationContextCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type ClassificationLabel {
+    id: ID! @unique
+    slug: String!
+    displayName: String!
+
+    infoHtml: String
+    infoData: Json
+
+    contexts: [ClassificationContext!]! @relation(name: "ClassificationLabelContexts")
+
+    owner: User @relation(name: "ClassificationLabelOwner")
+    group: Group @relation(name: "ClassificationLabelGroup")
+
+    anyoneCanUse: Boolean! @default(value: "false")
+    anyoneCanEditInfo: Boolean! @default(value: "false")
+
+    creator: User @relation(name: "ClassificationLabelCreator")
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type CgPoint {
+    id: ID! @unique
+
+    x: Float!
+    y: Float!
+
+    xMin: Float @default(value: 0)
+    yMin: Float @default(value: 0)
+    xMax: Float
+    yMax: Float
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
 

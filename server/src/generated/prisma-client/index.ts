@@ -14,6 +14,14 @@ export interface Exists {
   annotatable: (where?: AnnotatableWhereInput) => Promise<boolean>;
   annotation: (where?: AnnotationWhereInput) => Promise<boolean>;
   annotationTask: (where?: AnnotationTaskWhereInput) => Promise<boolean>;
+  cgPoint: (where?: CgPointWhereInput) => Promise<boolean>;
+  classificationContext: (
+    where?: ClassificationContextWhereInput
+  ) => Promise<boolean>;
+  classificationLabel: (
+    where?: ClassificationLabelWhereInput
+  ) => Promise<boolean>;
+  group: (where?: GroupWhereInput) => Promise<boolean>;
   image: (where?: ImageWhereInput) => Promise<boolean>;
   localLogin: (where?: LocalLoginWhereInput) => Promise<boolean>;
   systemLogin: (where?: SystemLoginWhereInput) => Promise<boolean>;
@@ -107,6 +115,102 @@ export interface Prisma {
       last?: Int;
     }
   ) => AnnotationTaskConnection;
+  cgPoint: (where: CgPointWhereUniqueInput) => CgPoint;
+  cgPoints: (
+    args?: {
+      where?: CgPointWhereInput;
+      orderBy?: CgPointOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<CgPointNode>>;
+  cgPointsConnection: (
+    args?: {
+      where?: CgPointWhereInput;
+      orderBy?: CgPointOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => CgPointConnection;
+  classificationContext: (
+    where: ClassificationContextWhereUniqueInput
+  ) => ClassificationContext;
+  classificationContexts: (
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<ClassificationContextNode>>;
+  classificationContextsConnection: (
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ClassificationContextConnection;
+  classificationLabel: (
+    where: ClassificationLabelWhereUniqueInput
+  ) => ClassificationLabel;
+  classificationLabels: (
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<ClassificationLabelNode>>;
+  classificationLabelsConnection: (
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ClassificationLabelConnection;
+  group: (where: GroupWhereUniqueInput) => Group;
+  groups: (
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => Promise<Array<GroupNode>>;
+  groupsConnection: (
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => GroupConnection;
   image: (where: ImageWhereUniqueInput) => Image;
   images: (
     args?: {
@@ -258,6 +362,94 @@ export interface Prisma {
     where: AnnotationTaskWhereUniqueInput
   ) => AnnotationTask;
   deleteManyAnnotationTasks: (where?: AnnotationTaskWhereInput) => BatchPayload;
+  createCgPoint: (data: CgPointCreateInput) => CgPoint;
+  updateCgPoint: (
+    args: { data: CgPointUpdateInput; where: CgPointWhereUniqueInput }
+  ) => CgPoint;
+  updateManyCgPoints: (
+    args: { data: CgPointUpdateInput; where?: CgPointWhereInput }
+  ) => BatchPayload;
+  upsertCgPoint: (
+    args: {
+      where: CgPointWhereUniqueInput;
+      create: CgPointCreateInput;
+      update: CgPointUpdateInput;
+    }
+  ) => CgPoint;
+  deleteCgPoint: (where: CgPointWhereUniqueInput) => CgPoint;
+  deleteManyCgPoints: (where?: CgPointWhereInput) => BatchPayload;
+  createClassificationContext: (
+    data: ClassificationContextCreateInput
+  ) => ClassificationContext;
+  updateClassificationContext: (
+    args: {
+      data: ClassificationContextUpdateInput;
+      where: ClassificationContextWhereUniqueInput;
+    }
+  ) => ClassificationContext;
+  updateManyClassificationContexts: (
+    args: {
+      data: ClassificationContextUpdateInput;
+      where?: ClassificationContextWhereInput;
+    }
+  ) => BatchPayload;
+  upsertClassificationContext: (
+    args: {
+      where: ClassificationContextWhereUniqueInput;
+      create: ClassificationContextCreateInput;
+      update: ClassificationContextUpdateInput;
+    }
+  ) => ClassificationContext;
+  deleteClassificationContext: (
+    where: ClassificationContextWhereUniqueInput
+  ) => ClassificationContext;
+  deleteManyClassificationContexts: (
+    where?: ClassificationContextWhereInput
+  ) => BatchPayload;
+  createClassificationLabel: (
+    data: ClassificationLabelCreateInput
+  ) => ClassificationLabel;
+  updateClassificationLabel: (
+    args: {
+      data: ClassificationLabelUpdateInput;
+      where: ClassificationLabelWhereUniqueInput;
+    }
+  ) => ClassificationLabel;
+  updateManyClassificationLabels: (
+    args: {
+      data: ClassificationLabelUpdateInput;
+      where?: ClassificationLabelWhereInput;
+    }
+  ) => BatchPayload;
+  upsertClassificationLabel: (
+    args: {
+      where: ClassificationLabelWhereUniqueInput;
+      create: ClassificationLabelCreateInput;
+      update: ClassificationLabelUpdateInput;
+    }
+  ) => ClassificationLabel;
+  deleteClassificationLabel: (
+    where: ClassificationLabelWhereUniqueInput
+  ) => ClassificationLabel;
+  deleteManyClassificationLabels: (
+    where?: ClassificationLabelWhereInput
+  ) => BatchPayload;
+  createGroup: (data: GroupCreateInput) => Group;
+  updateGroup: (
+    args: { data: GroupUpdateInput; where: GroupWhereUniqueInput }
+  ) => Group;
+  updateManyGroups: (
+    args: { data: GroupUpdateInput; where?: GroupWhereInput }
+  ) => BatchPayload;
+  upsertGroup: (
+    args: {
+      where: GroupWhereUniqueInput;
+      create: GroupCreateInput;
+      update: GroupUpdateInput;
+    }
+  ) => Group;
+  deleteGroup: (where: GroupWhereUniqueInput) => Group;
+  deleteManyGroups: (where?: GroupWhereInput) => BatchPayload;
   createImage: (data: ImageCreateInput) => Image;
   updateImage: (
     args: { data: ImageUpdateInput; where: ImageWhereUniqueInput }
@@ -340,6 +532,18 @@ export interface Subscription {
   annotationTask: (
     where?: AnnotationTaskSubscriptionWhereInput
   ) => AnnotationTaskSubscriptionPayloadSubscription;
+  cgPoint: (
+    where?: CgPointSubscriptionWhereInput
+  ) => CgPointSubscriptionPayloadSubscription;
+  classificationContext: (
+    where?: ClassificationContextSubscriptionWhereInput
+  ) => ClassificationContextSubscriptionPayloadSubscription;
+  classificationLabel: (
+    where?: ClassificationLabelSubscriptionWhereInput
+  ) => ClassificationLabelSubscriptionPayloadSubscription;
+  group: (
+    where?: GroupSubscriptionWhereInput
+  ) => GroupSubscriptionPayloadSubscription;
   image: (
     where?: ImageSubscriptionWhereInput
   ) => ImageSubscriptionPayloadSubscription;
@@ -362,50 +566,6 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type AnnotationTaskOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "displayName_ASC"
-  | "displayName_DESC"
-  | "requirements_ASC"
-  | "requirements_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "displayName_ASC"
-  | "displayName_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type AnnotationOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "data_ASC"
-  | "data_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type AnnotatableOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "displayName_ASC"
-  | "displayName_DESC"
-  | "text_ASC"
-  | "text_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type ImageOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -415,18 +575,48 @@ export type ImageOrderByInput =
   | "thumbnailUri_DESC"
   | "caption_ASC"
   | "caption_DESC"
+  | "digestSha3_ASC"
+  | "digestSha3_DESC"
+  | "digestSha2_ASC"
+  | "digestSha2_DESC"
+  | "digestSha1_ASC"
+  | "digestSha1_DESC"
+  | "digestMd5_ASC"
+  | "digestMd5_DESC"
+  | "sizeInBytes_ASC"
+  | "sizeInBytes_DESC"
+  | "width_ASC"
+  | "width_DESC"
+  | "height_ASC"
+  | "height_DESC"
+  | "anyoneCanView_ASC"
+  | "anyoneCanView_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type LocalLoginOrderByInput =
+export type AnnotationTaskOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "username_ASC"
-  | "username_DESC"
-  | "hashword_ASC"
-  | "hashword_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "requirements_ASC"
+  | "requirements_DESC"
+  | "anyoneCanView_ASC"
+  | "anyoneCanView_DESC"
+  | "anyoneCanJoin_ASC"
+  | "anyoneCanJoin_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type GroupOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -444,21 +634,166 @@ export type SystemLoginOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type AnnotatableOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "text_ASC"
+  | "text_DESC"
+  | "anyoneCanView_ASC"
+  | "anyoneCanView_DESC"
+  | "anyoneCanAnnotate_ASC"
+  | "anyoneCanAnnotate_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ClassificationContextOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "slug_ASC"
+  | "slug_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "infoHtml_ASC"
+  | "infoHtml_DESC"
+  | "infoData_ASC"
+  | "infoData_DESC"
+  | "anyoneCanUse_ASC"
+  | "anyoneCanUse_DESC"
+  | "anyoneCanAddLabels_ASC"
+  | "anyoneCanAddLabels_DESC"
+  | "anyoneCanEditLabels_ASC"
+  | "anyoneCanEditLabels_DESC"
+  | "anyoneCanUpdateInfo_ASC"
+  | "anyoneCanUpdateInfo_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ClassificationLabelOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "slug_ASC"
+  | "slug_DESC"
+  | "displayName_ASC"
+  | "displayName_DESC"
+  | "infoHtml_ASC"
+  | "infoHtml_DESC"
+  | "infoData_ASC"
+  | "infoData_DESC"
+  | "anyoneCanUse_ASC"
+  | "anyoneCanUse_DESC"
+  | "anyoneCanEditInfo_ASC"
+  | "anyoneCanEditInfo_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type LocalLoginOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "username_ASC"
+  | "username_DESC"
+  | "hashword_ASC"
+  | "hashword_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface AnnotationTaskUpdateWithoutSubjectsDataInput {
-  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
-  displayName?: String;
-  requirements?: Json;
+export type AnnotationOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "data_ASC"
+  | "data_DESC"
+  | "svgBounds_ASC"
+  | "svgBounds_DESC"
+  | "anyoneCanView_ASC"
+  | "anyoneCanView_DESC"
+  | "anyoneCanSuggestRevision_ASC"
+  | "anyoneCanSuggestRevision_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type CgPointOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "x_ASC"
+  | "x_DESC"
+  | "y_ASC"
+  | "y_DESC"
+  | "xMin_ASC"
+  | "xMin_DESC"
+  | "yMin_ASC"
+  | "yMin_DESC"
+  | "xMax_ASC"
+  | "xMax_DESC"
+  | "yMax_ASC"
+  | "yMax_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export interface GroupUpdateManyWithoutMemberOfGroupsInput {
+  create?:
+    | GroupCreateWithoutMemberOfGroupsInput[]
+    | GroupCreateWithoutMemberOfGroupsInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutMemberOfGroupsInput[]
+    | GroupUpdateWithWhereUniqueWithoutMemberOfGroupsInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutMemberOfGroupsInput[]
+    | GroupUpsertWithWhereUniqueWithoutMemberOfGroupsInput;
 }
 
 export type AnnotatableWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface SystemLoginUpdateWithoutUserDataInput {
-  username?: String;
-  passwordEnvironmentVariable?: String;
+export interface UserUpdateWithoutCreatedAnnotatablesDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
 }
 
 export interface AnnotationWhereInput {
@@ -479,14 +814,67 @@ export interface AnnotationWhereInput {
   annotator?: UserWhereInput;
   subject?: AnnotatableWhereInput;
   task?: AnnotationTaskWhereInput;
+  classificationLabels_every?: ClassificationLabelWhereInput;
+  classificationLabels_some?: ClassificationLabelWhereInput;
+  classificationLabels_none?: ClassificationLabelWhereInput;
+  svgBounds?: String;
+  svgBounds_not?: String;
+  svgBounds_in?: String[] | String;
+  svgBounds_not_in?: String[] | String;
+  svgBounds_lt?: String;
+  svgBounds_lte?: String;
+  svgBounds_gt?: String;
+  svgBounds_gte?: String;
+  svgBounds_contains?: String;
+  svgBounds_not_contains?: String;
+  svgBounds_starts_with?: String;
+  svgBounds_not_starts_with?: String;
+  svgBounds_ends_with?: String;
+  svgBounds_not_ends_with?: String;
+  convexHull_every?: CgPointWhereInput;
+  convexHull_some?: CgPointWhereInput;
+  convexHull_none?: CgPointWhereInput;
+  owner?: UserWhereInput;
+  group?: GroupWhereInput;
+  anyoneCanView?: Boolean;
+  anyoneCanView_not?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  anyoneCanSuggestRevision_not?: Boolean;
+  creator?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: AnnotationWhereInput[] | AnnotationWhereInput;
   OR?: AnnotationWhereInput[] | AnnotationWhereInput;
   NOT?: AnnotationWhereInput[] | AnnotationWhereInput;
 }
 
-export interface SystemLoginUpsertWithoutUserInput {
-  update: SystemLoginUpdateWithoutUserDataInput;
-  create: SystemLoginCreateWithoutUserInput;
+export interface GroupUpdateManyWithoutMemberUsersInput {
+  create?:
+    | GroupCreateWithoutMemberUsersInput[]
+    | GroupCreateWithoutMemberUsersInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutMemberUsersInput[]
+    | GroupUpdateWithWhereUniqueWithoutMemberUsersInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutMemberUsersInput[]
+    | GroupUpsertWithWhereUniqueWithoutMemberUsersInput;
 }
 
 export interface ImageWhereInput {
@@ -546,129 +934,91 @@ export interface ImageWhereInput {
   caption_not_starts_with?: String;
   caption_ends_with?: String;
   caption_not_ends_with?: String;
-  AND?: ImageWhereInput[] | ImageWhereInput;
-  OR?: ImageWhereInput[] | ImageWhereInput;
-  NOT?: ImageWhereInput[] | ImageWhereInput;
-}
-
-export interface UserCreateWithoutAssignedAnnotationTasksInput {
-  displayName: String;
-  systemLogin?: SystemLoginCreateOneWithoutUserInput;
-  localLogin?: LocalLoginCreateOneWithoutUserInput;
-  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
-}
-
-export interface UserCreateWithoutAnnotationsInput {
-  displayName: String;
-  systemLogin?: SystemLoginCreateOneWithoutUserInput;
-  localLogin?: LocalLoginCreateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
-}
-
-export interface SystemLoginCreateOneWithoutUserInput {
-  create?: SystemLoginCreateWithoutUserInput;
-  connect?: SystemLoginWhereUniqueInput;
-}
-
-export interface LocalLoginUpdateOneWithoutUserInput {
-  create?: LocalLoginCreateWithoutUserInput;
-  update?: LocalLoginUpdateWithoutUserDataInput;
-  upsert?: LocalLoginUpsertWithoutUserInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: LocalLoginWhereUniqueInput;
-}
-
-export interface SystemLoginCreateWithoutUserInput {
-  username: String;
-  passwordEnvironmentVariable: String;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-}
-
-export interface LocalLoginCreateOneWithoutUserInput {
-  create?: LocalLoginCreateWithoutUserInput;
-  connect?: LocalLoginWhereUniqueInput;
-}
-
-export interface LocalLoginSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: LocalLoginWhereInput;
-  AND?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
-  OR?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
-  NOT?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
-}
-
-export interface LocalLoginCreateWithoutUserInput {
-  username: String;
-  hashword: String;
-}
-
-export interface AnnotationTaskSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: AnnotationTaskWhereInput;
-  AND?:
-    | AnnotationTaskSubscriptionWhereInput[]
-    | AnnotationTaskSubscriptionWhereInput;
-  OR?:
-    | AnnotationTaskSubscriptionWhereInput[]
-    | AnnotationTaskSubscriptionWhereInput;
-  NOT?:
-    | AnnotationTaskSubscriptionWhereInput[]
-    | AnnotationTaskSubscriptionWhereInput;
-}
-
-export interface AnnotationCreateManyWithoutAnnotatorInput {
-  create?:
-    | AnnotationCreateWithoutAnnotatorInput[]
-    | AnnotationCreateWithoutAnnotatorInput;
-  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
-}
-
-export interface UserWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  displayName?: String;
-  displayName_not?: String;
-  displayName_in?: String[] | String;
-  displayName_not_in?: String[] | String;
-  displayName_lt?: String;
-  displayName_lte?: String;
-  displayName_gt?: String;
-  displayName_gte?: String;
-  displayName_contains?: String;
-  displayName_not_contains?: String;
-  displayName_starts_with?: String;
-  displayName_not_starts_with?: String;
-  displayName_ends_with?: String;
-  displayName_not_ends_with?: String;
+  digestSha3?: String;
+  digestSha3_not?: String;
+  digestSha3_in?: String[] | String;
+  digestSha3_not_in?: String[] | String;
+  digestSha3_lt?: String;
+  digestSha3_lte?: String;
+  digestSha3_gt?: String;
+  digestSha3_gte?: String;
+  digestSha3_contains?: String;
+  digestSha3_not_contains?: String;
+  digestSha3_starts_with?: String;
+  digestSha3_not_starts_with?: String;
+  digestSha3_ends_with?: String;
+  digestSha3_not_ends_with?: String;
+  digestSha2?: String;
+  digestSha2_not?: String;
+  digestSha2_in?: String[] | String;
+  digestSha2_not_in?: String[] | String;
+  digestSha2_lt?: String;
+  digestSha2_lte?: String;
+  digestSha2_gt?: String;
+  digestSha2_gte?: String;
+  digestSha2_contains?: String;
+  digestSha2_not_contains?: String;
+  digestSha2_starts_with?: String;
+  digestSha2_not_starts_with?: String;
+  digestSha2_ends_with?: String;
+  digestSha2_not_ends_with?: String;
+  digestSha1?: String;
+  digestSha1_not?: String;
+  digestSha1_in?: String[] | String;
+  digestSha1_not_in?: String[] | String;
+  digestSha1_lt?: String;
+  digestSha1_lte?: String;
+  digestSha1_gt?: String;
+  digestSha1_gte?: String;
+  digestSha1_contains?: String;
+  digestSha1_not_contains?: String;
+  digestSha1_starts_with?: String;
+  digestSha1_not_starts_with?: String;
+  digestSha1_ends_with?: String;
+  digestSha1_not_ends_with?: String;
+  digestMd5?: String;
+  digestMd5_not?: String;
+  digestMd5_in?: String[] | String;
+  digestMd5_not_in?: String[] | String;
+  digestMd5_lt?: String;
+  digestMd5_lte?: String;
+  digestMd5_gt?: String;
+  digestMd5_gte?: String;
+  digestMd5_contains?: String;
+  digestMd5_not_contains?: String;
+  digestMd5_starts_with?: String;
+  digestMd5_not_starts_with?: String;
+  digestMd5_ends_with?: String;
+  digestMd5_not_ends_with?: String;
+  sizeInBytes?: Int;
+  sizeInBytes_not?: Int;
+  sizeInBytes_in?: Int[] | Int;
+  sizeInBytes_not_in?: Int[] | Int;
+  sizeInBytes_lt?: Int;
+  sizeInBytes_lte?: Int;
+  sizeInBytes_gt?: Int;
+  sizeInBytes_gte?: Int;
+  width?: Int;
+  width_not?: Int;
+  width_in?: Int[] | Int;
+  width_not_in?: Int[] | Int;
+  width_lt?: Int;
+  width_lte?: Int;
+  width_gt?: Int;
+  width_gte?: Int;
+  height?: Int;
+  height_not?: Int;
+  height_in?: Int[] | Int;
+  height_not_in?: Int[] | Int;
+  height_lt?: Int;
+  height_lte?: Int;
+  height_gt?: Int;
+  height_gte?: Int;
+  owner?: UserWhereInput;
+  group?: GroupWhereInput;
+  anyoneCanView?: Boolean;
+  anyoneCanView_not?: Boolean;
+  creator?: UserWhereInput;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -685,248 +1035,17 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  systemLogin?: SystemLoginWhereInput;
-  localLogin?: LocalLoginWhereInput;
-  assignedAnnotationTasks_every?: AnnotationTaskWhereInput;
-  assignedAnnotationTasks_some?: AnnotationTaskWhereInput;
-  assignedAnnotationTasks_none?: AnnotationTaskWhereInput;
-  annotations_every?: AnnotationWhereInput;
-  annotations_some?: AnnotationWhereInput;
-  annotations_none?: AnnotationWhereInput;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
+  AND?: ImageWhereInput[] | ImageWhereInput;
+  OR?: ImageWhereInput[] | ImageWhereInput;
+  NOT?: ImageWhereInput[] | ImageWhereInput;
 }
 
-export interface AnnotationCreateWithoutAnnotatorInput {
-  subject: AnnotatableCreateOneInput;
-  task?: AnnotationTaskCreateOneInput;
-  data?: Json;
+export interface GroupUpdateWithWhereUniqueWithoutMemberUsersInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutMemberUsersDataInput;
 }
 
-export interface UserUpdateInput {
-  displayName?: String;
-  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
-  localLogin?: LocalLoginUpdateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
-  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
-}
-
-export interface AnnotatableCreateOneInput {
-  create?: AnnotatableCreateInput;
-  connect?: AnnotatableWhereUniqueInput;
-}
-
-export interface UserUpsertWithoutSystemLoginInput {
-  update: UserUpdateWithoutSystemLoginDataInput;
-  create: UserCreateWithoutSystemLoginInput;
-}
-
-export interface AnnotationTaskCreateOneInput {
-  create?: AnnotationTaskCreateInput;
-  connect?: AnnotationTaskWhereUniqueInput;
-}
-
-export type AnnotationWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface AnnotationTaskCreateInput {
-  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
-  displayName: String;
-  subjects?: AnnotatableCreateManyWithoutTasksInput;
-  requirements?: Json;
-}
-
-export interface SystemLoginUpdateInput {
-  user?: UserUpdateOneRequiredWithoutSystemLoginInput;
-  username?: String;
-  passwordEnvironmentVariable?: String;
-}
-
-export interface AnnotatableCreateManyWithoutTasksInput {
-  create?:
-    | AnnotatableCreateWithoutTasksInput[]
-    | AnnotatableCreateWithoutTasksInput;
-  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
-}
-
-export type AnnotationTaskWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface AnnotatableCreateWithoutTasksInput {
-  displayName?: String;
-  text?: String;
-  image?: ImageCreateOneInput;
-}
-
-export interface SystemLoginCreateInput {
-  user: UserCreateOneWithoutSystemLoginInput;
-  username: String;
-  passwordEnvironmentVariable: String;
-}
-
-export interface AnnotatableUpdateInput {
-  displayName?: String;
-  text?: String;
-  image?: ImageUpdateOneInput;
-  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
-}
-
-export type ImageWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  uri?: String;
-}>;
-
-export interface ImageUpdateOneInput {
-  create?: ImageCreateInput;
-  update?: ImageUpdateDataInput;
-  upsert?: ImageUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: ImageWhereUniqueInput;
-}
-
-export interface UserUpdateWithoutLocalLoginDataInput {
-  displayName?: String;
-  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
-  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
-}
-
-export interface ImageUpdateDataInput {
-  uri?: String;
-  thumbnailUri?: String;
-  caption?: String;
-}
-
-export interface LocalLoginUpdateInput {
-  user?: UserUpdateOneRequiredWithoutLocalLoginInput;
-  username?: String;
-  hashword?: String;
-}
-
-export interface ImageUpsertNestedInput {
-  update: ImageUpdateDataInput;
-  create: ImageCreateInput;
-}
-
-export interface UserCreateWithoutLocalLoginInput {
-  displayName: String;
-  systemLogin?: SystemLoginCreateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
-  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
-}
-
-export interface AnnotationTaskUpdateManyWithoutSubjectsInput {
-  create?:
-    | AnnotationTaskCreateWithoutSubjectsInput[]
-    | AnnotationTaskCreateWithoutSubjectsInput;
-  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
-  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
-  disconnect?:
-    | AnnotationTaskWhereUniqueInput[]
-    | AnnotationTaskWhereUniqueInput;
-  update?:
-    | AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput[]
-    | AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput;
-  upsert?:
-    | AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput[]
-    | AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput;
-}
-
-export interface LocalLoginCreateInput {
-  user: UserCreateOneWithoutLocalLoginInput;
-  username: String;
-  hashword: String;
-}
-
-export interface AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput {
-  where: AnnotationTaskWhereUniqueInput;
-  data: AnnotationTaskUpdateWithoutSubjectsDataInput;
-}
-
-export type SystemLoginWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  username?: String;
-  passwordEnvironmentVariable?: String;
-}>;
-
-export interface UserUpdateOneRequiredWithoutAnnotationsInput {
-  create?: UserCreateWithoutAnnotationsInput;
-  update?: UserUpdateWithoutAnnotationsDataInput;
-  upsert?: UserUpsertWithoutAnnotationsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpsertWithoutAnnotationsInput {
-  update: UserUpdateWithoutAnnotationsDataInput;
-  create: UserCreateWithoutAnnotationsInput;
-}
-
-export interface UserUpdateManyWithoutAssignedAnnotationTasksInput {
-  create?:
-    | UserCreateWithoutAssignedAnnotationTasksInput[]
-    | UserCreateWithoutAssignedAnnotationTasksInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  update?:
-    | UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput[]
-    | UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput;
-  upsert?:
-    | UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput[]
-    | UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput;
-}
-
-export interface AnnotationTaskUpdateWithoutAssigneesDataInput {
-  displayName?: String;
-  subjects?: AnnotatableUpdateManyWithoutTasksInput;
-  requirements?: Json;
-}
-
-export interface UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutAssignedAnnotationTasksDataInput;
-}
-
-export interface AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput {
-  where: AnnotationTaskWhereUniqueInput;
-  data: AnnotationTaskUpdateWithoutAssigneesDataInput;
-}
-
-export interface UserUpdateWithoutAssignedAnnotationTasksDataInput {
-  displayName?: String;
-  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
-  localLogin?: LocalLoginUpdateOneWithoutUserInput;
-  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
-}
-
-export interface UserUpdateWithoutAnnotationsDataInput {
-  displayName?: String;
-  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
-  localLogin?: LocalLoginUpdateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
-}
-
-export interface SystemLoginUpdateOneWithoutUserInput {
-  create?: SystemLoginCreateWithoutUserInput;
-  update?: SystemLoginUpdateWithoutUserDataInput;
-  upsert?: SystemLoginUpsertWithoutUserInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: SystemLoginWhereUniqueInput;
-}
-
-export interface AnnotatableCreateInput {
-  displayName?: String;
-  text?: String;
-  image?: ImageCreateOneInput;
-  tasks?: AnnotationTaskCreateManyWithoutSubjectsInput;
-}
-
-export interface AnnotatableWhereInput {
+export interface ClassificationContextWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -941,6 +1060,20 @@ export interface AnnotatableWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  slug?: String;
+  slug_not?: String;
+  slug_in?: String[] | String;
+  slug_not_in?: String[] | String;
+  slug_lt?: String;
+  slug_lte?: String;
+  slug_gt?: String;
+  slug_gte?: String;
+  slug_contains?: String;
+  slug_not_contains?: String;
+  slug_starts_with?: String;
+  slug_not_starts_with?: String;
+  slug_ends_with?: String;
+  slug_not_ends_with?: String;
   displayName?: String;
   displayName_not?: String;
   displayName_in?: String[] | String;
@@ -955,33 +1088,108 @@ export interface AnnotatableWhereInput {
   displayName_not_starts_with?: String;
   displayName_ends_with?: String;
   displayName_not_ends_with?: String;
-  text?: String;
-  text_not?: String;
-  text_in?: String[] | String;
-  text_not_in?: String[] | String;
-  text_lt?: String;
-  text_lte?: String;
-  text_gt?: String;
-  text_gte?: String;
-  text_contains?: String;
-  text_not_contains?: String;
-  text_starts_with?: String;
-  text_not_starts_with?: String;
-  text_ends_with?: String;
-  text_not_ends_with?: String;
-  image?: ImageWhereInput;
-  tasks_every?: AnnotationTaskWhereInput;
-  tasks_some?: AnnotationTaskWhereInput;
-  tasks_none?: AnnotationTaskWhereInput;
-  AND?: AnnotatableWhereInput[] | AnnotatableWhereInput;
-  OR?: AnnotatableWhereInput[] | AnnotatableWhereInput;
-  NOT?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+  infoHtml?: String;
+  infoHtml_not?: String;
+  infoHtml_in?: String[] | String;
+  infoHtml_not_in?: String[] | String;
+  infoHtml_lt?: String;
+  infoHtml_lte?: String;
+  infoHtml_gt?: String;
+  infoHtml_gte?: String;
+  infoHtml_contains?: String;
+  infoHtml_not_contains?: String;
+  infoHtml_starts_with?: String;
+  infoHtml_not_starts_with?: String;
+  infoHtml_ends_with?: String;
+  infoHtml_not_ends_with?: String;
+  labels_every?: ClassificationLabelWhereInput;
+  labels_some?: ClassificationLabelWhereInput;
+  labels_none?: ClassificationLabelWhereInput;
+  owner?: UserWhereInput;
+  group?: GroupWhereInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanUse_not?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanAddLabels_not?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanEditLabels_not?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  anyoneCanUpdateInfo_not?: Boolean;
+  creator?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: ClassificationContextWhereInput[] | ClassificationContextWhereInput;
+  OR?: ClassificationContextWhereInput[] | ClassificationContextWhereInput;
+  NOT?: ClassificationContextWhereInput[] | ClassificationContextWhereInput;
 }
 
-export interface ImageCreateInput {
-  uri: String;
-  thumbnailUri?: String;
-  caption?: String;
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput {
+  where: AnnotationTaskWhereUniqueInput;
+  data: AnnotationTaskUpdateWithoutAssigneesDataInput;
+}
+
+export interface UserUpsertWithoutCreatedAnnotatablesInput {
+  update: UserUpdateWithoutCreatedAnnotatablesDataInput;
+  create: UserCreateWithoutCreatedAnnotatablesInput;
+}
+
+export interface AnnotationTaskUpdateWithoutAssigneesDataInput {
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface GroupUpdateWithoutMemberUsersDataInput {
+  displayName?: String;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotatableUpdateManyWithoutTasksInput {
+  create?:
+    | AnnotatableCreateWithoutTasksInput[]
+    | AnnotatableCreateWithoutTasksInput;
+  delete?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  disconnect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  update?:
+    | AnnotatableUpdateWithWhereUniqueWithoutTasksInput[]
+    | AnnotatableUpdateWithWhereUniqueWithoutTasksInput;
+  upsert?:
+    | AnnotatableUpsertWithWhereUniqueWithoutTasksInput[]
+    | AnnotatableUpsertWithWhereUniqueWithoutTasksInput;
 }
 
 export interface LocalLoginWhereInput {
@@ -1049,17 +1257,9 @@ export interface LocalLoginWhereInput {
   NOT?: LocalLoginWhereInput[] | LocalLoginWhereInput;
 }
 
-export interface AnnotationTaskCreateWithoutSubjectsInput {
-  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
-  displayName: String;
-  requirements?: Json;
-}
-
-export interface AnnotationUpdateInput {
-  annotator?: UserUpdateOneRequiredWithoutAnnotationsInput;
-  subject?: AnnotatableUpdateOneRequiredInput;
-  task?: AnnotationTaskUpdateOneInput;
-  data?: Json;
+export interface AnnotatableUpdateWithWhereUniqueWithoutTasksInput {
+  where: AnnotatableWhereUniqueInput;
+  data: AnnotatableUpdateWithoutTasksDataInput;
 }
 
 export interface SystemLoginWhereInput {
@@ -1127,9 +1327,35 @@ export interface SystemLoginWhereInput {
   NOT?: SystemLoginWhereInput[] | SystemLoginWhereInput;
 }
 
-export interface LocalLoginUpdateWithoutUserDataInput {
-  username?: String;
-  hashword?: String;
+export interface AnnotatableUpdateWithoutTasksDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface LocalLoginSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: LocalLoginWhereInput;
+  AND?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
+  OR?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
+  NOT?: LocalLoginSubscriptionWhereInput[] | LocalLoginSubscriptionWhereInput;
+}
+
+export interface UserUpdateOneWithoutOwnedAnnotatablesInput {
+  create?: UserCreateWithoutOwnedAnnotatablesInput;
+  update?: UserUpdateWithoutOwnedAnnotatablesDataInput;
+  upsert?: UserUpsertWithoutOwnedAnnotatablesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface ImageSubscriptionWhereInput {
@@ -1143,20 +1369,44 @@ export interface ImageSubscriptionWhereInput {
   NOT?: ImageSubscriptionWhereInput[] | ImageSubscriptionWhereInput;
 }
 
-export interface LocalLoginUpsertWithoutUserInput {
-  update: LocalLoginUpdateWithoutUserDataInput;
-  create: LocalLoginCreateWithoutUserInput;
+export interface UserUpdateWithoutOwnedAnnotatablesDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
 }
 
-export interface AnnotatableSubscriptionWhereInput {
+export interface ClassificationLabelSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: AnnotatableWhereInput;
-  AND?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
-  OR?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
-  NOT?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+  node?: ClassificationLabelWhereInput;
+  AND?:
+    | ClassificationLabelSubscriptionWhereInput[]
+    | ClassificationLabelSubscriptionWhereInput;
+  OR?:
+    | ClassificationLabelSubscriptionWhereInput[]
+    | ClassificationLabelSubscriptionWhereInput;
+  NOT?:
+    | ClassificationLabelSubscriptionWhereInput[]
+    | ClassificationLabelSubscriptionWhereInput;
 }
 
 export interface AnnotationUpdateManyWithoutAnnotatorInput {
@@ -1174,188 +1424,20 @@ export interface AnnotationUpdateManyWithoutAnnotatorInput {
     | AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput;
 }
 
-export interface UserUpdateWithoutSystemLoginDataInput {
-  displayName?: String;
-  localLogin?: LocalLoginUpdateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
-  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+export interface CgPointSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CgPointWhereInput;
+  AND?: CgPointSubscriptionWhereInput[] | CgPointSubscriptionWhereInput;
+  OR?: CgPointSubscriptionWhereInput[] | CgPointSubscriptionWhereInput;
+  NOT?: CgPointSubscriptionWhereInput[] | CgPointSubscriptionWhereInput;
 }
 
 export interface AnnotationUpdateWithWhereUniqueWithoutAnnotatorInput {
   where: AnnotationWhereUniqueInput;
   data: AnnotationUpdateWithoutAnnotatorDataInput;
-}
-
-export interface UserCreateWithoutSystemLoginInput {
-  displayName: String;
-  localLogin?: LocalLoginCreateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
-  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
-}
-
-export interface AnnotationUpdateWithoutAnnotatorDataInput {
-  subject?: AnnotatableUpdateOneRequiredInput;
-  task?: AnnotationTaskUpdateOneInput;
-  data?: Json;
-}
-
-export interface UserUpsertWithoutLocalLoginInput {
-  update: UserUpdateWithoutLocalLoginDataInput;
-  create: UserCreateWithoutLocalLoginInput;
-}
-
-export interface AnnotatableUpdateOneRequiredInput {
-  create?: AnnotatableCreateInput;
-  update?: AnnotatableUpdateDataInput;
-  upsert?: AnnotatableUpsertNestedInput;
-  connect?: AnnotatableWhereUniqueInput;
-}
-
-export interface UserUpdateOneRequiredWithoutLocalLoginInput {
-  create?: UserCreateWithoutLocalLoginInput;
-  update?: UserUpdateWithoutLocalLoginDataInput;
-  upsert?: UserUpsertWithoutLocalLoginInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface AnnotatableUpdateDataInput {
-  displayName?: String;
-  text?: String;
-  image?: ImageUpdateOneInput;
-  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
-}
-
-export interface UserCreateOneWithoutLocalLoginInput {
-  create?: UserCreateWithoutLocalLoginInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface AnnotatableUpsertNestedInput {
-  update: AnnotatableUpdateDataInput;
-  create: AnnotatableCreateInput;
-}
-
-export interface AnnotationTaskUpdateInput {
-  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
-  displayName?: String;
-  subjects?: AnnotatableUpdateManyWithoutTasksInput;
-  requirements?: Json;
-}
-
-export interface AnnotationTaskUpdateOneInput {
-  create?: AnnotationTaskCreateInput;
-  update?: AnnotationTaskUpdateDataInput;
-  upsert?: AnnotationTaskUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: AnnotationTaskWhereUniqueInput;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface AnnotationTaskUpdateDataInput {
-  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
-  displayName?: String;
-  subjects?: AnnotatableUpdateManyWithoutTasksInput;
-  requirements?: Json;
-}
-
-export interface AnnotationTaskCreateManyWithoutSubjectsInput {
-  create?:
-    | AnnotationTaskCreateWithoutSubjectsInput[]
-    | AnnotationTaskCreateWithoutSubjectsInput;
-  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
-}
-
-export interface AnnotatableUpdateManyWithoutTasksInput {
-  create?:
-    | AnnotatableCreateWithoutTasksInput[]
-    | AnnotatableCreateWithoutTasksInput;
-  delete?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
-  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
-  disconnect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
-  update?:
-    | AnnotatableUpdateWithWhereUniqueWithoutTasksInput[]
-    | AnnotatableUpdateWithWhereUniqueWithoutTasksInput;
-  upsert?:
-    | AnnotatableUpsertWithWhereUniqueWithoutTasksInput[]
-    | AnnotatableUpsertWithWhereUniqueWithoutTasksInput;
-}
-
-export interface SystemLoginSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: SystemLoginWhereInput;
-  AND?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
-  OR?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
-  NOT?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
-}
-
-export interface AnnotatableUpdateWithWhereUniqueWithoutTasksInput {
-  where: AnnotatableWhereUniqueInput;
-  data: AnnotatableUpdateWithoutTasksDataInput;
-}
-
-export interface UserCreateInput {
-  displayName: String;
-  systemLogin?: SystemLoginCreateOneWithoutUserInput;
-  localLogin?: LocalLoginCreateOneWithoutUserInput;
-  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
-  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
-}
-
-export interface AnnotatableUpdateWithoutTasksDataInput {
-  displayName?: String;
-  text?: String;
-  image?: ImageUpdateOneInput;
-}
-
-export interface UserCreateOneWithoutSystemLoginInput {
-  create?: UserCreateWithoutSystemLoginInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface AnnotatableUpsertWithWhereUniqueWithoutTasksInput {
-  where: AnnotatableWhereUniqueInput;
-  update: AnnotatableUpdateWithoutTasksDataInput;
-  create: AnnotatableCreateWithoutTasksInput;
-}
-
-export type LocalLoginWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  username?: String;
-}>;
-
-export interface AnnotationTaskUpsertNestedInput {
-  update: AnnotationTaskUpdateDataInput;
-  create: AnnotationTaskCreateInput;
-}
-
-export interface AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput {
-  where: AnnotationTaskWhereUniqueInput;
-  update: AnnotationTaskUpdateWithoutAssigneesDataInput;
-  create: AnnotationTaskCreateWithoutAssigneesInput;
-}
-
-export interface AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput {
-  where: AnnotationWhereUniqueInput;
-  update: AnnotationUpdateWithoutAnnotatorDataInput;
-  create: AnnotationCreateWithoutAnnotatorInput;
-}
-
-export interface ImageCreateOneInput {
-  create?: ImageCreateInput;
-  connect?: ImageWhereUniqueInput;
-}
-
-export interface UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutAssignedAnnotationTasksDataInput;
-  create: UserCreateWithoutAssignedAnnotationTasksInput;
 }
 
 export interface AnnotationSubscriptionWhereInput {
@@ -1369,10 +1451,2709 @@ export interface AnnotationSubscriptionWhereInput {
   NOT?: AnnotationSubscriptionWhereInput[] | AnnotationSubscriptionWhereInput;
 }
 
-export interface AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput {
+export interface AnnotationUpdateWithoutAnnotatorDataInput {
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationsInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface UserUpdateInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface AnnotatableUpdateOneRequiredInput {
+  create?: AnnotatableCreateInput;
+  update?: AnnotatableUpdateDataInput;
+  upsert?: AnnotatableUpsertNestedInput;
+  connect?: AnnotatableWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutSystemLoginInput {
+  update: UserUpdateWithoutSystemLoginDataInput;
+  create: UserCreateWithoutSystemLoginInput;
+}
+
+export interface AnnotatableUpdateDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface UserUpdateOneRequiredWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput;
+  update?: UserUpdateWithoutSystemLoginDataInput;
+  upsert?: UserUpsertWithoutSystemLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotationTaskUpdateManyWithoutSubjectsInput {
+  create?:
+    | AnnotationTaskCreateWithoutSubjectsInput[]
+    | AnnotationTaskCreateWithoutSubjectsInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput;
+}
+
+export type AnnotationWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput {
   where: AnnotationTaskWhereUniqueInput;
-  update: AnnotationTaskUpdateWithoutSubjectsDataInput;
-  create: AnnotationTaskCreateWithoutSubjectsInput;
+  data: AnnotationTaskUpdateWithoutSubjectsDataInput;
+}
+
+export interface UserCreateOneWithoutSystemLoginInput {
+  create?: UserCreateWithoutSystemLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotationTaskUpdateWithoutSubjectsDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export type AnnotationTaskWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateManyWithoutAssignedAnnotationTasksInput {
+  create?:
+    | UserCreateWithoutAssignedAnnotationTasksInput[]
+    | UserCreateWithoutAssignedAnnotationTasksInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput[]
+    | UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput[]
+    | UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput;
+}
+
+export interface UserUpdateWithoutLocalLoginDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutAssignedAnnotationTasksInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutAssignedAnnotationTasksDataInput;
+}
+
+export type CgPointWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateWithoutAssignedAnnotationTasksDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface UserCreateWithoutLocalLoginInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface GroupUpdateManyWithoutOwnerInput {
+  create?: GroupCreateWithoutOwnerInput[] | GroupCreateWithoutOwnerInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutOwnerInput[]
+    | GroupUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutOwnerInput[]
+    | GroupUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export type ClassificationContextWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface GroupUpdateWithWhereUniqueWithoutOwnerInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutOwnerDataInput;
+}
+
+export interface ImageUpdateInput {
+  uri?: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserUpdateOneWithoutOwnedImagesInput;
+  group?: GroupUpdateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedImagesInput;
+}
+
+export interface GroupUpdateWithoutOwnerDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export type ClassificationLabelWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateManyWithoutMemberOfGroupsInput {
+  create?:
+    | UserCreateWithoutMemberOfGroupsInput[]
+    | UserCreateWithoutMemberOfGroupsInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutMemberOfGroupsInput[]
+    | UserUpdateWithWhereUniqueWithoutMemberOfGroupsInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutMemberOfGroupsInput[]
+    | UserUpsertWithWhereUniqueWithoutMemberOfGroupsInput;
+}
+
+export interface ClassificationLabelUpdateInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextUpdateManyWithoutLabelsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutMemberOfGroupsInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutMemberOfGroupsDataInput;
+}
+
+export type GroupWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateWithoutMemberOfGroupsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface AnnotationTaskUpdateInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface GroupUpdateManyWithoutCreatorInput {
+  create?: GroupCreateWithoutCreatorInput[] | GroupCreateWithoutCreatorInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutCreatorInput[]
+    | GroupUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutCreatorInput[]
+    | GroupUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export type ImageWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  uri?: String;
+}>;
+
+export interface GroupUpdateWithWhereUniqueWithoutCreatorInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutCreatorDataInput;
+}
+
+export interface ImageUpsertNestedInput {
+  update: ImageUpdateDataInput;
+  create: ImageCreateInput;
+}
+
+export interface GroupUpdateWithoutCreatorDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+}
+
+export type LocalLoginWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+}>;
+
+export interface AnnotatableUpsertWithWhereUniqueWithoutGroupInput {
+  where: AnnotatableWhereUniqueInput;
+  update: AnnotatableUpdateWithoutGroupDataInput;
+  create: AnnotatableCreateWithoutGroupInput;
+}
+
+export interface AnnotatableUpsertWithWhereUniqueWithoutTasksInput {
+  where: AnnotatableWhereUniqueInput;
+  update: AnnotatableUpdateWithoutTasksDataInput;
+  create: AnnotatableCreateWithoutTasksInput;
+}
+
+export interface GroupUpdateWithWhereUniqueWithoutMemberOfGroupsInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutMemberOfGroupsDataInput;
+}
+
+export interface AnnotationUpsertWithWhereUniqueWithoutAnnotatorInput {
+  where: AnnotationWhereUniqueInput;
+  update: AnnotationUpdateWithoutAnnotatorDataInput;
+  create: AnnotationCreateWithoutAnnotatorInput;
+}
+
+export interface GroupUpdateWithoutMemberOfGroupsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotatableUpsertNestedInput {
+  update: AnnotatableUpdateDataInput;
+  create: AnnotatableCreateInput;
+}
+
+export interface AnnotatableUpdateManyWithoutGroupInput {
+  create?:
+    | AnnotatableCreateWithoutGroupInput[]
+    | AnnotatableCreateWithoutGroupInput;
+  delete?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  disconnect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  update?:
+    | AnnotatableUpdateWithWhereUniqueWithoutGroupInput[]
+    | AnnotatableUpdateWithWhereUniqueWithoutGroupInput;
+  upsert?:
+    | AnnotatableUpsertWithWhereUniqueWithoutGroupInput[]
+    | AnnotatableUpsertWithWhereUniqueWithoutGroupInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutAssignedAnnotationTasksInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutAssignedAnnotationTasksDataInput;
+  create: UserCreateWithoutAssignedAnnotationTasksInput;
+}
+
+export interface AnnotatableUpdateWithWhereUniqueWithoutGroupInput {
+  where: AnnotatableWhereUniqueInput;
+  data: AnnotatableUpdateWithoutGroupDataInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface AnnotatableUpdateWithoutGroupDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutCreatorInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutCreatorDataInput;
+  create: GroupCreateWithoutCreatorInput;
+}
+
+export interface UserUpdateOneWithoutCreatedAnnotatablesInput {
+  create?: UserCreateWithoutCreatedAnnotatablesInput;
+  update?: UserUpdateWithoutCreatedAnnotatablesDataInput;
+  upsert?: UserUpsertWithoutCreatedAnnotatablesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ImageCreateOneInput {
+  create?: ImageCreateInput;
+  connect?: ImageWhereUniqueInput;
+}
+
+export interface AnnotatableWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
+  text?: String;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  image?: ImageWhereInput;
+  tasks_every?: AnnotationTaskWhereInput;
+  tasks_some?: AnnotationTaskWhereInput;
+  tasks_none?: AnnotationTaskWhereInput;
+  owner?: UserWhereInput;
+  group?: GroupWhereInput;
+  anyoneCanView?: Boolean;
+  anyoneCanView_not?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  anyoneCanAnnotate_not?: Boolean;
+  creator?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+  OR?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+  NOT?: AnnotatableWhereInput[] | AnnotatableWhereInput;
+}
+
+export interface UserCreateOneWithoutOwnedImagesInput {
+  create?: UserCreateWithoutOwnedImagesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
+  memberUsers_every?: UserWhereInput;
+  memberUsers_some?: UserWhereInput;
+  memberUsers_none?: UserWhereInput;
+  memberGroups_every?: GroupWhereInput;
+  memberGroups_some?: GroupWhereInput;
+  memberGroups_none?: GroupWhereInput;
+  memberOfGroups_every?: GroupWhereInput;
+  memberOfGroups_some?: GroupWhereInput;
+  memberOfGroups_none?: GroupWhereInput;
+  ownedAnnotatables_every?: AnnotatableWhereInput;
+  ownedAnnotatables_some?: AnnotatableWhereInput;
+  ownedAnnotatables_none?: AnnotatableWhereInput;
+  ownedImages_every?: ImageWhereInput;
+  ownedImages_some?: ImageWhereInput;
+  ownedImages_none?: ImageWhereInput;
+  ownedAnnotations_every?: AnnotationWhereInput;
+  ownedAnnotations_some?: AnnotationWhereInput;
+  ownedAnnotations_none?: AnnotationWhereInput;
+  ownedAnnotationTasks_every?: AnnotationTaskWhereInput;
+  ownedAnnotationTasks_some?: AnnotationTaskWhereInput;
+  ownedAnnotationTasks_none?: AnnotationTaskWhereInput;
+  ownedClassificationContexts_every?: ClassificationContextWhereInput;
+  ownedClassificationContexts_some?: ClassificationContextWhereInput;
+  ownedClassificationContexts_none?: ClassificationContextWhereInput;
+  ownedClassificationLabels_every?: ClassificationLabelWhereInput;
+  ownedClassificationLabels_some?: ClassificationLabelWhereInput;
+  ownedClassificationLabels_none?: ClassificationLabelWhereInput;
+  owner?: UserWhereInput;
+  managerUsers_every?: UserWhereInput;
+  managerUsers_some?: UserWhereInput;
+  managerUsers_none?: UserWhereInput;
+  managerGroups_every?: GroupWhereInput;
+  managerGroups_some?: GroupWhereInput;
+  managerGroups_none?: GroupWhereInput;
+  managerOfGroups_every?: GroupWhereInput;
+  managerOfGroups_some?: GroupWhereInput;
+  managerOfGroups_none?: GroupWhereInput;
+  creator?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: GroupWhereInput[] | GroupWhereInput;
+  OR?: GroupWhereInput[] | GroupWhereInput;
+  NOT?: GroupWhereInput[] | GroupWhereInput;
+}
+
+export interface SystemLoginCreateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput;
+  connect?: SystemLoginWhereUniqueInput;
+}
+
+export interface ClassificationLabelWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  slug?: String;
+  slug_not?: String;
+  slug_in?: String[] | String;
+  slug_not_in?: String[] | String;
+  slug_lt?: String;
+  slug_lte?: String;
+  slug_gt?: String;
+  slug_gte?: String;
+  slug_contains?: String;
+  slug_not_contains?: String;
+  slug_starts_with?: String;
+  slug_not_starts_with?: String;
+  slug_ends_with?: String;
+  slug_not_ends_with?: String;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
+  infoHtml?: String;
+  infoHtml_not?: String;
+  infoHtml_in?: String[] | String;
+  infoHtml_not_in?: String[] | String;
+  infoHtml_lt?: String;
+  infoHtml_lte?: String;
+  infoHtml_gt?: String;
+  infoHtml_gte?: String;
+  infoHtml_contains?: String;
+  infoHtml_not_contains?: String;
+  infoHtml_starts_with?: String;
+  infoHtml_not_starts_with?: String;
+  infoHtml_ends_with?: String;
+  infoHtml_not_ends_with?: String;
+  contexts_every?: ClassificationContextWhereInput;
+  contexts_some?: ClassificationContextWhereInput;
+  contexts_none?: ClassificationContextWhereInput;
+  owner?: UserWhereInput;
+  group?: GroupWhereInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanUse_not?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  anyoneCanEditInfo_not?: Boolean;
+  creator?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: ClassificationLabelWhereInput[] | ClassificationLabelWhereInput;
+  OR?: ClassificationLabelWhereInput[] | ClassificationLabelWhereInput;
+  NOT?: ClassificationLabelWhereInput[] | ClassificationLabelWhereInput;
+}
+
+export interface LocalLoginCreateOneWithoutUserInput {
+  create?: LocalLoginCreateWithoutUserInput;
+  connect?: LocalLoginWhereUniqueInput;
+}
+
+export interface CgPointWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  x?: Float;
+  x_not?: Float;
+  x_in?: Float[] | Float;
+  x_not_in?: Float[] | Float;
+  x_lt?: Float;
+  x_lte?: Float;
+  x_gt?: Float;
+  x_gte?: Float;
+  y?: Float;
+  y_not?: Float;
+  y_in?: Float[] | Float;
+  y_not_in?: Float[] | Float;
+  y_lt?: Float;
+  y_lte?: Float;
+  y_gt?: Float;
+  y_gte?: Float;
+  xMin?: Float;
+  xMin_not?: Float;
+  xMin_in?: Float[] | Float;
+  xMin_not_in?: Float[] | Float;
+  xMin_lt?: Float;
+  xMin_lte?: Float;
+  xMin_gt?: Float;
+  xMin_gte?: Float;
+  yMin?: Float;
+  yMin_not?: Float;
+  yMin_in?: Float[] | Float;
+  yMin_not_in?: Float[] | Float;
+  yMin_lt?: Float;
+  yMin_lte?: Float;
+  yMin_gt?: Float;
+  yMin_gte?: Float;
+  xMax?: Float;
+  xMax_not?: Float;
+  xMax_in?: Float[] | Float;
+  xMax_not_in?: Float[] | Float;
+  xMax_lt?: Float;
+  xMax_lte?: Float;
+  xMax_gt?: Float;
+  xMax_gte?: Float;
+  yMax?: Float;
+  yMax_not?: Float;
+  yMax_in?: Float[] | Float;
+  yMax_not_in?: Float[] | Float;
+  yMax_lt?: Float;
+  yMax_lte?: Float;
+  yMax_gt?: Float;
+  yMax_gte?: Float;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: CgPointWhereInput[] | CgPointWhereInput;
+  OR?: CgPointWhereInput[] | CgPointWhereInput;
+  NOT?: CgPointWhereInput[] | CgPointWhereInput;
+}
+
+export interface AnnotationTaskCreateManyWithoutAssigneesInput {
+  create?:
+    | AnnotationTaskCreateWithoutAssigneesInput[]
+    | AnnotationTaskCreateWithoutAssigneesInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+}
+
+export interface GroupUpdateManyWithoutMemberGroupsInput {
+  create?:
+    | GroupCreateWithoutMemberGroupsInput[]
+    | GroupCreateWithoutMemberGroupsInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutMemberGroupsInput[]
+    | GroupUpdateWithWhereUniqueWithoutMemberGroupsInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutMemberGroupsInput[]
+    | GroupUpsertWithWhereUniqueWithoutMemberGroupsInput;
+}
+
+export interface AnnotatableCreateManyWithoutTasksInput {
+  create?:
+    | AnnotatableCreateWithoutTasksInput[]
+    | AnnotatableCreateWithoutTasksInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+}
+
+export interface GroupUpdateWithWhereUniqueWithoutMemberGroupsInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutMemberGroupsDataInput;
+}
+
+export interface UserCreateOneWithoutOwnedAnnotatablesInput {
+  create?: UserCreateWithoutOwnedAnnotatablesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupUpdateWithoutMemberGroupsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotationCreateManyWithoutAnnotatorInput {
+  create?:
+    | AnnotationCreateWithoutAnnotatorInput[]
+    | AnnotationCreateWithoutAnnotatorInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+}
+
+export interface ImageUpdateManyWithoutGroupInput {
+  create?: ImageCreateWithoutGroupInput[] | ImageCreateWithoutGroupInput;
+  delete?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  connect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  disconnect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  update?:
+    | ImageUpdateWithWhereUniqueWithoutGroupInput[]
+    | ImageUpdateWithWhereUniqueWithoutGroupInput;
+  upsert?:
+    | ImageUpsertWithWhereUniqueWithoutGroupInput[]
+    | ImageUpsertWithWhereUniqueWithoutGroupInput;
+}
+
+export interface AnnotatableCreateOneInput {
+  create?: AnnotatableCreateInput;
+  connect?: AnnotatableWhereUniqueInput;
+}
+
+export interface ImageUpdateWithWhereUniqueWithoutGroupInput {
+  where: ImageWhereUniqueInput;
+  data: ImageUpdateWithoutGroupDataInput;
+}
+
+export interface AnnotationTaskCreateInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
+  displayName: String;
+  subjects?: AnnotatableCreateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextCreateManyInput;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface ImageUpdateWithoutGroupDataInput {
+  uri?: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserUpdateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedImagesInput;
+}
+
+export interface UserCreateWithoutAssignedAnnotationTasksInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface UserUpdateOneWithoutCreatedImagesInput {
+  create?: UserCreateWithoutCreatedImagesInput;
+  update?: UserUpdateWithoutCreatedImagesDataInput;
+  upsert?: UserUpsertWithoutCreatedImagesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupCreateWithoutOwnerInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface UserUpdateWithoutCreatedImagesDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface UserCreateWithoutMemberOfGroupsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface GroupUpdateManyWithoutManagerUsersInput {
+  create?:
+    | GroupCreateWithoutManagerUsersInput[]
+    | GroupCreateWithoutManagerUsersInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutManagerUsersInput[]
+    | GroupUpdateWithWhereUniqueWithoutManagerUsersInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutManagerUsersInput[]
+    | GroupUpsertWithWhereUniqueWithoutManagerUsersInput;
+}
+
+export interface GroupCreateWithoutCreatorInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+}
+
+export interface GroupUpdateWithWhereUniqueWithoutManagerUsersInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutManagerUsersDataInput;
+}
+
+export interface GroupCreateWithoutMemberOfGroupsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface GroupUpdateWithoutManagerUsersDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotatableCreateWithoutGroupInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
+  tasks?: AnnotationTaskCreateManyWithoutSubjectsInput;
+  owner?: UserCreateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface AnnotationUpdateManyWithoutGroupInput {
+  create?:
+    | AnnotationCreateWithoutGroupInput[]
+    | AnnotationCreateWithoutGroupInput;
+  delete?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  disconnect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  update?:
+    | AnnotationUpdateWithWhereUniqueWithoutGroupInput[]
+    | AnnotationUpdateWithWhereUniqueWithoutGroupInput;
+  upsert?:
+    | AnnotationUpsertWithWhereUniqueWithoutGroupInput[]
+    | AnnotationUpsertWithWhereUniqueWithoutGroupInput;
+}
+
+export interface AnnotationTaskCreateWithoutSubjectsInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
+  displayName: String;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextCreateManyInput;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface AnnotationUpdateWithWhereUniqueWithoutGroupInput {
+  where: AnnotationWhereUniqueInput;
+  data: AnnotationUpdateWithoutGroupDataInput;
+}
+
+export interface ClassificationContextCreateInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelCreateManyWithoutContextsInput;
+  owner?: UserCreateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface AnnotationUpdateWithoutGroupDataInput {
+  annotator?: UserUpdateOneRequiredWithoutAnnotationsInput;
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface ClassificationLabelCreateWithoutContextsInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  owner?: UserCreateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface UserUpdateOneRequiredWithoutAnnotationsInput {
+  create?: UserCreateWithoutAnnotationsInput;
+  update?: UserUpdateWithoutAnnotationsDataInput;
+  upsert?: UserUpsertWithoutAnnotationsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutOwnedClassificationLabelsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface UserUpdateWithoutAnnotationsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface GroupCreateWithoutMemberUsersInput {
+  displayName: String;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotatableUpdateManyWithoutOwnerInput {
+  create?:
+    | AnnotatableCreateWithoutOwnerInput[]
+    | AnnotatableCreateWithoutOwnerInput;
+  delete?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  disconnect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  update?:
+    | AnnotatableUpdateWithWhereUniqueWithoutOwnerInput[]
+    | AnnotatableUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | AnnotatableUpsertWithWhereUniqueWithoutOwnerInput[]
+    | AnnotatableUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export interface GroupCreateWithoutMemberGroupsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotatableUpdateWithWhereUniqueWithoutOwnerInput {
+  where: AnnotatableWhereUniqueInput;
+  data: AnnotatableUpdateWithoutOwnerDataInput;
+}
+
+export interface ImageCreateWithoutGroupInput {
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserCreateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserCreateOneWithoutCreatedImagesInput;
+}
+
+export interface AnnotatableUpdateWithoutOwnerDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface UserCreateWithoutCreatedImagesInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface GroupUpdateOneWithoutOwnedAnnotatablesInput {
+  create?: GroupCreateWithoutOwnedAnnotatablesInput;
+  update?: GroupUpdateWithoutOwnedAnnotatablesDataInput;
+  upsert?: GroupUpsertWithoutOwnedAnnotatablesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface GroupCreateWithoutManagerUsersInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface GroupUpdateWithoutOwnedAnnotatablesDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotationCreateWithoutGroupInput {
+  annotator: UserCreateOneWithoutAnnotationsInput;
+  subject: AnnotatableCreateOneInput;
+  task?: AnnotationTaskCreateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface AnnotationTaskUpdateManyWithoutGroupInput {
+  create?:
+    | AnnotationTaskCreateWithoutGroupInput[]
+    | AnnotationTaskCreateWithoutGroupInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutGroupInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutGroupInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutGroupInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutGroupInput;
+}
+
+export interface UserCreateWithoutAnnotationsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutGroupInput {
+  where: AnnotationTaskWhereUniqueInput;
+  data: AnnotationTaskUpdateWithoutGroupDataInput;
+}
+
+export interface AnnotatableCreateWithoutOwnerInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
+  tasks?: AnnotationTaskCreateManyWithoutSubjectsInput;
+  group?: GroupCreateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface AnnotationTaskUpdateWithoutGroupDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface GroupCreateWithoutOwnedAnnotatablesInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface ClassificationContextUpdateManyInput {
+  create?:
+    | ClassificationContextCreateInput[]
+    | ClassificationContextCreateInput;
+  delete?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  disconnect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  update?:
+    | ClassificationContextUpdateWithWhereUniqueNestedInput[]
+    | ClassificationContextUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ClassificationContextUpsertWithWhereUniqueNestedInput[]
+    | ClassificationContextUpsertWithWhereUniqueNestedInput;
+}
+
+export interface AnnotationTaskCreateWithoutGroupInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
+  displayName: String;
+  subjects?: AnnotatableCreateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextCreateManyInput;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface ClassificationContextUpdateWithWhereUniqueNestedInput {
+  where: ClassificationContextWhereUniqueInput;
+  data: ClassificationContextUpdateDataInput;
+}
+
+export interface ClassificationLabelCreateInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextCreateManyWithoutLabelsInput;
+  owner?: UserCreateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface ClassificationContextUpdateDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelUpdateManyWithoutContextsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface ClassificationContextCreateWithoutLabelsInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  owner?: UserCreateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface ClassificationLabelUpdateManyWithoutContextsInput {
+  create?:
+    | ClassificationLabelCreateWithoutContextsInput[]
+    | ClassificationLabelCreateWithoutContextsInput;
+  delete?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  disconnect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  update?:
+    | ClassificationLabelUpdateWithWhereUniqueWithoutContextsInput[]
+    | ClassificationLabelUpdateWithWhereUniqueWithoutContextsInput;
+  upsert?:
+    | ClassificationLabelUpsertWithWhereUniqueWithoutContextsInput[]
+    | ClassificationLabelUpsertWithWhereUniqueWithoutContextsInput;
+}
+
+export interface UserCreateWithoutOwnedClassificationContextsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationLabelUpdateWithWhereUniqueWithoutContextsInput {
+  where: ClassificationLabelWhereUniqueInput;
+  data: ClassificationLabelUpdateWithoutContextsDataInput;
+}
+
+export interface AnnotatableCreateWithoutCreatorInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
+  tasks?: AnnotationTaskCreateManyWithoutSubjectsInput;
+  owner?: UserCreateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupCreateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+}
+
+export interface ClassificationLabelUpdateWithoutContextsDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  owner?: UserUpdateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface ImageCreateWithoutOwnerInput {
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  group?: GroupCreateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserCreateOneWithoutCreatedImagesInput;
+}
+
+export interface UserUpdateOneWithoutOwnedClassificationLabelsInput {
+  create?: UserCreateWithoutOwnedClassificationLabelsInput;
+  update?: UserUpdateWithoutOwnedClassificationLabelsDataInput;
+  upsert?: UserUpsertWithoutOwnedClassificationLabelsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupCreateWithoutOwnedImagesInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface UserUpdateWithoutOwnedClassificationLabelsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface ClassificationContextCreateWithoutGroupInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelCreateManyWithoutContextsInput;
+  owner?: UserCreateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface AnnotatableUpdateManyWithoutCreatorInput {
+  create?:
+    | AnnotatableCreateWithoutCreatorInput[]
+    | AnnotatableCreateWithoutCreatorInput;
+  delete?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  disconnect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+  update?:
+    | AnnotatableUpdateWithWhereUniqueWithoutCreatorInput[]
+    | AnnotatableUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | AnnotatableUpsertWithWhereUniqueWithoutCreatorInput[]
+    | AnnotatableUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export interface UserCreateWithoutCreatedClassificationContextsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface AnnotatableUpdateWithWhereUniqueWithoutCreatorInput {
+  where: AnnotatableWhereUniqueInput;
+  data: AnnotatableUpdateWithoutCreatorDataInput;
+}
+
+export interface ImageCreateWithoutCreatorInput {
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserCreateOneWithoutOwnedImagesInput;
+  group?: GroupCreateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+}
+
+export interface AnnotatableUpdateWithoutCreatorDataInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+}
+
+export interface AnnotationCreateWithoutOwnerInput {
+  annotator: UserCreateOneWithoutAnnotationsInput;
+  subject: AnnotatableCreateOneInput;
+  task?: AnnotationTaskCreateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointCreateManyInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface AnnotatableUpsertWithWhereUniqueWithoutCreatorInput {
+  where: AnnotatableWhereUniqueInput;
+  update: AnnotatableUpdateWithoutCreatorDataInput;
+  create: AnnotatableCreateWithoutCreatorInput;
+}
+
+export interface CgPointCreateInput {
+  x: Float;
+  y: Float;
+  xMin?: Float;
+  yMin?: Float;
+  xMax?: Float;
+  yMax?: Float;
+}
+
+export interface ImageUpdateManyWithoutOwnerInput {
+  create?: ImageCreateWithoutOwnerInput[] | ImageCreateWithoutOwnerInput;
+  delete?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  connect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  disconnect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  update?:
+    | ImageUpdateWithWhereUniqueWithoutOwnerInput[]
+    | ImageUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | ImageUpsertWithWhereUniqueWithoutOwnerInput[]
+    | ImageUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export interface GroupCreateWithoutOwnedAnnotationsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface ImageUpdateWithWhereUniqueWithoutOwnerInput {
+  where: ImageWhereUniqueInput;
+  data: ImageUpdateWithoutOwnerDataInput;
+}
+
+export interface ClassificationLabelCreateWithoutGroupInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextCreateManyWithoutLabelsInput;
+  owner?: UserCreateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface ImageUpdateWithoutOwnerDataInput {
+  uri?: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  group?: GroupUpdateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedImagesInput;
+}
+
+export interface UserCreateWithoutCreatedClassificationLabelsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+}
+
+export interface GroupUpdateOneWithoutOwnedImagesInput {
+  create?: GroupCreateWithoutOwnedImagesInput;
+  update?: GroupUpdateWithoutOwnedImagesDataInput;
+  upsert?: GroupUpsertWithoutOwnedImagesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface AnnotationCreateWithoutCreatorInput {
+  annotator: UserCreateOneWithoutAnnotationsInput;
+  subject: AnnotatableCreateOneInput;
+  task?: AnnotationTaskCreateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationsInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+}
+
+export interface GroupUpdateWithoutOwnedImagesDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface UserCreateWithoutOwnedAnnotationsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationContextUpdateManyWithoutGroupInput {
+  create?:
+    | ClassificationContextCreateWithoutGroupInput[]
+    | ClassificationContextCreateWithoutGroupInput;
+  delete?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  disconnect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  update?:
+    | ClassificationContextUpdateWithWhereUniqueWithoutGroupInput[]
+    | ClassificationContextUpdateWithWhereUniqueWithoutGroupInput;
+  upsert?:
+    | ClassificationContextUpsertWithWhereUniqueWithoutGroupInput[]
+    | ClassificationContextUpsertWithWhereUniqueWithoutGroupInput;
+}
+
+export interface AnnotationTaskCreateWithoutOwnerInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
+  displayName: String;
+  subjects?: AnnotatableCreateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextCreateManyInput;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface ClassificationContextUpdateWithWhereUniqueWithoutGroupInput {
+  where: ClassificationContextWhereUniqueInput;
+  data: ClassificationContextUpdateWithoutGroupDataInput;
+}
+
+export interface GroupCreateWithoutOwnedAnnotationTasksInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface ClassificationContextUpdateWithoutGroupDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelUpdateManyWithoutContextsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface UserCreateWithoutOwnedGroupsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface UserUpdateOneWithoutOwnedClassificationContextsInput {
+  create?: UserCreateWithoutOwnedClassificationContextsInput;
+  update?: UserUpdateWithoutOwnedClassificationContextsDataInput;
+  upsert?: UserUpsertWithoutOwnedClassificationContextsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotationTaskCreateWithoutCreatorInput {
+  assignees?: UserCreateManyWithoutAssignedAnnotationTasksInput;
+  displayName: String;
+  subjects?: AnnotatableCreateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextCreateManyInput;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+}
+
+export interface UserUpdateWithoutOwnedClassificationContextsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface UserCreateWithoutOwnedAnnotationTasksInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ImageUpdateManyWithoutCreatorInput {
+  create?: ImageCreateWithoutCreatorInput[] | ImageCreateWithoutCreatorInput;
+  delete?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  connect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  disconnect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+  update?:
+    | ImageUpdateWithWhereUniqueWithoutCreatorInput[]
+    | ImageUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | ImageUpsertWithWhereUniqueWithoutCreatorInput[]
+    | ImageUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export interface ClassificationContextCreateWithoutOwnerInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelCreateManyWithoutContextsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface ImageUpdateWithWhereUniqueWithoutCreatorInput {
+  where: ImageWhereUniqueInput;
+  data: ImageUpdateWithoutCreatorDataInput;
+}
+
+export interface GroupCreateWithoutOwnedClassificationContextsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface ImageUpdateWithoutCreatorDataInput {
+  uri?: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserUpdateOneWithoutOwnedImagesInput;
+  group?: GroupUpdateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+}
+
+export interface UserCreateWithoutManagerOfGroupsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ImageUpsertWithWhereUniqueWithoutCreatorInput {
+  where: ImageWhereUniqueInput;
+  update: ImageUpdateWithoutCreatorDataInput;
+  create: ImageCreateWithoutCreatorInput;
+}
+
+export interface ClassificationContextCreateWithoutCreatorInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelCreateManyWithoutContextsInput;
+  owner?: UserCreateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+}
+
+export interface AnnotationUpdateManyWithoutOwnerInput {
+  create?:
+    | AnnotationCreateWithoutOwnerInput[]
+    | AnnotationCreateWithoutOwnerInput;
+  delete?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  disconnect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  update?:
+    | AnnotationUpdateWithWhereUniqueWithoutOwnerInput[]
+    | AnnotationUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | AnnotationUpsertWithWhereUniqueWithoutOwnerInput[]
+    | AnnotationUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export interface ClassificationLabelCreateWithoutOwnerInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextCreateManyWithoutLabelsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserCreateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface AnnotationUpdateWithWhereUniqueWithoutOwnerInput {
+  where: AnnotationWhereUniqueInput;
+  data: AnnotationUpdateWithoutOwnerDataInput;
+}
+
+export interface GroupCreateWithoutOwnedClassificationLabelsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotationUpdateWithoutOwnerDataInput {
+  annotator?: UserUpdateOneRequiredWithoutAnnotationsInput;
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointUpdateManyInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface GroupCreateWithoutManagerOfGroupsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface AnnotationTaskUpdateOneInput {
+  create?: AnnotationTaskCreateInput;
+  update?: AnnotationTaskUpdateDataInput;
+  upsert?: AnnotationTaskUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: AnnotationTaskWhereUniqueInput;
+}
+
+export interface UserCreateWithoutCreatedGroupsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface AnnotationTaskUpdateDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface ClassificationLabelCreateWithoutCreatorInput {
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextCreateManyWithoutLabelsInput;
+  owner?: UserCreateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupCreateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+}
+
+export interface ClassificationLabelUpdateManyInput {
+  create?: ClassificationLabelCreateInput[] | ClassificationLabelCreateInput;
+  delete?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  disconnect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  update?:
+    | ClassificationLabelUpdateWithWhereUniqueNestedInput[]
+    | ClassificationLabelUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ClassificationLabelUpsertWithWhereUniqueNestedInput[]
+    | ClassificationLabelUpsertWithWhereUniqueNestedInput;
+}
+
+export interface GroupCreateWithoutManagerGroupsInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface ClassificationLabelUpdateWithWhereUniqueNestedInput {
+  where: ClassificationLabelWhereUniqueInput;
+  data: ClassificationLabelUpdateDataInput;
+}
+
+export interface UserCreateWithoutCreatedAnnotationTasksInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationLabelUpdateDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextUpdateManyWithoutLabelsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface UserCreateWithoutCreatedAnnotationsInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationContextUpdateManyWithoutLabelsInput {
+  create?:
+    | ClassificationContextCreateWithoutLabelsInput[]
+    | ClassificationContextCreateWithoutLabelsInput;
+  delete?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  disconnect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  update?:
+    | ClassificationContextUpdateWithWhereUniqueWithoutLabelsInput[]
+    | ClassificationContextUpdateWithWhereUniqueWithoutLabelsInput;
+  upsert?:
+    | ClassificationContextUpsertWithWhereUniqueWithoutLabelsInput[]
+    | ClassificationContextUpsertWithWhereUniqueWithoutLabelsInput;
+}
+
+export interface UserCreateWithoutCreatedAnnotatablesInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationContextUpdateWithWhereUniqueWithoutLabelsInput {
+  where: ClassificationContextWhereUniqueInput;
+  data: ClassificationContextUpdateWithoutLabelsDataInput;
+}
+
+export interface ImageUpdateOneInput {
+  create?: ImageCreateInput;
+  update?: ImageUpdateDataInput;
+  upsert?: ImageUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ImageWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateWithoutLabelsDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  owner?: UserUpdateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface UserUpdateOneWithoutOwnedImagesInput {
+  create?: UserCreateWithoutOwnedImagesInput;
+  update?: UserUpdateWithoutOwnedImagesDataInput;
+  upsert?: UserUpsertWithoutOwnedImagesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupUpdateOneWithoutOwnedClassificationContextsInput {
+  create?: GroupCreateWithoutOwnedClassificationContextsInput;
+  update?: GroupUpdateWithoutOwnedClassificationContextsDataInput;
+  upsert?: GroupUpsertWithoutOwnedClassificationContextsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface SystemLoginUpdateOneWithoutUserInput {
+  create?: SystemLoginCreateWithoutUserInput;
+  update?: SystemLoginUpdateWithoutUserDataInput;
+  upsert?: SystemLoginUpsertWithoutUserInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: SystemLoginWhereUniqueInput;
+}
+
+export interface GroupUpdateWithoutOwnedClassificationContextsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface SystemLoginUpsertWithoutUserInput {
+  update: SystemLoginUpdateWithoutUserDataInput;
+  create: SystemLoginCreateWithoutUserInput;
+}
+
+export interface ClassificationLabelUpdateManyWithoutGroupInput {
+  create?:
+    | ClassificationLabelCreateWithoutGroupInput[]
+    | ClassificationLabelCreateWithoutGroupInput;
+  delete?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  disconnect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  update?:
+    | ClassificationLabelUpdateWithWhereUniqueWithoutGroupInput[]
+    | ClassificationLabelUpdateWithWhereUniqueWithoutGroupInput;
+  upsert?:
+    | ClassificationLabelUpsertWithWhereUniqueWithoutGroupInput[]
+    | ClassificationLabelUpsertWithWhereUniqueWithoutGroupInput;
+}
+
+export interface LocalLoginUpdateWithoutUserDataInput {
+  username?: String;
+  hashword?: String;
+}
+
+export interface ClassificationLabelUpdateWithWhereUniqueWithoutGroupInput {
+  where: ClassificationLabelWhereUniqueInput;
+  data: ClassificationLabelUpdateWithoutGroupDataInput;
+}
+
+export interface AnnotationTaskUpdateManyWithoutAssigneesInput {
+  create?:
+    | AnnotationTaskCreateWithoutAssigneesInput[]
+    | AnnotationTaskCreateWithoutAssigneesInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput;
+}
+
+export interface ClassificationLabelUpdateWithoutGroupDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextUpdateManyWithoutLabelsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface SystemLoginSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SystemLoginWhereInput;
+  AND?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+  OR?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+  NOT?: SystemLoginSubscriptionWhereInput[] | SystemLoginSubscriptionWhereInput;
+}
+
+export interface UserUpdateOneWithoutCreatedClassificationLabelsInput {
+  create?: UserCreateWithoutCreatedClassificationLabelsInput;
+  update?: UserUpdateWithoutCreatedClassificationLabelsDataInput;
+  upsert?: UserUpsertWithoutCreatedClassificationLabelsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface AnnotationTaskWhereInput {
@@ -1410,14 +4191,278 @@ export interface AnnotationTaskWhereInput {
   subjects_every?: AnnotatableWhereInput;
   subjects_some?: AnnotatableWhereInput;
   subjects_none?: AnnotatableWhereInput;
+  classificationContexts_every?: ClassificationContextWhereInput;
+  classificationContexts_some?: ClassificationContextWhereInput;
+  classificationContexts_none?: ClassificationContextWhereInput;
+  classificationLabels_every?: ClassificationLabelWhereInput;
+  classificationLabels_some?: ClassificationLabelWhereInput;
+  classificationLabels_none?: ClassificationLabelWhereInput;
+  owner?: UserWhereInput;
+  group?: GroupWhereInput;
+  anyoneCanView?: Boolean;
+  anyoneCanView_not?: Boolean;
+  anyoneCanJoin?: Boolean;
+  anyoneCanJoin_not?: Boolean;
+  creator?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: AnnotationTaskWhereInput[] | AnnotationTaskWhereInput;
   OR?: AnnotationTaskWhereInput[] | AnnotationTaskWhereInput;
   NOT?: AnnotationTaskWhereInput[] | AnnotationTaskWhereInput;
 }
 
-export interface UserCreateOneWithoutAnnotationsInput {
-  create?: UserCreateWithoutAnnotationsInput;
+export interface UserUpdateWithoutCreatedClassificationLabelsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+}
+
+export interface ClassificationContextSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ClassificationContextWhereInput;
+  AND?:
+    | ClassificationContextSubscriptionWhereInput[]
+    | ClassificationContextSubscriptionWhereInput;
+  OR?:
+    | ClassificationContextSubscriptionWhereInput[]
+    | ClassificationContextSubscriptionWhereInput;
+  NOT?:
+    | ClassificationContextSubscriptionWhereInput[]
+    | ClassificationContextSubscriptionWhereInput;
+}
+
+export interface AnnotationUpdateManyWithoutCreatorInput {
+  create?:
+    | AnnotationCreateWithoutCreatorInput[]
+    | AnnotationCreateWithoutCreatorInput;
+  delete?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  disconnect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+  update?:
+    | AnnotationUpdateWithWhereUniqueWithoutCreatorInput[]
+    | AnnotationUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | AnnotationUpsertWithWhereUniqueWithoutCreatorInput[]
+    | AnnotationUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export interface AnnotatableSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: AnnotatableWhereInput;
+  AND?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+  OR?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+  NOT?: AnnotatableSubscriptionWhereInput[] | AnnotatableSubscriptionWhereInput;
+}
+
+export interface AnnotationUpdateWithWhereUniqueWithoutCreatorInput {
+  where: AnnotationWhereUniqueInput;
+  data: AnnotationUpdateWithoutCreatorDataInput;
+}
+
+export interface UserUpdateWithoutSystemLoginDataInput {
+  displayName?: String;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface AnnotationUpdateWithoutCreatorDataInput {
+  annotator?: UserUpdateOneRequiredWithoutAnnotationsInput;
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationsInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+}
+
+export interface UserCreateWithoutSystemLoginInput {
+  displayName: String;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface CgPointUpdateManyInput {
+  create?: CgPointCreateInput[] | CgPointCreateInput;
+  delete?: CgPointWhereUniqueInput[] | CgPointWhereUniqueInput;
+  connect?: CgPointWhereUniqueInput[] | CgPointWhereUniqueInput;
+  disconnect?: CgPointWhereUniqueInput[] | CgPointWhereUniqueInput;
+  update?:
+    | CgPointUpdateWithWhereUniqueNestedInput[]
+    | CgPointUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | CgPointUpsertWithWhereUniqueNestedInput[]
+    | CgPointUpsertWithWhereUniqueNestedInput;
+}
+
+export interface UserUpsertWithoutLocalLoginInput {
+  update: UserUpdateWithoutLocalLoginDataInput;
+  create: UserCreateWithoutLocalLoginInput;
+}
+
+export interface CgPointUpdateWithWhereUniqueNestedInput {
+  where: CgPointWhereUniqueInput;
+  data: CgPointUpdateDataInput;
+}
+
+export interface LocalLoginUpdateInput {
+  user?: UserUpdateOneRequiredWithoutLocalLoginInput;
+  username?: String;
+  hashword?: String;
+}
+
+export interface CgPointUpdateDataInput {
+  x?: Float;
+  y?: Float;
+  xMin?: Float;
+  yMin?: Float;
+  xMax?: Float;
+  yMax?: Float;
+}
+
+export interface LocalLoginCreateInput {
+  user: UserCreateOneWithoutLocalLoginInput;
+  username: String;
+  hashword: String;
+}
+
+export interface CgPointUpsertWithWhereUniqueNestedInput {
+  where: CgPointWhereUniqueInput;
+  update: CgPointUpdateDataInput;
+  create: CgPointCreateInput;
+}
+
+export interface GroupCreateInput {
+  displayName: String;
+  memberUsers?: UserCreateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupCreateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutGroupInput;
+  ownedImages?: ImageCreateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutGroupInput;
+  owner?: UserCreateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserCreateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupCreateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerGroupsInput;
+  creator?: UserCreateOneWithoutCreatedGroupsInput;
+}
+
+export interface UserUpdateOneWithoutOwnedAnnotationsInput {
+  create?: UserCreateWithoutOwnedAnnotationsInput;
+  update?: UserUpdateWithoutOwnedAnnotationsDataInput;
+  upsert?: UserUpsertWithoutOwnedAnnotationsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: UserWhereUniqueInput;
+}
+
+export interface CgPointUpdateInput {
+  x?: Float;
+  y?: Float;
+  xMin?: Float;
+  yMin?: Float;
+  xMax?: Float;
+  yMax?: Float;
+}
+
+export interface UserUpdateWithoutOwnedAnnotationsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
 }
 
 export interface AnnotationCreateInput {
@@ -1425,32 +4470,1102 @@ export interface AnnotationCreateInput {
   subject: AnnotatableCreateOneInput;
   task?: AnnotationTaskCreateOneInput;
   data?: Json;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationsInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationsInput;
 }
 
-export interface AnnotationTaskCreateManyWithoutAssigneesInput {
+export interface AnnotationTaskUpdateManyWithoutOwnerInput {
   create?:
-    | AnnotationTaskCreateWithoutAssigneesInput[]
-    | AnnotationTaskCreateWithoutAssigneesInput;
+    | AnnotationTaskCreateWithoutOwnerInput[]
+    | AnnotationTaskCreateWithoutOwnerInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
   connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutOwnerInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutOwnerInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutAssigneesDataInput;
+  create: AnnotationTaskCreateWithoutAssigneesInput;
+}
+
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutOwnerInput {
+  where: AnnotationTaskWhereUniqueInput;
+  data: AnnotationTaskUpdateWithoutOwnerDataInput;
+}
+
+export type SystemLoginWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+  passwordEnvironmentVariable?: String;
+}>;
+
+export interface AnnotationTaskUpdateWithoutOwnerDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationTasksInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutOwnerInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutOwnerDataInput;
+  create: GroupCreateWithoutOwnerInput;
+}
+
+export interface GroupUpdateOneWithoutOwnedAnnotationTasksInput {
+  create?: GroupCreateWithoutOwnedAnnotationTasksInput;
+  update?: GroupUpdateWithoutOwnedAnnotationTasksDataInput;
+  upsert?: GroupUpsertWithoutOwnedAnnotationTasksInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutMemberOfGroupsInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutMemberOfGroupsDataInput;
+  create: GroupCreateWithoutMemberOfGroupsInput;
+}
+
+export interface GroupUpdateWithoutOwnedAnnotationTasksDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface ImageCreateInput {
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserCreateOneWithoutOwnedImagesInput;
+  group?: GroupCreateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserCreateOneWithoutCreatedImagesInput;
+}
+
+export interface UserUpdateOneWithoutOwnedGroupsInput {
+  create?: UserCreateWithoutOwnedGroupsInput;
+  update?: UserUpdateWithoutOwnedGroupsDataInput;
+  upsert?: UserUpsertWithoutOwnedGroupsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface SystemLoginCreateWithoutUserInput {
+  username: String;
+  passwordEnvironmentVariable: String;
+}
+
+export interface UserUpdateWithoutOwnedGroupsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
 }
 
 export interface AnnotationTaskCreateWithoutAssigneesInput {
   displayName: String;
   subjects?: AnnotatableCreateManyWithoutTasksInput;
   requirements?: Json;
+  classificationContexts?: ClassificationContextCreateManyInput;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationTasksInput;
 }
 
-export interface ImageUpdateInput {
+export interface AnnotationTaskUpdateManyWithoutCreatorInput {
+  create?:
+    | AnnotationTaskCreateWithoutCreatorInput[]
+    | AnnotationTaskCreateWithoutCreatorInput;
+  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+  disconnect?:
+    | AnnotationTaskWhereUniqueInput[]
+    | AnnotationTaskWhereUniqueInput;
+  update?:
+    | AnnotationTaskUpdateWithWhereUniqueWithoutCreatorInput[]
+    | AnnotationTaskUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | AnnotationTaskUpsertWithWhereUniqueWithoutCreatorInput[]
+    | AnnotationTaskUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export interface UserCreateWithoutOwnedAnnotatablesInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface AnnotationTaskUpdateWithWhereUniqueWithoutCreatorInput {
+  where: AnnotationTaskWhereUniqueInput;
+  data: AnnotationTaskUpdateWithoutCreatorDataInput;
+}
+
+export interface AnnotationTaskCreateOneInput {
+  create?: AnnotationTaskCreateInput;
+  connect?: AnnotationTaskWhereUniqueInput;
+}
+
+export interface AnnotationTaskUpdateWithoutCreatorDataInput {
+  assignees?: UserUpdateManyWithoutAssignedAnnotationTasksInput;
+  displayName?: String;
+  subjects?: AnnotatableUpdateManyWithoutTasksInput;
+  requirements?: Json;
+  classificationContexts?: ClassificationContextUpdateManyInput;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationTasksInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationTasksInput;
+  anyoneCanView?: Boolean;
+  anyoneCanJoin?: Boolean;
+}
+
+export interface GroupCreateManyWithoutOwnerInput {
+  create?: GroupCreateWithoutOwnerInput[] | GroupCreateWithoutOwnerInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface UserUpdateOneWithoutOwnedAnnotationTasksInput {
+  create?: UserCreateWithoutOwnedAnnotationTasksInput;
+  update?: UserUpdateWithoutOwnedAnnotationTasksDataInput;
+  upsert?: UserUpsertWithoutOwnedAnnotationTasksInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupCreateManyWithoutCreatorInput {
+  create?: GroupCreateWithoutCreatorInput[] | GroupCreateWithoutCreatorInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutOwnedAnnotationTasksDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface AnnotatableCreateManyWithoutGroupInput {
+  create?:
+    | AnnotatableCreateWithoutGroupInput[]
+    | AnnotatableCreateWithoutGroupInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateManyWithoutOwnerInput {
+  create?:
+    | ClassificationContextCreateWithoutOwnerInput[]
+    | ClassificationContextCreateWithoutOwnerInput;
+  delete?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  disconnect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  update?:
+    | ClassificationContextUpdateWithWhereUniqueWithoutOwnerInput[]
+    | ClassificationContextUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | ClassificationContextUpsertWithWhereUniqueWithoutOwnerInput[]
+    | ClassificationContextUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export interface ClassificationContextCreateManyInput {
+  create?:
+    | ClassificationContextCreateInput[]
+    | ClassificationContextCreateInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateWithWhereUniqueWithoutOwnerInput {
+  where: ClassificationContextWhereUniqueInput;
+  data: ClassificationContextUpdateWithoutOwnerDataInput;
+}
+
+export interface UserCreateOneWithoutOwnedClassificationLabelsInput {
+  create?: UserCreateWithoutOwnedClassificationLabelsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateWithoutOwnerDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelUpdateManyWithoutContextsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface GroupCreateManyWithoutMemberGroupsInput {
+  create?:
+    | GroupCreateWithoutMemberGroupsInput[]
+    | GroupCreateWithoutMemberGroupsInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface UserUpdateOneWithoutCreatedClassificationContextsInput {
+  create?: UserCreateWithoutCreatedClassificationContextsInput;
+  update?: UserUpdateWithoutCreatedClassificationContextsDataInput;
+  upsert?: UserUpsertWithoutCreatedClassificationContextsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateOneWithoutCreatedImagesInput {
+  create?: UserCreateWithoutCreatedImagesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutCreatedClassificationContextsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface AnnotationCreateManyWithoutGroupInput {
+  create?:
+    | AnnotationCreateWithoutGroupInput[]
+    | AnnotationCreateWithoutGroupInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpdateManyWithoutOwnerInput {
+  create?:
+    | ClassificationLabelCreateWithoutOwnerInput[]
+    | ClassificationLabelCreateWithoutOwnerInput;
+  delete?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  disconnect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  update?:
+    | ClassificationLabelUpdateWithWhereUniqueWithoutOwnerInput[]
+    | ClassificationLabelUpdateWithWhereUniqueWithoutOwnerInput;
+  upsert?:
+    | ClassificationLabelUpsertWithWhereUniqueWithoutOwnerInput[]
+    | ClassificationLabelUpsertWithWhereUniqueWithoutOwnerInput;
+}
+
+export interface AnnotatableCreateManyWithoutOwnerInput {
+  create?:
+    | AnnotatableCreateWithoutOwnerInput[]
+    | AnnotatableCreateWithoutOwnerInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpdateWithWhereUniqueWithoutOwnerInput {
+  where: ClassificationLabelWhereUniqueInput;
+  data: ClassificationLabelUpdateWithoutOwnerDataInput;
+}
+
+export interface AnnotationTaskCreateManyWithoutGroupInput {
+  create?:
+    | AnnotationTaskCreateWithoutGroupInput[]
+    | AnnotationTaskCreateWithoutGroupInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpdateWithoutOwnerDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextUpdateManyWithoutLabelsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationLabelsInput;
+}
+
+export interface ClassificationContextCreateManyWithoutLabelsInput {
+  create?:
+    | ClassificationContextCreateWithoutLabelsInput[]
+    | ClassificationContextCreateWithoutLabelsInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+}
+
+export interface GroupUpdateOneWithoutOwnedClassificationLabelsInput {
+  create?: GroupCreateWithoutOwnedClassificationLabelsInput;
+  update?: GroupUpdateWithoutOwnedClassificationLabelsDataInput;
+  upsert?: GroupUpsertWithoutOwnedClassificationLabelsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface AnnotatableCreateManyWithoutCreatorInput {
+  create?:
+    | AnnotatableCreateWithoutCreatorInput[]
+    | AnnotatableCreateWithoutCreatorInput;
+  connect?: AnnotatableWhereUniqueInput[] | AnnotatableWhereUniqueInput;
+}
+
+export interface GroupUpdateWithoutOwnedClassificationLabelsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface GroupCreateOneWithoutOwnedImagesInput {
+  create?: GroupCreateWithoutOwnedImagesInput;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface UserUpdateManyWithoutManagerOfGroupsInput {
+  create?:
+    | UserCreateWithoutManagerOfGroupsInput[]
+    | UserCreateWithoutManagerOfGroupsInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutManagerOfGroupsInput[]
+    | UserUpdateWithWhereUniqueWithoutManagerOfGroupsInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutManagerOfGroupsInput[]
+    | UserUpsertWithWhereUniqueWithoutManagerOfGroupsInput;
+}
+
+export interface UserCreateOneWithoutCreatedClassificationContextsInput {
+  create?: UserCreateWithoutCreatedClassificationContextsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutManagerOfGroupsInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutManagerOfGroupsDataInput;
+}
+
+export interface AnnotationCreateManyWithoutOwnerInput {
+  create?:
+    | AnnotationCreateWithoutOwnerInput[]
+    | AnnotationCreateWithoutOwnerInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutManagerOfGroupsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface GroupCreateOneWithoutOwnedAnnotationsInput {
+  create?: GroupCreateWithoutOwnedAnnotationsInput;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateManyWithoutCreatorInput {
+  create?:
+    | ClassificationContextCreateWithoutCreatorInput[]
+    | ClassificationContextCreateWithoutCreatorInput;
+  delete?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  disconnect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+  update?:
+    | ClassificationContextUpdateWithWhereUniqueWithoutCreatorInput[]
+    | ClassificationContextUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | ClassificationContextUpsertWithWhereUniqueWithoutCreatorInput[]
+    | ClassificationContextUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export interface UserCreateOneWithoutCreatedClassificationLabelsInput {
+  create?: UserCreateWithoutCreatedClassificationLabelsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateWithWhereUniqueWithoutCreatorInput {
+  where: ClassificationContextWhereUniqueInput;
+  data: ClassificationContextUpdateWithoutCreatorDataInput;
+}
+
+export interface UserCreateOneWithoutOwnedAnnotationsInput {
+  create?: UserCreateWithoutOwnedAnnotationsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ClassificationContextUpdateWithoutCreatorDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelUpdateManyWithoutContextsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+}
+
+export interface GroupCreateOneWithoutOwnedAnnotationTasksInput {
+  create?: GroupCreateWithoutOwnedAnnotationTasksInput;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface ClassificationContextUpsertWithWhereUniqueWithoutCreatorInput {
+  where: ClassificationContextWhereUniqueInput;
+  update: ClassificationContextUpdateWithoutCreatorDataInput;
+  create: ClassificationContextCreateWithoutCreatorInput;
+}
+
+export interface AnnotationTaskCreateManyWithoutCreatorInput {
+  create?:
+    | AnnotationTaskCreateWithoutCreatorInput[]
+    | AnnotationTaskCreateWithoutCreatorInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpdateManyWithoutCreatorInput {
+  create?:
+    | ClassificationLabelCreateWithoutCreatorInput[]
+    | ClassificationLabelCreateWithoutCreatorInput;
+  delete?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  disconnect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+  update?:
+    | ClassificationLabelUpdateWithWhereUniqueWithoutCreatorInput[]
+    | ClassificationLabelUpdateWithWhereUniqueWithoutCreatorInput;
+  upsert?:
+    | ClassificationLabelUpsertWithWhereUniqueWithoutCreatorInput[]
+    | ClassificationLabelUpsertWithWhereUniqueWithoutCreatorInput;
+}
+
+export interface ClassificationContextCreateManyWithoutOwnerInput {
+  create?:
+    | ClassificationContextCreateWithoutOwnerInput[]
+    | ClassificationContextCreateWithoutOwnerInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpdateWithWhereUniqueWithoutCreatorInput {
+  where: ClassificationLabelWhereUniqueInput;
+  data: ClassificationLabelUpdateWithoutCreatorDataInput;
+}
+
+export interface UserCreateManyWithoutManagerOfGroupsInput {
+  create?:
+    | UserCreateWithoutManagerOfGroupsInput[]
+    | UserCreateWithoutManagerOfGroupsInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpdateWithoutCreatorDataInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  contexts?: ClassificationContextUpdateManyWithoutLabelsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationLabelsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationLabelsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanEditInfo?: Boolean;
+}
+
+export interface ClassificationLabelCreateManyWithoutOwnerInput {
+  create?:
+    | ClassificationLabelCreateWithoutOwnerInput[]
+    | ClassificationLabelCreateWithoutOwnerInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpsertWithWhereUniqueWithoutCreatorInput {
+  where: ClassificationLabelWhereUniqueInput;
+  update: ClassificationLabelUpdateWithoutCreatorDataInput;
+  create: ClassificationLabelCreateWithoutCreatorInput;
+}
+
+export interface GroupCreateManyWithoutManagerOfGroupsInput {
+  create?:
+    | GroupCreateWithoutManagerOfGroupsInput[]
+    | GroupCreateWithoutManagerOfGroupsInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutManagerOfGroupsInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutManagerOfGroupsDataInput;
+  create: UserCreateWithoutManagerOfGroupsInput;
+}
+
+export interface ClassificationLabelCreateManyWithoutCreatorInput {
+  create?:
+    | ClassificationLabelCreateWithoutCreatorInput[]
+    | ClassificationLabelCreateWithoutCreatorInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+}
+
+export interface GroupUpdateManyWithoutManagerOfGroupsInput {
+  create?:
+    | GroupCreateWithoutManagerOfGroupsInput[]
+    | GroupCreateWithoutManagerOfGroupsInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutManagerOfGroupsInput[]
+    | GroupUpdateWithWhereUniqueWithoutManagerOfGroupsInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutManagerOfGroupsInput[]
+    | GroupUpsertWithWhereUniqueWithoutManagerOfGroupsInput;
+}
+
+export interface UserCreateOneWithoutCreatedAnnotationTasksInput {
+  create?: UserCreateWithoutCreatedAnnotationTasksInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupUpdateWithWhereUniqueWithoutManagerOfGroupsInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutManagerOfGroupsDataInput;
+}
+
+export interface UserCreateOneWithoutCreatedAnnotatablesInput {
+  create?: UserCreateWithoutCreatedAnnotatablesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupUpdateWithoutManagerOfGroupsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface ImageUpdateDataInput {
   uri?: String;
   thumbnailUri?: String;
   caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  owner?: UserUpdateOneWithoutOwnedImagesInput;
+  group?: GroupUpdateOneWithoutOwnedImagesInput;
+  anyoneCanView?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedImagesInput;
 }
 
-export interface UserUpdateOneRequiredWithoutSystemLoginInput {
-  create?: UserCreateWithoutSystemLoginInput;
-  update?: UserUpdateWithoutSystemLoginDataInput;
-  upsert?: UserUpsertWithoutSystemLoginInput;
+export interface UserUpdateOneWithoutCreatedGroupsInput {
+  create?: UserCreateWithoutCreatedGroupsInput;
+  update?: UserUpdateWithoutCreatedGroupsDataInput;
+  upsert?: UserUpsertWithoutCreatedGroupsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: UserWhereUniqueInput;
+}
+
+export interface SystemLoginUpdateWithoutUserDataInput {
+  username?: String;
+  passwordEnvironmentVariable?: String;
+}
+
+export interface UserUpdateWithoutCreatedGroupsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface LocalLoginUpsertWithoutUserInput {
+  update: LocalLoginUpdateWithoutUserDataInput;
+  create: LocalLoginCreateWithoutUserInput;
+}
+
+export interface UserUpsertWithoutCreatedGroupsInput {
+  update: UserUpdateWithoutCreatedGroupsDataInput;
+  create: UserCreateWithoutCreatedGroupsInput;
+}
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  displayName?: String;
+  displayName_not?: String;
+  displayName_in?: String[] | String;
+  displayName_not_in?: String[] | String;
+  displayName_lt?: String;
+  displayName_lte?: String;
+  displayName_gt?: String;
+  displayName_gte?: String;
+  displayName_contains?: String;
+  displayName_not_contains?: String;
+  displayName_starts_with?: String;
+  displayName_not_starts_with?: String;
+  displayName_ends_with?: String;
+  displayName_not_ends_with?: String;
+  systemLogin?: SystemLoginWhereInput;
+  localLogin?: LocalLoginWhereInput;
+  assignedAnnotationTasks_every?: AnnotationTaskWhereInput;
+  assignedAnnotationTasks_some?: AnnotationTaskWhereInput;
+  assignedAnnotationTasks_none?: AnnotationTaskWhereInput;
+  annotations_every?: AnnotationWhereInput;
+  annotations_some?: AnnotationWhereInput;
+  annotations_none?: AnnotationWhereInput;
+  ownedGroups_every?: GroupWhereInput;
+  ownedGroups_some?: GroupWhereInput;
+  ownedGroups_none?: GroupWhereInput;
+  createdGroups_every?: GroupWhereInput;
+  createdGroups_some?: GroupWhereInput;
+  createdGroups_none?: GroupWhereInput;
+  memberOfGroups_every?: GroupWhereInput;
+  memberOfGroups_some?: GroupWhereInput;
+  memberOfGroups_none?: GroupWhereInput;
+  managerOfGroups_every?: GroupWhereInput;
+  managerOfGroups_some?: GroupWhereInput;
+  managerOfGroups_none?: GroupWhereInput;
+  ownedAnnotatables_every?: AnnotatableWhereInput;
+  ownedAnnotatables_some?: AnnotatableWhereInput;
+  ownedAnnotatables_none?: AnnotatableWhereInput;
+  createdAnnotatables_every?: AnnotatableWhereInput;
+  createdAnnotatables_some?: AnnotatableWhereInput;
+  createdAnnotatables_none?: AnnotatableWhereInput;
+  ownedImages_every?: ImageWhereInput;
+  ownedImages_some?: ImageWhereInput;
+  ownedImages_none?: ImageWhereInput;
+  createdImages_every?: ImageWhereInput;
+  createdImages_some?: ImageWhereInput;
+  createdImages_none?: ImageWhereInput;
+  ownedAnnotations_every?: AnnotationWhereInput;
+  ownedAnnotations_some?: AnnotationWhereInput;
+  ownedAnnotations_none?: AnnotationWhereInput;
+  createdAnnotations_every?: AnnotationWhereInput;
+  createdAnnotations_some?: AnnotationWhereInput;
+  createdAnnotations_none?: AnnotationWhereInput;
+  ownedAnnotationTasks_every?: AnnotationTaskWhereInput;
+  ownedAnnotationTasks_some?: AnnotationTaskWhereInput;
+  ownedAnnotationTasks_none?: AnnotationTaskWhereInput;
+  createdAnnotationTasks_every?: AnnotationTaskWhereInput;
+  createdAnnotationTasks_some?: AnnotationTaskWhereInput;
+  createdAnnotationTasks_none?: AnnotationTaskWhereInput;
+  ownedClassificationContexts_every?: ClassificationContextWhereInput;
+  ownedClassificationContexts_some?: ClassificationContextWhereInput;
+  ownedClassificationContexts_none?: ClassificationContextWhereInput;
+  createdClassificationContexts_every?: ClassificationContextWhereInput;
+  createdClassificationContexts_some?: ClassificationContextWhereInput;
+  createdClassificationContexts_none?: ClassificationContextWhereInput;
+  ownedClassificationLabels_every?: ClassificationLabelWhereInput;
+  ownedClassificationLabels_some?: ClassificationLabelWhereInput;
+  ownedClassificationLabels_none?: ClassificationLabelWhereInput;
+  createdClassificationLabels_every?: ClassificationLabelWhereInput;
+  createdClassificationLabels_some?: ClassificationLabelWhereInput;
+  createdClassificationLabels_none?: ClassificationLabelWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutManagerOfGroupsInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutManagerOfGroupsDataInput;
+  create: GroupCreateWithoutManagerOfGroupsInput;
+}
+
+export interface AnnotationTaskSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: AnnotationTaskWhereInput;
+  AND?:
+    | AnnotationTaskSubscriptionWhereInput[]
+    | AnnotationTaskSubscriptionWhereInput;
+  OR?:
+    | AnnotationTaskSubscriptionWhereInput[]
+    | AnnotationTaskSubscriptionWhereInput;
+  NOT?:
+    | AnnotationTaskSubscriptionWhereInput[]
+    | AnnotationTaskSubscriptionWhereInput;
+}
+
+export interface GroupUpdateManyWithoutManagerGroupsInput {
+  create?:
+    | GroupCreateWithoutManagerGroupsInput[]
+    | GroupCreateWithoutManagerGroupsInput;
+  delete?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  disconnect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+  update?:
+    | GroupUpdateWithWhereUniqueWithoutManagerGroupsInput[]
+    | GroupUpdateWithWhereUniqueWithoutManagerGroupsInput;
+  upsert?:
+    | GroupUpsertWithWhereUniqueWithoutManagerGroupsInput[]
+    | GroupUpsertWithWhereUniqueWithoutManagerGroupsInput;
+}
+
+export interface SystemLoginUpdateInput {
+  user?: UserUpdateOneRequiredWithoutSystemLoginInput;
+  username?: String;
+  passwordEnvironmentVariable?: String;
+}
+
+export interface GroupUpdateWithWhereUniqueWithoutManagerGroupsInput {
+  where: GroupWhereUniqueInput;
+  data: GroupUpdateWithoutManagerGroupsDataInput;
+}
+
+export interface UserUpdateOneRequiredWithoutLocalLoginInput {
+  create?: UserCreateWithoutLocalLoginInput;
+  update?: UserUpdateWithoutLocalLoginDataInput;
+  upsert?: UserUpsertWithoutLocalLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupUpdateWithoutManagerGroupsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface GroupUpdateInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutManagerGroupsInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutManagerGroupsDataInput;
+  create: GroupCreateWithoutManagerGroupsInput;
+}
+
+export interface AnnotationUpdateInput {
+  annotator?: UserUpdateOneRequiredWithoutAnnotationsInput;
+  subject?: AnnotatableUpdateOneRequiredInput;
+  task?: AnnotationTaskUpdateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelUpdateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointUpdateManyInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotationsInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface GroupUpsertWithoutOwnedClassificationLabelsInput {
+  update: GroupUpdateWithoutOwnedClassificationLabelsDataInput;
+  create: GroupCreateWithoutOwnedClassificationLabelsInput;
+}
+
+export interface UserUpsertWithoutOwnedAnnotatablesInput {
+  update: UserUpdateWithoutOwnedAnnotatablesDataInput;
+  create: UserCreateWithoutOwnedAnnotatablesInput;
+}
+
+export interface ClassificationLabelUpsertWithWhereUniqueWithoutOwnerInput {
+  where: ClassificationLabelWhereUniqueInput;
+  update: ClassificationLabelUpdateWithoutOwnerDataInput;
+  create: ClassificationLabelCreateWithoutOwnerInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutMemberOfGroupsInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutMemberOfGroupsDataInput;
+  create: UserCreateWithoutMemberOfGroupsInput;
+}
+
+export interface UserUpsertWithoutCreatedClassificationContextsInput {
+  update: UserUpdateWithoutCreatedClassificationContextsDataInput;
+  create: UserCreateWithoutCreatedClassificationContextsInput;
+}
+
+export interface UserCreateWithoutOwnedImagesInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationContextUpsertWithWhereUniqueWithoutOwnerInput {
+  where: ClassificationContextWhereUniqueInput;
+  update: ClassificationContextUpdateWithoutOwnerDataInput;
+  create: ClassificationContextCreateWithoutOwnerInput;
+}
+
+export interface AnnotatableCreateWithoutTasksInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
+  owner?: UserCreateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupCreateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface UserUpsertWithoutOwnedAnnotationTasksInput {
+  update: UserUpdateWithoutOwnedAnnotationTasksDataInput;
+  create: UserCreateWithoutOwnedAnnotationTasksInput;
 }
 
 export interface UserCreateManyWithoutAssignedAnnotationTasksInput {
@@ -1460,21 +5575,599 @@ export interface UserCreateManyWithoutAssignedAnnotationTasksInput {
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
-export interface AnnotationTaskUpdateManyWithoutAssigneesInput {
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutCreatorInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutCreatorDataInput;
+  create: AnnotationTaskCreateWithoutCreatorInput;
+}
+
+export interface GroupCreateManyWithoutMemberOfGroupsInput {
   create?:
-    | AnnotationTaskCreateWithoutAssigneesInput[]
-    | AnnotationTaskCreateWithoutAssigneesInput;
-  delete?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+    | GroupCreateWithoutMemberOfGroupsInput[]
+    | GroupCreateWithoutMemberOfGroupsInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutOwnedGroupsInput {
+  update: UserUpdateWithoutOwnedGroupsDataInput;
+  create: UserCreateWithoutOwnedGroupsInput;
+}
+
+export interface ClassificationLabelCreateManyWithoutContextsInput {
+  create?:
+    | ClassificationLabelCreateWithoutContextsInput[]
+    | ClassificationLabelCreateWithoutContextsInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+}
+
+export interface GroupUpsertWithoutOwnedAnnotationTasksInput {
+  update: GroupUpdateWithoutOwnedAnnotationTasksDataInput;
+  create: GroupCreateWithoutOwnedAnnotationTasksInput;
+}
+
+export interface ImageCreateManyWithoutGroupInput {
+  create?: ImageCreateWithoutGroupInput[] | ImageCreateWithoutGroupInput;
+  connect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+}
+
+export interface UserUpdateOneWithoutCreatedAnnotationTasksInput {
+  create?: UserCreateWithoutCreatedAnnotationTasksInput;
+  update?: UserUpdateWithoutCreatedAnnotationTasksDataInput;
+  upsert?: UserUpsertWithoutCreatedAnnotationTasksInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateOneWithoutAnnotationsInput {
+  create?: UserCreateWithoutAnnotationsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutCreatedAnnotationTasksDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface ClassificationLabelCreateManyInput {
+  create?: ClassificationLabelCreateInput[] | ClassificationLabelCreateInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutCreatedAnnotationTasksInput {
+  update: UserUpdateWithoutCreatedAnnotationTasksDataInput;
+  create: UserCreateWithoutCreatedAnnotationTasksInput;
+}
+
+export interface ImageCreateManyWithoutOwnerInput {
+  create?: ImageCreateWithoutOwnerInput[] | ImageCreateWithoutOwnerInput;
+  connect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+}
+
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutOwnerInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutOwnerDataInput;
+  create: AnnotationTaskCreateWithoutOwnerInput;
+}
+
+export interface ImageCreateManyWithoutCreatorInput {
+  create?: ImageCreateWithoutCreatorInput[] | ImageCreateWithoutCreatorInput;
+  connect?: ImageWhereUniqueInput[] | ImageWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutOwnedAnnotationsInput {
+  update: UserUpdateWithoutOwnedAnnotationsDataInput;
+  create: UserCreateWithoutOwnedAnnotationsInput;
+}
+
+export interface ClassificationLabelCreateManyWithoutGroupInput {
+  create?:
+    | ClassificationLabelCreateWithoutGroupInput[]
+    | ClassificationLabelCreateWithoutGroupInput;
+  connect?:
+    | ClassificationLabelWhereUniqueInput[]
+    | ClassificationLabelWhereUniqueInput;
+}
+
+export interface GroupUpdateOneWithoutOwnedAnnotationsInput {
+  create?: GroupCreateWithoutOwnedAnnotationsInput;
+  update?: GroupUpdateWithoutOwnedAnnotationsDataInput;
+  upsert?: GroupUpsertWithoutOwnedAnnotationsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface AnnotationTaskCreateManyWithoutOwnerInput {
+  create?:
+    | AnnotationTaskCreateWithoutOwnerInput[]
+    | AnnotationTaskCreateWithoutOwnerInput;
   connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
-  disconnect?:
-    | AnnotationTaskWhereUniqueInput[]
-    | AnnotationTaskWhereUniqueInput;
-  update?:
-    | AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput[]
-    | AnnotationTaskUpdateWithWhereUniqueWithoutAssigneesInput;
-  upsert?:
-    | AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput[]
-    | AnnotationTaskUpsertWithWhereUniqueWithoutAssigneesInput;
+}
+
+export interface GroupUpdateWithoutOwnedAnnotationsDataInput {
+  displayName?: String;
+  memberUsers?: UserUpdateManyWithoutMemberOfGroupsInput;
+  memberGroups?: GroupUpdateManyWithoutMemberOfGroupsInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberGroupsInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutGroupInput;
+  ownedImages?: ImageUpdateManyWithoutGroupInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutGroupInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutGroupInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutGroupInput;
+  owner?: UserUpdateOneWithoutOwnedGroupsInput;
+  managerUsers?: UserUpdateManyWithoutManagerOfGroupsInput;
+  managerGroups?: GroupUpdateManyWithoutManagerOfGroupsInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerGroupsInput;
+  creator?: UserUpdateOneWithoutCreatedGroupsInput;
+}
+
+export interface UserCreateOneWithoutOwnedAnnotationTasksInput {
+  create?: UserCreateWithoutOwnedAnnotationTasksInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface GroupUpsertWithoutOwnedAnnotationsInput {
+  update: GroupUpdateWithoutOwnedAnnotationsDataInput;
+  create: GroupCreateWithoutOwnedAnnotationsInput;
+}
+
+export interface ClassificationContextCreateManyWithoutCreatorInput {
+  create?:
+    | ClassificationContextCreateWithoutCreatorInput[]
+    | ClassificationContextCreateWithoutCreatorInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+}
+
+export interface AnnotationUpsertWithWhereUniqueWithoutCreatorInput {
+  where: AnnotationWhereUniqueInput;
+  update: AnnotationUpdateWithoutCreatorDataInput;
+  create: AnnotationCreateWithoutCreatorInput;
+}
+
+export interface UserCreateOneWithoutCreatedGroupsInput {
+  create?: UserCreateWithoutCreatedGroupsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutCreatedClassificationLabelsInput {
+  update: UserUpdateWithoutCreatedClassificationLabelsDataInput;
+  create: UserCreateWithoutCreatedClassificationLabelsInput;
+}
+
+export interface UserCreateOneWithoutCreatedAnnotationsInput {
+  create?: UserCreateWithoutCreatedAnnotationsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ClassificationLabelUpsertWithWhereUniqueWithoutGroupInput {
+  where: ClassificationLabelWhereUniqueInput;
+  update: ClassificationLabelUpdateWithoutGroupDataInput;
+  create: ClassificationLabelCreateWithoutGroupInput;
+}
+
+export interface UserUpdateWithoutOwnedImagesDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationUpdateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface GroupUpsertWithoutOwnedClassificationContextsInput {
+  update: GroupUpdateWithoutOwnedClassificationContextsDataInput;
+  create: GroupCreateWithoutOwnedClassificationContextsInput;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface ClassificationContextUpsertWithWhereUniqueWithoutLabelsInput {
+  where: ClassificationContextWhereUniqueInput;
+  update: ClassificationContextUpdateWithoutLabelsDataInput;
+  create: ClassificationContextCreateWithoutLabelsInput;
+}
+
+export interface UserCreateInput {
+  displayName: String;
+  systemLogin?: SystemLoginCreateOneWithoutUserInput;
+  localLogin?: LocalLoginCreateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput;
+  annotations?: AnnotationCreateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupCreateManyWithoutOwnerInput;
+  createdGroups?: GroupCreateManyWithoutCreatorInput;
+  memberOfGroups?: GroupCreateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupCreateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableCreateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableCreateManyWithoutCreatorInput;
+  ownedImages?: ImageCreateManyWithoutOwnerInput;
+  createdImages?: ImageCreateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationCreateManyWithoutOwnerInput;
+  createdAnnotations?: AnnotationCreateManyWithoutCreatorInput;
+  ownedAnnotationTasks?: AnnotationTaskCreateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskCreateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextCreateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextCreateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelCreateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelCreateManyWithoutCreatorInput;
+}
+
+export interface ClassificationLabelUpsertWithWhereUniqueNestedInput {
+  where: ClassificationLabelWhereUniqueInput;
+  update: ClassificationLabelUpdateDataInput;
+  create: ClassificationLabelCreateInput;
+}
+
+export interface UserCreateOneWithoutLocalLoginInput {
+  create?: UserCreateWithoutLocalLoginInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotationTaskUpsertNestedInput {
+  update: AnnotationTaskUpdateDataInput;
+  create: AnnotationTaskCreateInput;
+}
+
+export interface UserUpsertWithoutOwnedImagesInput {
+  update: UserUpdateWithoutOwnedImagesDataInput;
+  create: UserCreateWithoutOwnedImagesInput;
+}
+
+export interface UserUpdateOneWithoutCreatedAnnotationsInput {
+  create?: UserCreateWithoutCreatedAnnotationsInput;
+  update?: UserUpdateWithoutCreatedAnnotationsDataInput;
+  upsert?: UserUpsertWithoutCreatedAnnotationsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface AnnotatableCreateInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageCreateOneInput;
+  tasks?: AnnotationTaskCreateManyWithoutSubjectsInput;
+  owner?: UserCreateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupCreateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface UserUpdateWithoutCreatedAnnotationsDataInput {
+  displayName?: String;
+  systemLogin?: SystemLoginUpdateOneWithoutUserInput;
+  localLogin?: LocalLoginUpdateOneWithoutUserInput;
+  assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput;
+  annotations?: AnnotationUpdateManyWithoutAnnotatorInput;
+  ownedGroups?: GroupUpdateManyWithoutOwnerInput;
+  createdGroups?: GroupUpdateManyWithoutCreatorInput;
+  memberOfGroups?: GroupUpdateManyWithoutMemberUsersInput;
+  managerOfGroups?: GroupUpdateManyWithoutManagerUsersInput;
+  ownedAnnotatables?: AnnotatableUpdateManyWithoutOwnerInput;
+  createdAnnotatables?: AnnotatableUpdateManyWithoutCreatorInput;
+  ownedImages?: ImageUpdateManyWithoutOwnerInput;
+  createdImages?: ImageUpdateManyWithoutCreatorInput;
+  ownedAnnotations?: AnnotationUpdateManyWithoutOwnerInput;
+  ownedAnnotationTasks?: AnnotationTaskUpdateManyWithoutOwnerInput;
+  createdAnnotationTasks?: AnnotationTaskUpdateManyWithoutCreatorInput;
+  ownedClassificationContexts?: ClassificationContextUpdateManyWithoutOwnerInput;
+  createdClassificationContexts?: ClassificationContextUpdateManyWithoutCreatorInput;
+  ownedClassificationLabels?: ClassificationLabelUpdateManyWithoutOwnerInput;
+  createdClassificationLabels?: ClassificationLabelUpdateManyWithoutCreatorInput;
+}
+
+export interface AnnotationCreateWithoutAnnotatorInput {
+  subject: AnnotatableCreateOneInput;
+  task?: AnnotationTaskCreateOneInput;
+  data?: Json;
+  classificationLabels?: ClassificationLabelCreateManyInput;
+  svgBounds?: String;
+  convexHull?: CgPointCreateManyInput;
+  owner?: UserCreateOneWithoutOwnedAnnotationsInput;
+  group?: GroupCreateOneWithoutOwnedAnnotationsInput;
+  anyoneCanView?: Boolean;
+  anyoneCanSuggestRevision?: Boolean;
+  creator?: UserCreateOneWithoutCreatedAnnotationsInput;
+}
+
+export interface UserUpsertWithoutCreatedAnnotationsInput {
+  update: UserUpdateWithoutCreatedAnnotationsDataInput;
+  create: UserCreateWithoutCreatedAnnotationsInput;
+}
+
+export interface AnnotationTaskCreateManyWithoutSubjectsInput {
+  create?:
+    | AnnotationTaskCreateWithoutSubjectsInput[]
+    | AnnotationTaskCreateWithoutSubjectsInput;
+  connect?: AnnotationTaskWhereUniqueInput[] | AnnotationTaskWhereUniqueInput;
+}
+
+export interface AnnotationUpsertWithWhereUniqueWithoutOwnerInput {
+  where: AnnotationWhereUniqueInput;
+  update: AnnotationUpdateWithoutOwnerDataInput;
+  create: AnnotationCreateWithoutOwnerInput;
+}
+
+export interface GroupCreateManyWithoutManagerUsersInput {
+  create?:
+    | GroupCreateWithoutManagerUsersInput[]
+    | GroupCreateWithoutManagerUsersInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutOwnedClassificationContextsInput {
+  update: UserUpdateWithoutOwnedClassificationContextsDataInput;
+  create: UserCreateWithoutOwnedClassificationContextsInput;
+}
+
+export interface UserCreateOneWithoutOwnedClassificationContextsInput {
+  create?: UserCreateWithoutOwnedClassificationContextsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ClassificationContextUpsertWithWhereUniqueWithoutGroupInput {
+  where: ClassificationContextWhereUniqueInput;
+  update: ClassificationContextUpdateWithoutGroupDataInput;
+  create: ClassificationContextCreateWithoutGroupInput;
+}
+
+export interface CgPointCreateManyInput {
+  create?: CgPointCreateInput[] | CgPointCreateInput;
+  connect?: CgPointWhereUniqueInput[] | CgPointWhereUniqueInput;
+}
+
+export interface GroupUpsertWithoutOwnedImagesInput {
+  update: GroupUpdateWithoutOwnedImagesDataInput;
+  create: GroupCreateWithoutOwnedImagesInput;
+}
+
+export interface UserCreateOneWithoutOwnedGroupsInput {
+  create?: UserCreateWithoutOwnedGroupsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ImageUpsertWithWhereUniqueWithoutOwnerInput {
+  where: ImageWhereUniqueInput;
+  update: ImageUpdateWithoutOwnerDataInput;
+  create: ImageCreateWithoutOwnerInput;
+}
+
+export interface GroupCreateOneWithoutOwnedClassificationLabelsInput {
+  create?: GroupCreateWithoutOwnedClassificationLabelsInput;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutOwnedClassificationLabelsInput {
+  update: UserUpdateWithoutOwnedClassificationLabelsDataInput;
+  create: UserCreateWithoutOwnedClassificationLabelsInput;
+}
+
+export interface AnnotatableUpdateInput {
+  displayName?: String;
+  text?: String;
+  image?: ImageUpdateOneInput;
+  tasks?: AnnotationTaskUpdateManyWithoutSubjectsInput;
+  owner?: UserUpdateOneWithoutOwnedAnnotatablesInput;
+  group?: GroupUpdateOneWithoutOwnedAnnotatablesInput;
+  anyoneCanView?: Boolean;
+  anyoneCanAnnotate?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedAnnotatablesInput;
+}
+
+export interface ClassificationLabelUpsertWithWhereUniqueWithoutContextsInput {
+  where: ClassificationLabelWhereUniqueInput;
+  update: ClassificationLabelUpdateWithoutContextsDataInput;
+  create: ClassificationLabelCreateWithoutContextsInput;
+}
+
+export interface GroupSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: GroupWhereInput;
+  AND?: GroupSubscriptionWhereInput[] | GroupSubscriptionWhereInput;
+  OR?: GroupSubscriptionWhereInput[] | GroupSubscriptionWhereInput;
+  NOT?: GroupSubscriptionWhereInput[] | GroupSubscriptionWhereInput;
+}
+
+export interface ClassificationContextUpsertWithWhereUniqueNestedInput {
+  where: ClassificationContextWhereUniqueInput;
+  update: ClassificationContextUpdateDataInput;
+  create: ClassificationContextCreateInput;
+}
+
+export interface ClassificationContextUpdateInput {
+  slug?: String;
+  displayName?: String;
+  infoHtml?: String;
+  infoData?: Json;
+  labels?: ClassificationLabelUpdateManyWithoutContextsInput;
+  owner?: UserUpdateOneWithoutOwnedClassificationContextsInput;
+  group?: GroupUpdateOneWithoutOwnedClassificationContextsInput;
+  anyoneCanUse?: Boolean;
+  anyoneCanAddLabels?: Boolean;
+  anyoneCanEditLabels?: Boolean;
+  anyoneCanUpdateInfo?: Boolean;
+  creator?: UserUpdateOneWithoutCreatedClassificationContextsInput;
+}
+
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutGroupInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutGroupDataInput;
+  create: AnnotationTaskCreateWithoutGroupInput;
+}
+
+export interface LocalLoginCreateWithoutUserInput {
+  username: String;
+  hashword: String;
+}
+
+export interface GroupUpsertWithoutOwnedAnnotatablesInput {
+  update: GroupUpdateWithoutOwnedAnnotatablesDataInput;
+  create: GroupCreateWithoutOwnedAnnotatablesInput;
+}
+
+export interface GroupCreateManyWithoutMemberUsersInput {
+  create?:
+    | GroupCreateWithoutMemberUsersInput[]
+    | GroupCreateWithoutMemberUsersInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface AnnotatableUpsertWithWhereUniqueWithoutOwnerInput {
+  where: AnnotatableWhereUniqueInput;
+  update: AnnotatableUpdateWithoutOwnerDataInput;
+  create: AnnotatableCreateWithoutOwnerInput;
+}
+
+export interface ClassificationContextCreateManyWithoutGroupInput {
+  create?:
+    | ClassificationContextCreateWithoutGroupInput[]
+    | ClassificationContextCreateWithoutGroupInput;
+  connect?:
+    | ClassificationContextWhereUniqueInput[]
+    | ClassificationContextWhereUniqueInput;
+}
+
+export interface UserUpsertWithoutAnnotationsInput {
+  update: UserUpdateWithoutAnnotationsDataInput;
+  create: UserCreateWithoutAnnotationsInput;
+}
+
+export interface GroupCreateOneWithoutOwnedClassificationContextsInput {
+  create?: GroupCreateWithoutOwnedClassificationContextsInput;
+  connect?: GroupWhereUniqueInput;
+}
+
+export interface AnnotationUpsertWithWhereUniqueWithoutGroupInput {
+  where: AnnotationWhereUniqueInput;
+  update: AnnotationUpdateWithoutGroupDataInput;
+  create: AnnotationCreateWithoutGroupInput;
+}
+
+export interface LocalLoginUpdateOneWithoutUserInput {
+  create?: LocalLoginCreateWithoutUserInput;
+  update?: LocalLoginUpdateWithoutUserDataInput;
+  upsert?: LocalLoginUpsertWithoutUserInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: LocalLoginWhereUniqueInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutManagerUsersInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutManagerUsersDataInput;
+  create: GroupCreateWithoutManagerUsersInput;
+}
+
+export interface AnnotationTaskUpsertWithWhereUniqueWithoutSubjectsInput {
+  where: AnnotationTaskWhereUniqueInput;
+  update: AnnotationTaskUpdateWithoutSubjectsDataInput;
+  create: AnnotationTaskCreateWithoutSubjectsInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutMemberUsersInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutMemberUsersDataInput;
+  create: GroupCreateWithoutMemberUsersInput;
+}
+
+export interface GroupUpsertWithWhereUniqueWithoutMemberGroupsInput {
+  where: GroupWhereUniqueInput;
+  update: GroupUpdateWithoutMemberGroupsDataInput;
+  create: GroupCreateWithoutMemberGroupsInput;
+}
+
+export interface ImageUpsertWithWhereUniqueWithoutGroupInput {
+  where: ImageWhereUniqueInput;
+  update: ImageUpdateWithoutGroupDataInput;
+  create: ImageCreateWithoutGroupInput;
+}
+
+export interface UserUpsertWithoutCreatedImagesInput {
+  update: UserUpdateWithoutCreatedImagesDataInput;
+  create: UserCreateWithoutCreatedImagesInput;
+}
+
+export interface UserCreateManyWithoutMemberOfGroupsInput {
+  create?:
+    | UserCreateWithoutMemberOfGroupsInput[]
+    | UserCreateWithoutMemberOfGroupsInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface SystemLoginCreateInput {
+  user: UserCreateOneWithoutSystemLoginInput;
+  username: String;
+  passwordEnvironmentVariable: String;
+}
+
+export interface GroupCreateManyWithoutManagerGroupsInput {
+  create?:
+    | GroupCreateWithoutManagerGroupsInput[]
+    | GroupCreateWithoutManagerGroupsInput;
+  connect?: GroupWhereUniqueInput[] | GroupWhereUniqueInput;
+}
+
+export interface AnnotationCreateManyWithoutCreatorInput {
+  create?:
+    | AnnotationCreateWithoutCreatorInput[]
+    | AnnotationCreateWithoutCreatorInput;
+  connect?: AnnotationWhereUniqueInput[] | AnnotationWhereUniqueInput;
+}
+
+export interface GroupCreateOneWithoutOwnedAnnotatablesInput {
+  create?: GroupCreateWithoutOwnedAnnotatablesInput;
+  connect?: GroupWhereUniqueInput;
 }
 
 export interface NodeNode {
@@ -1506,6 +6199,1449 @@ export interface UserPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface AnnotationConnectionNode {}
+
+export interface AnnotationConnection
+  extends Promise<AnnotationConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<AnnotationEdgeNode>>>() => T;
+  aggregate: <T = AggregateAnnotation>() => T;
+}
+
+export interface AnnotationConnectionSubscription
+  extends Promise<AsyncIterator<AnnotationConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<AnnotationEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateAnnotationSubscription>() => T;
+}
+
+export interface LocalLoginSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface LocalLoginSubscriptionPayload
+  extends Promise<LocalLoginSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = LocalLogin>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = LocalLoginPreviousValues>() => T;
+}
+
+export interface LocalLoginSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<LocalLoginSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = LocalLoginSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = LocalLoginPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateAnnotatableNode {
+  count: Int;
+}
+
+export interface AggregateAnnotatable
+  extends Promise<AggregateAnnotatableNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAnnotatableSubscription
+  extends Promise<AsyncIterator<AggregateAnnotatableNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PageInfoNode {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfo extends Promise<PageInfoNode>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfoNode>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotatableEdgeNode {
+  cursor: String;
+}
+
+export interface AnnotatableEdge
+  extends Promise<AnnotatableEdgeNode>,
+    Fragmentable {
+  node: <T = Annotatable>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AnnotatableEdgeSubscription
+  extends Promise<AsyncIterator<AnnotatableEdgeNode>>,
+    Fragmentable {
+  node: <T = AnnotatableSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserConnectionNode {}
+
+export interface UserConnection
+  extends Promise<UserConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<UserEdgeNode>>>() => T;
+  aggregate: <T = AggregateUser>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<UserEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface AggregateUserNode {
+  count: Int;
+}
+
+export interface AggregateUser
+  extends Promise<AggregateUserNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUserNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface SystemLoginEdgeNode {
+  cursor: String;
+}
+
+export interface SystemLoginEdge
+  extends Promise<SystemLoginEdgeNode>,
+    Fragmentable {
+  node: <T = SystemLogin>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SystemLoginEdgeSubscription
+  extends Promise<AsyncIterator<SystemLoginEdgeNode>>,
+    Fragmentable {
+  node: <T = SystemLoginSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotatableConnectionNode {}
+
+export interface AnnotatableConnection
+  extends Promise<AnnotatableConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<AnnotatableEdgeNode>>>() => T;
+  aggregate: <T = AggregateAnnotatable>() => T;
+}
+
+export interface AnnotatableConnectionSubscription
+  extends Promise<AsyncIterator<AnnotatableConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<AnnotatableEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateAnnotatableSubscription>() => T;
+}
+
+export interface UserSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface UserSubscriptionPayload
+  extends Promise<UserSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = User>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValues>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface CgPointNode {
+  id: ID_Output;
+  x: Float;
+  y: Float;
+  xMin?: Float;
+  yMin?: Float;
+  xMax?: Float;
+  yMax?: Float;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface CgPoint extends Promise<CgPointNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  x: () => Promise<Float>;
+  y: () => Promise<Float>;
+  xMin: () => Promise<Float>;
+  yMin: () => Promise<Float>;
+  xMax: () => Promise<Float>;
+  yMax: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface CgPointSubscription
+  extends Promise<AsyncIterator<CgPointNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  x: () => Promise<AsyncIterator<Float>>;
+  y: () => Promise<AsyncIterator<Float>>;
+  xMin: () => Promise<AsyncIterator<Float>>;
+  yMin: () => Promise<AsyncIterator<Float>>;
+  xMax: () => Promise<AsyncIterator<Float>>;
+  yMax: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface LocalLoginEdgeNode {
+  cursor: String;
+}
+
+export interface LocalLoginEdge
+  extends Promise<LocalLoginEdgeNode>,
+    Fragmentable {
+  node: <T = LocalLogin>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface LocalLoginEdgeSubscription
+  extends Promise<AsyncIterator<LocalLoginEdgeNode>>,
+    Fragmentable {
+  node: <T = LocalLoginSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SystemLoginSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface SystemLoginSubscriptionPayload
+  extends Promise<SystemLoginSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SystemLogin>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SystemLoginPreviousValues>() => T;
+}
+
+export interface SystemLoginSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SystemLoginSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SystemLoginSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SystemLoginPreviousValuesSubscription>() => T;
+}
+
+export interface ImageNode {
+  id: ID_Output;
+  uri: String;
+  thumbnailUri?: String;
+  caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  anyoneCanView: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface Image extends Promise<ImageNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  uri: () => Promise<String>;
+  thumbnailUri: () => Promise<String>;
+  caption: () => Promise<String>;
+  digestSha3: () => Promise<String>;
+  digestSha2: () => Promise<String>;
+  digestSha1: () => Promise<String>;
+  digestMd5: () => Promise<String>;
+  sizeInBytes: () => Promise<Int>;
+  width: () => Promise<Int>;
+  height: () => Promise<Int>;
+  owner: <T = User>() => T;
+  group: <T = Group>() => T;
+  anyoneCanView: () => Promise<Boolean>;
+  creator: <T = User>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ImageSubscription
+  extends Promise<AsyncIterator<ImageNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  uri: () => Promise<AsyncIterator<String>>;
+  thumbnailUri: () => Promise<AsyncIterator<String>>;
+  caption: () => Promise<AsyncIterator<String>>;
+  digestSha3: () => Promise<AsyncIterator<String>>;
+  digestSha2: () => Promise<AsyncIterator<String>>;
+  digestSha1: () => Promise<AsyncIterator<String>>;
+  digestMd5: () => Promise<AsyncIterator<String>>;
+  sizeInBytes: () => Promise<AsyncIterator<Int>>;
+  width: () => Promise<AsyncIterator<Int>>;
+  height: () => Promise<AsyncIterator<Int>>;
+  owner: <T = UserSubscription>() => T;
+  group: <T = GroupSubscription>() => T;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  creator: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AnnotationNode {
+  id: ID_Output;
+  data?: Json;
+  svgBounds?: String;
+  anyoneCanView: Boolean;
+  anyoneCanSuggestRevision: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface Annotation extends Promise<AnnotationNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  annotator: <T = User>() => T;
+  subject: <T = Annotatable>() => T;
+  task: <T = AnnotationTask>() => T;
+  data: () => Promise<Json>;
+  classificationLabels: <T = Promise<Array<ClassificationLabelNode>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  svgBounds: () => Promise<String>;
+  convexHull: <T = Promise<Array<CgPointNode>>>(
+    args?: {
+      where?: CgPointWhereInput;
+      orderBy?: CgPointOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = User>() => T;
+  group: <T = Group>() => T;
+  anyoneCanView: () => Promise<Boolean>;
+  anyoneCanSuggestRevision: () => Promise<Boolean>;
+  creator: <T = User>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AnnotationSubscription
+  extends Promise<AsyncIterator<AnnotationNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  annotator: <T = UserSubscription>() => T;
+  subject: <T = AnnotatableSubscription>() => T;
+  task: <T = AnnotationTaskSubscription>() => T;
+  data: () => Promise<AsyncIterator<Json>>;
+  classificationLabels: <
+    T = Promise<AsyncIterator<Array<ClassificationLabelSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  svgBounds: () => Promise<AsyncIterator<String>>;
+  convexHull: <T = Promise<AsyncIterator<Array<CgPointSubscription>>>>(
+    args?: {
+      where?: CgPointWhereInput;
+      orderBy?: CgPointOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+  group: <T = GroupSubscription>() => T;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanSuggestRevision: () => Promise<AsyncIterator<Boolean>>;
+  creator: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ImageEdgeNode {
+  cursor: String;
+}
+
+export interface ImageEdge extends Promise<ImageEdgeNode>, Fragmentable {
+  node: <T = Image>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ImageEdgeSubscription
+  extends Promise<AsyncIterator<ImageEdgeNode>>,
+    Fragmentable {
+  node: <T = ImageSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotatableNode {
+  id: ID_Output;
+  displayName?: String;
+  text?: String;
+  anyoneCanView: Boolean;
+  anyoneCanAnnotate: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface Annotatable extends Promise<AnnotatableNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  text: () => Promise<String>;
+  image: <T = Image>() => T;
+  tasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = User>() => T;
+  group: <T = Group>() => T;
+  anyoneCanView: () => Promise<Boolean>;
+  anyoneCanAnnotate: () => Promise<Boolean>;
+  creator: <T = User>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AnnotatableSubscription
+  extends Promise<AsyncIterator<AnnotatableNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+  image: <T = ImageSubscription>() => T;
+  tasks: <T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+  group: <T = GroupSubscription>() => T;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanAnnotate: () => Promise<AsyncIterator<Boolean>>;
+  creator: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SystemLoginPreviousValuesNode {
+  id: ID_Output;
+  username: String;
+  passwordEnvironmentVariable: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SystemLoginPreviousValues
+  extends Promise<SystemLoginPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
+  passwordEnvironmentVariable: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SystemLoginPreviousValuesSubscription
+  extends Promise<AsyncIterator<SystemLoginPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
+  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AnnotatableSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface AnnotatableSubscriptionPayload
+  extends Promise<AnnotatableSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Annotatable>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AnnotatablePreviousValues>() => T;
+}
+
+export interface AnnotatableSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnnotatableSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AnnotatableSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AnnotatablePreviousValuesSubscription>() => T;
+}
+
+export interface AggregateGroupNode {
+  count: Int;
+}
+
+export interface AggregateGroup
+  extends Promise<AggregateGroupNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateGroupSubscription
+  extends Promise<AsyncIterator<AggregateGroupNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotatablePreviousValuesNode {
+  id: ID_Output;
+  displayName?: String;
+  text?: String;
+  anyoneCanView: Boolean;
+  anyoneCanAnnotate: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface AnnotatablePreviousValues
+  extends Promise<AnnotatablePreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  text: () => Promise<String>;
+  anyoneCanView: () => Promise<Boolean>;
+  anyoneCanAnnotate: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AnnotatablePreviousValuesSubscription
+  extends Promise<AsyncIterator<AnnotatablePreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanAnnotate: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface GroupConnectionNode {}
+
+export interface GroupConnection
+  extends Promise<GroupConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<GroupEdgeNode>>>() => T;
+  aggregate: <T = AggregateGroup>() => T;
+}
+
+export interface GroupConnectionSubscription
+  extends Promise<AsyncIterator<GroupConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<GroupEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateGroupSubscription>() => T;
+}
+
+export interface UserNode {
+  id: ID_Output;
+  displayName: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface User extends Promise<UserNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  systemLogin: <T = SystemLogin>() => T;
+  localLogin: <T = LocalLogin>() => T;
+  assignedAnnotationTasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  annotations: <T = Promise<Array<AnnotationNode>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  memberOfGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  managerOfGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotatables: <T = Promise<Array<AnnotatableNode>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAnnotatables: <T = Promise<Array<AnnotatableNode>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedImages: <T = Promise<Array<ImageNode>>>(
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdImages: <T = Promise<Array<ImageNode>>>(
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotations: <T = Promise<Array<AnnotationNode>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAnnotations: <T = Promise<Array<AnnotationNode>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotationTasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAnnotationTasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationContexts: <T = Promise<Array<ClassificationContextNode>>>(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdClassificationContexts: <
+    T = Promise<Array<ClassificationContextNode>>
+  >(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationLabels: <T = Promise<Array<ClassificationLabelNode>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdClassificationLabels: <T = Promise<Array<ClassificationLabelNode>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<UserNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  systemLogin: <T = SystemLoginSubscription>() => T;
+  localLogin: <T = LocalLoginSubscription>() => T;
+  assignedAnnotationTasks: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>
+  >(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  annotations: <T = Promise<AsyncIterator<Array<AnnotationSubscription>>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  memberOfGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  managerOfGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotatables: <
+    T = Promise<AsyncIterator<Array<AnnotatableSubscription>>>
+  >(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAnnotatables: <
+    T = Promise<AsyncIterator<Array<AnnotatableSubscription>>>
+  >(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedImages: <T = Promise<AsyncIterator<Array<ImageSubscription>>>>(
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdImages: <T = Promise<AsyncIterator<Array<ImageSubscription>>>>(
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotations: <T = Promise<AsyncIterator<Array<AnnotationSubscription>>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAnnotations: <
+    T = Promise<AsyncIterator<Array<AnnotationSubscription>>>
+  >(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotationTasks: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>
+  >(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAnnotationTasks: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>
+  >(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationContexts: <
+    T = Promise<AsyncIterator<Array<ClassificationContextSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdClassificationContexts: <
+    T = Promise<AsyncIterator<Array<ClassificationContextSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationLabels: <
+    T = Promise<AsyncIterator<Array<ClassificationLabelSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdClassificationLabels: <
+    T = Promise<AsyncIterator<Array<ClassificationLabelSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ClassificationLabelEdgeNode {
+  cursor: String;
+}
+
+export interface ClassificationLabelEdge
+  extends Promise<ClassificationLabelEdgeNode>,
+    Fragmentable {
+  node: <T = ClassificationLabel>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ClassificationLabelEdgeSubscription
+  extends Promise<AsyncIterator<ClassificationLabelEdgeNode>>,
+    Fragmentable {
+  node: <T = ClassificationLabelSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotationSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface AnnotationSubscriptionPayload
+  extends Promise<AnnotationSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Annotation>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AnnotationPreviousValues>() => T;
+}
+
+export interface AnnotationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnnotationSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AnnotationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AnnotationPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateClassificationContextNode {
+  count: Int;
+}
+
+export interface AggregateClassificationContext
+  extends Promise<AggregateClassificationContextNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateClassificationContextSubscription
+  extends Promise<AsyncIterator<AggregateClassificationContextNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotationPreviousValuesNode {
+  id: ID_Output;
+  data?: Json;
+  svgBounds?: String;
+  anyoneCanView: Boolean;
+  anyoneCanSuggestRevision: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface AnnotationPreviousValues
+  extends Promise<AnnotationPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  data: () => Promise<Json>;
+  svgBounds: () => Promise<String>;
+  anyoneCanView: () => Promise<Boolean>;
+  anyoneCanSuggestRevision: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AnnotationPreviousValuesSubscription
+  extends Promise<AsyncIterator<AnnotationPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  data: () => Promise<AsyncIterator<Json>>;
+  svgBounds: () => Promise<AsyncIterator<String>>;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanSuggestRevision: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ClassificationContextConnectionNode {}
+
+export interface ClassificationContextConnection
+  extends Promise<ClassificationContextConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<ClassificationContextEdgeNode>>>() => T;
+  aggregate: <T = AggregateClassificationContext>() => T;
+}
+
+export interface ClassificationContextConnectionSubscription
+  extends Promise<AsyncIterator<ClassificationContextConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<ClassificationContextEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateClassificationContextSubscription>() => T;
+}
+
+export interface SystemLoginNode {
+  id: ID_Output;
+  username: String;
+  passwordEnvironmentVariable: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SystemLogin extends Promise<SystemLoginNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = User>() => T;
+  username: () => Promise<String>;
+  passwordEnvironmentVariable: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SystemLoginSubscription
+  extends Promise<AsyncIterator<SystemLoginNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  username: () => Promise<AsyncIterator<String>>;
+  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface CgPointEdgeNode {
+  cursor: String;
+}
+
+export interface CgPointEdge extends Promise<CgPointEdgeNode>, Fragmentable {
+  node: <T = CgPoint>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CgPointEdgeSubscription
+  extends Promise<AsyncIterator<CgPointEdgeNode>>,
+    Fragmentable {
+  node: <T = CgPointSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AnnotationTaskSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface AnnotationTaskSubscriptionPayload
+  extends Promise<AnnotationTaskSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AnnotationTask>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AnnotationTaskPreviousValues>() => T;
+}
+
+export interface AnnotationTaskSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnnotationTaskSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AnnotationTaskSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AnnotationTaskPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateAnnotationTaskNode {
+  count: Int;
+}
+
+export interface AggregateAnnotationTask
+  extends Promise<AggregateAnnotationTaskNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAnnotationTaskSubscription
+  extends Promise<AsyncIterator<AggregateAnnotationTaskNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AnnotationTaskPreviousValuesNode {
+  id: ID_Output;
+  displayName: String;
+  requirements?: Json;
+  anyoneCanView: Boolean;
+  anyoneCanJoin: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface AnnotationTaskPreviousValues
+  extends Promise<AnnotationTaskPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  requirements: () => Promise<Json>;
+  anyoneCanView: () => Promise<Boolean>;
+  anyoneCanJoin: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AnnotationTaskPreviousValuesSubscription
+  extends Promise<AsyncIterator<AnnotationTaskPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  requirements: () => Promise<AsyncIterator<Json>>;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanJoin: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AnnotationTaskConnectionNode {}
+
+export interface AnnotationTaskConnection
+  extends Promise<AnnotationTaskConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<AnnotationTaskEdgeNode>>>() => T;
+  aggregate: <T = AggregateAnnotationTask>() => T;
+}
+
+export interface AnnotationTaskConnectionSubscription
+  extends Promise<AsyncIterator<AnnotationTaskConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateAnnotationTaskSubscription>() => T;
+}
+
+export interface AnnotationTaskNode {
+  id: ID_Output;
+  displayName: String;
+  requirements?: Json;
+  anyoneCanView: Boolean;
+  anyoneCanJoin: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface AnnotationTask
+  extends Promise<AnnotationTaskNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  assignees: <T = Promise<Array<UserNode>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  displayName: () => Promise<String>;
+  subjects: <T = Promise<Array<AnnotatableNode>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  requirements: () => Promise<Json>;
+  classificationContexts: <T = Promise<Array<ClassificationContextNode>>>(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  classificationLabels: <T = Promise<Array<ClassificationLabelNode>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = User>() => T;
+  group: <T = Group>() => T;
+  anyoneCanView: () => Promise<Boolean>;
+  anyoneCanJoin: () => Promise<Boolean>;
+  creator: <T = User>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AnnotationTaskSubscription
+  extends Promise<AsyncIterator<AnnotationTaskNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  assignees: <T = Promise<AsyncIterator<Array<UserSubscription>>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  displayName: () => Promise<AsyncIterator<String>>;
+  subjects: <T = Promise<AsyncIterator<Array<AnnotatableSubscription>>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  requirements: () => Promise<AsyncIterator<Json>>;
+  classificationContexts: <
+    T = Promise<AsyncIterator<Array<ClassificationContextSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  classificationLabels: <
+    T = Promise<AsyncIterator<Array<ClassificationLabelSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+  group: <T = GroupSubscription>() => T;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanJoin: () => Promise<AsyncIterator<Boolean>>;
+  creator: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface AnnotationEdgeNode {
   cursor: String;
 }
@@ -1521,6 +7657,852 @@ export interface AnnotationEdgeSubscription
   extends Promise<AsyncIterator<AnnotationEdgeNode>>,
     Fragmentable {
   node: <T = AnnotationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CgPointSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface CgPointSubscriptionPayload
+  extends Promise<CgPointSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CgPoint>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CgPointPreviousValues>() => T;
+}
+
+export interface CgPointSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CgPointSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CgPointSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CgPointPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateSystemLoginNode {
+  count: Int;
+}
+
+export interface AggregateSystemLogin
+  extends Promise<AggregateSystemLoginNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSystemLoginSubscription
+  extends Promise<AsyncIterator<AggregateSystemLoginNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CgPointPreviousValuesNode {
+  id: ID_Output;
+  x: Float;
+  y: Float;
+  xMin?: Float;
+  yMin?: Float;
+  xMax?: Float;
+  yMax?: Float;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface CgPointPreviousValues
+  extends Promise<CgPointPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  x: () => Promise<Float>;
+  y: () => Promise<Float>;
+  xMin: () => Promise<Float>;
+  yMin: () => Promise<Float>;
+  xMax: () => Promise<Float>;
+  yMax: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface CgPointPreviousValuesSubscription
+  extends Promise<AsyncIterator<CgPointPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  x: () => Promise<AsyncIterator<Float>>;
+  y: () => Promise<AsyncIterator<Float>>;
+  xMin: () => Promise<AsyncIterator<Float>>;
+  yMin: () => Promise<AsyncIterator<Float>>;
+  xMax: () => Promise<AsyncIterator<Float>>;
+  yMax: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateLocalLoginNode {
+  count: Int;
+}
+
+export interface AggregateLocalLogin
+  extends Promise<AggregateLocalLoginNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateLocalLoginSubscription
+  extends Promise<AsyncIterator<AggregateLocalLoginNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface GroupNode {
+  id: ID_Output;
+  displayName: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface Group extends Promise<GroupNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  memberUsers: <T = Promise<Array<UserNode>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  memberGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  memberOfGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotatables: <T = Promise<Array<AnnotatableNode>>>(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedImages: <T = Promise<Array<ImageNode>>>(
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotations: <T = Promise<Array<AnnotationNode>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotationTasks: <T = Promise<Array<AnnotationTaskNode>>>(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationContexts: <T = Promise<Array<ClassificationContextNode>>>(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationLabels: <T = Promise<Array<ClassificationLabelNode>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = User>() => T;
+  managerUsers: <T = Promise<Array<UserNode>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  managerGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  managerOfGroups: <T = Promise<Array<GroupNode>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  creator: <T = User>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface GroupSubscription
+  extends Promise<AsyncIterator<GroupNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  memberUsers: <T = Promise<AsyncIterator<Array<UserSubscription>>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  memberGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  memberOfGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotatables: <
+    T = Promise<AsyncIterator<Array<AnnotatableSubscription>>>
+  >(
+    args?: {
+      where?: AnnotatableWhereInput;
+      orderBy?: AnnotatableOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedImages: <T = Promise<AsyncIterator<Array<ImageSubscription>>>>(
+    args?: {
+      where?: ImageWhereInput;
+      orderBy?: ImageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotations: <T = Promise<AsyncIterator<Array<AnnotationSubscription>>>>(
+    args?: {
+      where?: AnnotationWhereInput;
+      orderBy?: AnnotationOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedAnnotationTasks: <
+    T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>
+  >(
+    args?: {
+      where?: AnnotationTaskWhereInput;
+      orderBy?: AnnotationTaskOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationContexts: <
+    T = Promise<AsyncIterator<Array<ClassificationContextSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  ownedClassificationLabels: <
+    T = Promise<AsyncIterator<Array<ClassificationLabelSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+  managerUsers: <T = Promise<AsyncIterator<Array<UserSubscription>>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  managerGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  managerOfGroups: <T = Promise<AsyncIterator<Array<GroupSubscription>>>>(
+    args?: {
+      where?: GroupWhereInput;
+      orderBy?: GroupOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  creator: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateImageNode {
+  count: Int;
+}
+
+export interface AggregateImage
+  extends Promise<AggregateImageNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateImageSubscription
+  extends Promise<AsyncIterator<AggregateImageNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ClassificationContextSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface ClassificationContextSubscriptionPayload
+  extends Promise<ClassificationContextSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ClassificationContext>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ClassificationContextPreviousValues>() => T;
+}
+
+export interface ClassificationContextSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ClassificationContextSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ClassificationContextSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ClassificationContextPreviousValuesSubscription>() => T;
+}
+
+export interface ImageConnectionNode {}
+
+export interface ImageConnection
+  extends Promise<ImageConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<ImageEdgeNode>>>() => T;
+  aggregate: <T = AggregateImage>() => T;
+}
+
+export interface ImageConnectionSubscription
+  extends Promise<AsyncIterator<ImageConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<ImageEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateImageSubscription>() => T;
+}
+
+export interface ClassificationContextPreviousValuesNode {
+  id: ID_Output;
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  anyoneCanUse: Boolean;
+  anyoneCanAddLabels: Boolean;
+  anyoneCanEditLabels: Boolean;
+  anyoneCanUpdateInfo: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface ClassificationContextPreviousValues
+  extends Promise<ClassificationContextPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
+  displayName: () => Promise<String>;
+  infoHtml: () => Promise<String>;
+  infoData: () => Promise<Json>;
+  anyoneCanUse: () => Promise<Boolean>;
+  anyoneCanAddLabels: () => Promise<Boolean>;
+  anyoneCanEditLabels: () => Promise<Boolean>;
+  anyoneCanUpdateInfo: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ClassificationContextPreviousValuesSubscription
+  extends Promise<AsyncIterator<ClassificationContextPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  slug: () => Promise<AsyncIterator<String>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  infoHtml: () => Promise<AsyncIterator<String>>;
+  infoData: () => Promise<AsyncIterator<Json>>;
+  anyoneCanUse: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanAddLabels: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanEditLabels: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanUpdateInfo: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateClassificationLabelNode {
+  count: Int;
+}
+
+export interface AggregateClassificationLabel
+  extends Promise<AggregateClassificationLabelNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateClassificationLabelSubscription
+  extends Promise<AsyncIterator<AggregateClassificationLabelNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ClassificationLabelNode {
+  id: ID_Output;
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  anyoneCanUse: Boolean;
+  anyoneCanEditInfo: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface ClassificationLabel
+  extends Promise<ClassificationLabelNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
+  displayName: () => Promise<String>;
+  infoHtml: () => Promise<String>;
+  infoData: () => Promise<Json>;
+  contexts: <T = Promise<Array<ClassificationContextNode>>>(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = User>() => T;
+  group: <T = Group>() => T;
+  anyoneCanUse: () => Promise<Boolean>;
+  anyoneCanEditInfo: () => Promise<Boolean>;
+  creator: <T = User>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ClassificationLabelSubscription
+  extends Promise<AsyncIterator<ClassificationLabelNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  slug: () => Promise<AsyncIterator<String>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  infoHtml: () => Promise<AsyncIterator<String>>;
+  infoData: () => Promise<AsyncIterator<Json>>;
+  contexts: <
+    T = Promise<AsyncIterator<Array<ClassificationContextSubscription>>>
+  >(
+    args?: {
+      where?: ClassificationContextWhereInput;
+      orderBy?: ClassificationContextOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+  group: <T = GroupSubscription>() => T;
+  anyoneCanUse: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanEditInfo: () => Promise<AsyncIterator<Boolean>>;
+  creator: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ClassificationContextEdgeNode {
+  cursor: String;
+}
+
+export interface ClassificationContextEdge
+  extends Promise<ClassificationContextEdgeNode>,
+    Fragmentable {
+  node: <T = ClassificationContext>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ClassificationContextEdgeSubscription
+  extends Promise<AsyncIterator<ClassificationContextEdgeNode>>,
+    Fragmentable {
+  node: <T = ClassificationContextSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ClassificationLabelSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface ClassificationLabelSubscriptionPayload
+  extends Promise<ClassificationLabelSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ClassificationLabel>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ClassificationLabelPreviousValues>() => T;
+}
+
+export interface ClassificationLabelSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ClassificationLabelSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ClassificationLabelSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ClassificationLabelPreviousValuesSubscription>() => T;
+}
+
+export interface CgPointConnectionNode {}
+
+export interface CgPointConnection
+  extends Promise<CgPointConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<CgPointEdgeNode>>>() => T;
+  aggregate: <T = AggregateCgPoint>() => T;
+}
+
+export interface CgPointConnectionSubscription
+  extends Promise<AsyncIterator<CgPointConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<CgPointEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateCgPointSubscription>() => T;
+}
+
+export interface ClassificationLabelPreviousValuesNode {
+  id: ID_Output;
+  slug: String;
+  displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  anyoneCanUse: Boolean;
+  anyoneCanEditInfo: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface ClassificationLabelPreviousValues
+  extends Promise<ClassificationLabelPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
+  displayName: () => Promise<String>;
+  infoHtml: () => Promise<String>;
+  infoData: () => Promise<Json>;
+  anyoneCanUse: () => Promise<Boolean>;
+  anyoneCanEditInfo: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ClassificationLabelPreviousValuesSubscription
+  extends Promise<AsyncIterator<ClassificationLabelPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  slug: () => Promise<AsyncIterator<String>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  infoHtml: () => Promise<AsyncIterator<String>>;
+  infoData: () => Promise<AsyncIterator<Json>>;
+  anyoneCanUse: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanEditInfo: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateAnnotationNode {
+  count: Int;
+}
+
+export interface AggregateAnnotation
+  extends Promise<AggregateAnnotationNode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAnnotationSubscription
+  extends Promise<AsyncIterator<AggregateAnnotationNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface LocalLoginNode {
+  id: ID_Output;
+  username: String;
+  hashword: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface LocalLogin extends Promise<LocalLoginNode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = User>() => T;
+  username: () => Promise<String>;
+  hashword: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface LocalLoginSubscription
+  extends Promise<AsyncIterator<LocalLoginNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  username: () => Promise<AsyncIterator<String>>;
+  hashword: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SystemLoginConnectionNode {}
+
+export interface SystemLoginConnection
+  extends Promise<SystemLoginConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<SystemLoginEdgeNode>>>() => T;
+  aggregate: <T = AggregateSystemLogin>() => T;
+}
+
+export interface SystemLoginConnectionSubscription
+  extends Promise<AsyncIterator<SystemLoginConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<SystemLoginEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateSystemLoginSubscription>() => T;
+}
+
+export interface GroupSubscriptionPayloadNode {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface GroupSubscriptionPayload
+  extends Promise<GroupSubscriptionPayloadNode>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Group>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = GroupPreviousValues>() => T;
+}
+
+export interface GroupSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<GroupSubscriptionPayloadNode>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = GroupSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = GroupPreviousValuesSubscription>() => T;
+}
+
+export interface BatchPayloadNode {
+  count: Long;
+}
+
+export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayloadNode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface GroupPreviousValuesNode {
+  id: ID_Output;
+  displayName: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface GroupPreviousValues
+  extends Promise<GroupPreviousValuesNode>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  displayName: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface GroupPreviousValuesSubscription
+  extends Promise<AsyncIterator<GroupPreviousValuesNode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  displayName: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ClassificationLabelConnectionNode {}
+
+export interface ClassificationLabelConnection
+  extends Promise<ClassificationLabelConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<ClassificationLabelEdgeNode>>>() => T;
+  aggregate: <T = AggregateClassificationLabel>() => T;
+}
+
+export interface ClassificationLabelConnectionSubscription
+  extends Promise<AsyncIterator<ClassificationLabelConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<Array<ClassificationLabelEdgeSubscription>>>
+  >() => T;
+  aggregate: <T = AggregateClassificationLabelSubscription>() => T;
+}
+
+export interface AnnotationTaskEdgeNode {
+  cursor: String;
+}
+
+export interface AnnotationTaskEdge
+  extends Promise<AnnotationTaskEdgeNode>,
+    Fragmentable {
+  node: <T = AnnotationTask>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AnnotationTaskEdgeSubscription
+  extends Promise<AsyncIterator<AnnotationTaskEdgeNode>>,
+    Fragmentable {
+  node: <T = AnnotationTaskSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
@@ -1552,732 +8534,21 @@ export interface LocalLoginPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface AnnotationConnectionNode {}
-
-export interface AnnotationConnection
-  extends Promise<AnnotationConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<AnnotationEdgeNode>>>() => T;
-  aggregate: <T = AggregateAnnotation>() => T;
-}
-
-export interface AnnotationConnectionSubscription
-  extends Promise<AsyncIterator<AnnotationConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<AnnotationEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregateAnnotationSubscription>() => T;
-}
-
-export interface AnnotatableEdgeNode {
-  cursor: String;
-}
-
-export interface AnnotatableEdge
-  extends Promise<AnnotatableEdgeNode>,
-    Fragmentable {
-  node: <T = Annotatable>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface AnnotatableEdgeSubscription
-  extends Promise<AsyncIterator<AnnotatableEdgeNode>>,
-    Fragmentable {
-  node: <T = AnnotatableSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateAnnotatableNode {
-  count: Int;
-}
-
-export interface AggregateAnnotatable
-  extends Promise<AggregateAnnotatableNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateAnnotatableSubscription
-  extends Promise<AsyncIterator<AggregateAnnotatableNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface UserSubscriptionPayload
-  extends Promise<UserSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = User>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValues>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface BatchPayloadNode {
-  count: Long;
-}
-
-export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayloadNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface UserEdgeNode {
-  cursor: String;
-}
-
-export interface UserEdge extends Promise<UserEdgeNode>, Fragmentable {
-  node: <T = User>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdgeNode>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SystemLoginPreviousValuesNode {
-  id: ID_Output;
-  username: String;
-  passwordEnvironmentVariable: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface SystemLoginPreviousValues
-  extends Promise<SystemLoginPreviousValuesNode>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  username: () => Promise<String>;
-  passwordEnvironmentVariable: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface SystemLoginPreviousValuesSubscription
-  extends Promise<AsyncIterator<SystemLoginPreviousValuesNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  username: () => Promise<AsyncIterator<String>>;
-  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateSystemLoginNode {
-  count: Int;
-}
-
-export interface AggregateSystemLogin
-  extends Promise<AggregateSystemLoginNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSystemLoginSubscription
-  extends Promise<AsyncIterator<AggregateSystemLoginNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfoNode {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfo extends Promise<PageInfoNode>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfoNode>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SystemLoginConnectionNode {}
-
-export interface SystemLoginConnection
-  extends Promise<SystemLoginConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<SystemLoginEdgeNode>>>() => T;
-  aggregate: <T = AggregateSystemLogin>() => T;
-}
-
-export interface SystemLoginConnectionSubscription
-  extends Promise<AsyncIterator<SystemLoginConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<Array<SystemLoginEdgeSubscription>>>
-  >() => T;
-  aggregate: <T = AggregateSystemLoginSubscription>() => T;
-}
-
-export interface AnnotatableConnectionNode {}
-
-export interface AnnotatableConnection
-  extends Promise<AnnotatableConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<AnnotatableEdgeNode>>>() => T;
-  aggregate: <T = AggregateAnnotatable>() => T;
-}
-
-export interface AnnotatableConnectionSubscription
-  extends Promise<AsyncIterator<AnnotatableConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<Array<AnnotatableEdgeSubscription>>>
-  >() => T;
-  aggregate: <T = AggregateAnnotatableSubscription>() => T;
-}
-
-export interface AggregateLocalLoginNode {
-  count: Int;
-}
-
-export interface AggregateLocalLogin
-  extends Promise<AggregateLocalLoginNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateLocalLoginSubscription
-  extends Promise<AsyncIterator<AggregateLocalLoginNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AnnotatableNode {
-  id: ID_Output;
-  displayName?: String;
-  text?: String;
-}
-
-export interface Annotatable extends Promise<AnnotatableNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  displayName: () => Promise<String>;
-  text: () => Promise<String>;
-  image: <T = Image>() => T;
-  tasks: <T = Promise<Array<AnnotationTaskNode>>>(
-    args?: {
-      where?: AnnotationTaskWhereInput;
-      orderBy?: AnnotationTaskOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface AnnotatableSubscription
-  extends Promise<AsyncIterator<AnnotatableNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  displayName: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
-  image: <T = ImageSubscription>() => T;
-  tasks: <T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>>(
-    args?: {
-      where?: AnnotationTaskWhereInput;
-      orderBy?: AnnotationTaskOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface LocalLoginConnectionNode {}
-
-export interface LocalLoginConnection
-  extends Promise<LocalLoginConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<LocalLoginEdgeNode>>>() => T;
-  aggregate: <T = AggregateLocalLogin>() => T;
-}
-
-export interface LocalLoginConnectionSubscription
-  extends Promise<AsyncIterator<LocalLoginConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<LocalLoginEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregateLocalLoginSubscription>() => T;
-}
-
-export interface AnnotatableSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface AnnotatableSubscriptionPayload
-  extends Promise<AnnotatableSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = Annotatable>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = AnnotatablePreviousValues>() => T;
-}
-
-export interface AnnotatableSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<AnnotatableSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = AnnotatableSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = AnnotatablePreviousValuesSubscription>() => T;
-}
-
-export interface AggregateImageNode {
-  count: Int;
-}
-
-export interface AggregateImage
-  extends Promise<AggregateImageNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateImageSubscription
-  extends Promise<AsyncIterator<AggregateImageNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AnnotatablePreviousValuesNode {
-  id: ID_Output;
-  displayName?: String;
-  text?: String;
-}
-
-export interface AnnotatablePreviousValues
-  extends Promise<AnnotatablePreviousValuesNode>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  displayName: () => Promise<String>;
-  text: () => Promise<String>;
-}
-
-export interface AnnotatablePreviousValuesSubscription
-  extends Promise<AsyncIterator<AnnotatablePreviousValuesNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  displayName: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ImageConnectionNode {}
-
-export interface ImageConnection
-  extends Promise<ImageConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<ImageEdgeNode>>>() => T;
-  aggregate: <T = AggregateImage>() => T;
-}
-
-export interface ImageConnectionSubscription
-  extends Promise<AsyncIterator<ImageConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<ImageEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregateImageSubscription>() => T;
-}
-
-export interface SystemLoginSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface SystemLoginSubscriptionPayload
-  extends Promise<SystemLoginSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = SystemLogin>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = SystemLoginPreviousValues>() => T;
-}
-
-export interface SystemLoginSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SystemLoginSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SystemLoginSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SystemLoginPreviousValuesSubscription>() => T;
-}
-
-export interface AnnotationTaskEdgeNode {
-  cursor: String;
-}
-
-export interface AnnotationTaskEdge
-  extends Promise<AnnotationTaskEdgeNode>,
-    Fragmentable {
-  node: <T = AnnotationTask>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface AnnotationTaskEdgeSubscription
-  extends Promise<AsyncIterator<AnnotationTaskEdgeNode>>,
-    Fragmentable {
-  node: <T = AnnotationTaskSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AnnotationSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface AnnotationSubscriptionPayload
-  extends Promise<AnnotationSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = Annotation>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = AnnotationPreviousValues>() => T;
-}
-
-export interface AnnotationSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<AnnotationSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = AnnotationSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = AnnotationPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateAnnotationNode {
-  count: Int;
-}
-
-export interface AggregateAnnotation
-  extends Promise<AggregateAnnotationNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateAnnotationSubscription
-  extends Promise<AsyncIterator<AggregateAnnotationNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AnnotationPreviousValuesNode {
-  id: ID_Output;
-  data?: Json;
-}
-
-export interface AnnotationPreviousValues
-  extends Promise<AnnotationPreviousValuesNode>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  data: () => Promise<Json>;
-}
-
-export interface AnnotationPreviousValuesSubscription
-  extends Promise<AsyncIterator<AnnotationPreviousValuesNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  data: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface AggregateUserNode {
-  count: Int;
-}
-
-export interface AggregateUser
-  extends Promise<AggregateUserNode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUserNode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AnnotationNode {
-  id: ID_Output;
-  data?: Json;
-}
-
-export interface Annotation extends Promise<AnnotationNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  annotator: <T = User>() => T;
-  subject: <T = Annotatable>() => T;
-  task: <T = AnnotationTask>() => T;
-  data: () => Promise<Json>;
-}
-
-export interface AnnotationSubscription
-  extends Promise<AsyncIterator<AnnotationNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  annotator: <T = UserSubscription>() => T;
-  subject: <T = AnnotatableSubscription>() => T;
-  task: <T = AnnotationTaskSubscription>() => T;
-  data: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface SystemLoginEdgeNode {
-  cursor: String;
-}
-
-export interface SystemLoginEdge
-  extends Promise<SystemLoginEdgeNode>,
-    Fragmentable {
-  node: <T = SystemLogin>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SystemLoginEdgeSubscription
-  extends Promise<AsyncIterator<SystemLoginEdgeNode>>,
-    Fragmentable {
-  node: <T = SystemLoginSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AnnotationTaskSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface AnnotationTaskSubscriptionPayload
-  extends Promise<AnnotationTaskSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = AnnotationTask>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = AnnotationTaskPreviousValues>() => T;
-}
-
-export interface AnnotationTaskSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<AnnotationTaskSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = AnnotationTaskSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = AnnotationTaskPreviousValuesSubscription>() => T;
-}
-
-export interface LocalLoginEdgeNode {
-  cursor: String;
-}
-
-export interface LocalLoginEdge
-  extends Promise<LocalLoginEdgeNode>,
-    Fragmentable {
-  node: <T = LocalLogin>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface LocalLoginEdgeSubscription
-  extends Promise<AsyncIterator<LocalLoginEdgeNode>>,
-    Fragmentable {
-  node: <T = LocalLoginSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AnnotationTaskPreviousValuesNode {
-  id: ID_Output;
-  displayName: String;
-  requirements?: Json;
-}
-
-export interface AnnotationTaskPreviousValues
-  extends Promise<AnnotationTaskPreviousValuesNode>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  displayName: () => Promise<String>;
-  requirements: () => Promise<Json>;
-}
-
-export interface AnnotationTaskPreviousValuesSubscription
-  extends Promise<AsyncIterator<AnnotationTaskPreviousValuesNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  displayName: () => Promise<AsyncIterator<String>>;
-  requirements: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface ImageEdgeNode {
-  cursor: String;
-}
-
-export interface ImageEdge extends Promise<ImageEdgeNode>, Fragmentable {
-  node: <T = Image>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ImageEdgeSubscription
-  extends Promise<AsyncIterator<ImageEdgeNode>>,
-    Fragmentable {
-  node: <T = ImageSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SystemLoginNode {
-  id: ID_Output;
-  username: String;
-  passwordEnvironmentVariable: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface SystemLogin extends Promise<SystemLoginNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = User>() => T;
-  username: () => Promise<String>;
-  passwordEnvironmentVariable: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface SystemLoginSubscription
-  extends Promise<AsyncIterator<SystemLoginNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  username: () => Promise<AsyncIterator<String>>;
-  passwordEnvironmentVariable: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AnnotationTaskConnectionNode {}
-
-export interface AnnotationTaskConnection
-  extends Promise<AnnotationTaskConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<AnnotationTaskEdgeNode>>>() => T;
-  aggregate: <T = AggregateAnnotationTask>() => T;
-}
-
-export interface AnnotationTaskConnectionSubscription
-  extends Promise<AsyncIterator<AnnotationTaskConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<Array<AnnotationTaskEdgeSubscription>>>
-  >() => T;
-  aggregate: <T = AggregateAnnotationTaskSubscription>() => T;
-}
-
-export interface UserConnectionNode {}
-
-export interface UserConnection
-  extends Promise<UserConnectionNode>,
-    Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<UserEdgeNode>>>() => T;
-  aggregate: <T = AggregateUser>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnectionNode>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<UserEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface LocalLoginSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface LocalLoginSubscriptionPayload
-  extends Promise<LocalLoginSubscriptionPayloadNode>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = LocalLogin>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = LocalLoginPreviousValues>() => T;
-}
-
-export interface LocalLoginSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<LocalLoginSubscriptionPayloadNode>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = LocalLoginSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = LocalLoginPreviousValuesSubscription>() => T;
-}
-
-export interface LocalLoginNode {
-  id: ID_Output;
-  username: String;
-  hashword: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface LocalLogin extends Promise<LocalLoginNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = User>() => T;
-  username: () => Promise<String>;
-  hashword: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface LocalLoginSubscription
-  extends Promise<AsyncIterator<LocalLoginNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  username: () => Promise<AsyncIterator<String>>;
-  hashword: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
 export interface ImagePreviousValuesNode {
   id: ID_Output;
   uri: String;
   thumbnailUri?: String;
   caption?: String;
+  digestSha3?: String;
+  digestSha2?: String;
+  digestSha1?: String;
+  digestMd5?: String;
+  sizeInBytes?: Int;
+  width?: Int;
+  height?: Int;
+  anyoneCanView: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface ImagePreviousValues
@@ -2287,6 +8558,16 @@ export interface ImagePreviousValues
   uri: () => Promise<String>;
   thumbnailUri: () => Promise<String>;
   caption: () => Promise<String>;
+  digestSha3: () => Promise<String>;
+  digestSha2: () => Promise<String>;
+  digestSha1: () => Promise<String>;
+  digestMd5: () => Promise<String>;
+  sizeInBytes: () => Promise<Int>;
+  width: () => Promise<Int>;
+  height: () => Promise<Int>;
+  anyoneCanView: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface ImagePreviousValuesSubscription
@@ -2296,6 +8577,16 @@ export interface ImagePreviousValuesSubscription
   uri: () => Promise<AsyncIterator<String>>;
   thumbnailUri: () => Promise<AsyncIterator<String>>;
   caption: () => Promise<AsyncIterator<String>>;
+  digestSha3: () => Promise<AsyncIterator<String>>;
+  digestSha2: () => Promise<AsyncIterator<String>>;
+  digestSha1: () => Promise<AsyncIterator<String>>;
+  digestMd5: () => Promise<AsyncIterator<String>>;
+  sizeInBytes: () => Promise<AsyncIterator<Int>>;
+  width: () => Promise<AsyncIterator<Int>>;
+  height: () => Promise<AsyncIterator<Int>>;
+  anyoneCanView: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ImageSubscriptionPayloadNode {
@@ -2321,190 +8612,150 @@ export interface ImageSubscriptionPayloadSubscription
   previousValues: <T = ImagePreviousValuesSubscription>() => T;
 }
 
-export interface UserNode {
+export interface ClassificationContextNode {
   id: ID_Output;
+  slug: String;
   displayName: String;
+  infoHtml?: String;
+  infoData?: Json;
+  anyoneCanUse: Boolean;
+  anyoneCanAddLabels: Boolean;
+  anyoneCanEditLabels: Boolean;
+  anyoneCanUpdateInfo: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface User extends Promise<UserNode>, Fragmentable {
+export interface ClassificationContext
+  extends Promise<ClassificationContextNode>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
   displayName: () => Promise<String>;
+  infoHtml: () => Promise<String>;
+  infoData: () => Promise<Json>;
+  labels: <T = Promise<Array<ClassificationLabelNode>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = User>() => T;
+  group: <T = Group>() => T;
+  anyoneCanUse: () => Promise<Boolean>;
+  anyoneCanAddLabels: () => Promise<Boolean>;
+  anyoneCanEditLabels: () => Promise<Boolean>;
+  anyoneCanUpdateInfo: () => Promise<Boolean>;
+  creator: <T = User>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  systemLogin: <T = SystemLogin>() => T;
-  localLogin: <T = LocalLogin>() => T;
-  assignedAnnotationTasks: <T = Promise<Array<AnnotationTaskNode>>>(
-    args?: {
-      where?: AnnotationTaskWhereInput;
-      orderBy?: AnnotationTaskOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  annotations: <T = Promise<Array<AnnotationNode>>>(
-    args?: {
-      where?: AnnotationWhereInput;
-      orderBy?: AnnotationOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<UserNode>>,
+export interface ClassificationContextSubscription
+  extends Promise<AsyncIterator<ClassificationContextNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  slug: () => Promise<AsyncIterator<String>>;
   displayName: () => Promise<AsyncIterator<String>>;
+  infoHtml: () => Promise<AsyncIterator<String>>;
+  infoData: () => Promise<AsyncIterator<Json>>;
+  labels: <T = Promise<AsyncIterator<Array<ClassificationLabelSubscription>>>>(
+    args?: {
+      where?: ClassificationLabelWhereInput;
+      orderBy?: ClassificationLabelOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+  group: <T = GroupSubscription>() => T;
+  anyoneCanUse: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanAddLabels: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanEditLabels: () => Promise<AsyncIterator<Boolean>>;
+  anyoneCanUpdateInfo: () => Promise<AsyncIterator<Boolean>>;
+  creator: <T = UserSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  systemLogin: <T = SystemLoginSubscription>() => T;
-  localLogin: <T = LocalLoginSubscription>() => T;
-  assignedAnnotationTasks: <
-    T = Promise<AsyncIterator<Array<AnnotationTaskSubscription>>>
-  >(
-    args?: {
-      where?: AnnotationTaskWhereInput;
-      orderBy?: AnnotationTaskOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  annotations: <T = Promise<AsyncIterator<Array<AnnotationSubscription>>>>(
-    args?: {
-      where?: AnnotationWhereInput;
-      orderBy?: AnnotationOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
 }
 
-export interface AnnotationTaskNode {
-  id: ID_Output;
-  displayName: String;
-  requirements?: Json;
+export interface UserEdgeNode {
+  cursor: String;
 }
 
-export interface AnnotationTask
-  extends Promise<AnnotationTaskNode>,
+export interface UserEdge extends Promise<UserEdgeNode>, Fragmentable {
+  node: <T = User>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdgeNode>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  assignees: <T = Promise<Array<UserNode>>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  displayName: () => Promise<String>;
-  subjects: <T = Promise<Array<AnnotatableNode>>>(
-    args?: {
-      where?: AnnotatableWhereInput;
-      orderBy?: AnnotatableOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  requirements: () => Promise<Json>;
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AnnotationTaskSubscription
-  extends Promise<AsyncIterator<AnnotationTaskNode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  assignees: <T = Promise<AsyncIterator<Array<UserSubscription>>>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  displayName: () => Promise<AsyncIterator<String>>;
-  subjects: <T = Promise<AsyncIterator<Array<AnnotatableSubscription>>>>(
-    args?: {
-      where?: AnnotatableWhereInput;
-      orderBy?: AnnotatableOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  requirements: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface AggregateAnnotationTaskNode {
+export interface AggregateCgPointNode {
   count: Int;
 }
 
-export interface AggregateAnnotationTask
-  extends Promise<AggregateAnnotationTaskNode>,
+export interface AggregateCgPoint
+  extends Promise<AggregateCgPointNode>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateAnnotationTaskSubscription
-  extends Promise<AsyncIterator<AggregateAnnotationTaskNode>>,
+export interface AggregateCgPointSubscription
+  extends Promise<AsyncIterator<AggregateCgPointNode>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ImageNode {
-  id: ID_Output;
-  uri: String;
-  thumbnailUri?: String;
-  caption?: String;
+export interface GroupEdgeNode {
+  cursor: String;
 }
 
-export interface Image extends Promise<ImageNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  uri: () => Promise<String>;
-  thumbnailUri: () => Promise<String>;
-  caption: () => Promise<String>;
+export interface GroupEdge extends Promise<GroupEdgeNode>, Fragmentable {
+  node: <T = Group>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface ImageSubscription
-  extends Promise<AsyncIterator<ImageNode>>,
+export interface GroupEdgeSubscription
+  extends Promise<AsyncIterator<GroupEdgeNode>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  uri: () => Promise<AsyncIterator<String>>;
-  thumbnailUri: () => Promise<AsyncIterator<String>>;
-  caption: () => Promise<AsyncIterator<String>>;
+  node: <T = GroupSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface LocalLoginConnectionNode {}
+
+export interface LocalLoginConnection
+  extends Promise<LocalLoginConnectionNode>,
+    Fragmentable {
+  pageInfo: <T = PageInfo>() => T;
+  edges: <T = Promise<Array<LocalLoginEdgeNode>>>() => T;
+  aggregate: <T = AggregateLocalLogin>() => T;
+}
+
+export interface LocalLoginConnectionSubscription
+  extends Promise<AsyncIterator<LocalLoginConnectionNode>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<LocalLoginEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateLocalLoginSubscription>() => T;
 }
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type Int = number;
-
-export type Long = string;
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -2518,11 +8769,16 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
 */
-export type Boolean = boolean;
+export type Float = number;
 
-export type Json = any;
+export type Long = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
 
 /*
 DateTime scalar input type, allowing Date
@@ -2533,6 +8789,8 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+export type Json = any;
 
 /**
  * Type Defs

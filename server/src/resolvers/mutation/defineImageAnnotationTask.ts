@@ -2,7 +2,7 @@ import {AnnotationTaskParent} from '../AnnotationTask';
 import {getUserId} from '../../utilities/AuthenticationUtilities';
 
 export default async function(parent, args, context): Promise<AnnotationTaskParent>{
-  getUserId(context);
+  const userId = getUserId(context);
 
   const data = args.data;
   const { assignees, subjects, requirements } = data;
@@ -31,8 +31,6 @@ export default async function(parent, args, context): Promise<AnnotationTaskPare
     }
   })));
 
-  console.log(createdSubjects[0]);
-
   const task = await context.db.createAnnotationTask({
     assignees: {
       connect: assignees.map(assigneeUserId => ({
@@ -45,6 +43,22 @@ export default async function(parent, args, context): Promise<AnnotationTaskPare
       connect: connectedSubjects,
       create: createdSubjects,
     },
+    owner: {
+      connect: {
+        id: userId,
+      }
+    },
+    creator: {
+      connect: {
+        id: userId,
+      }
+    },
+    classificationContexts: {
+      create: {
+        slug: 'NewTaskDefaultContext',
+        displayName: 'New Task Default Context',
+      }
+    }
   });
 
   return task;

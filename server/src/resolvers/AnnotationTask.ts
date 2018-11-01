@@ -23,19 +23,21 @@ export interface AnnotationTaskParent {
   updatedAt: string;
 }
 
+const getAnnotationTaskMember = (memberName) => (parent, args, context: any) => context.db.annotationTask({id: parent.id})[memberName]()
+
 export const AnnotationTask: AnnotationTaskResolvers.Type<TypeMap> = {
   id: parent => parent.id,
-  assignees: (parent, args, context: any) => context.db.annotationTask({id: parent.id}).assignees(),
+  assignees: getAnnotationTaskMember('assignees'),
   displayName: parent => parent.displayName,
-  subjects: (parent, args, context: any) => context.db.annotationTask({id: parent.id}).subjects(),
+  subjects: getAnnotationTaskMember('subjects'),
   requirements: parent => parent.requirements,
-  classificationContexts: (parent, args) => parent.classificationContexts,
-  classificationLabels: (parent, args) => parent.classificationLabels,
-  owner: parent => parent.owner,
-  group: parent => parent.group,
+  classificationContexts: getAnnotationTaskMember('classificationContexts'),
+  classificationLabels: getAnnotationTaskMember('classificationLabels'),
+  owner: getAnnotationTaskMember('owner'),
+  group: getAnnotationTaskMember('group'),
   anyoneCanView: parent => parent.anyoneCanView,
   anyoneCanJoin: parent => parent.anyoneCanJoin,
-  creator: parent => parent.creator,
+  creator: getAnnotationTaskMember('creator'),
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt
 };

@@ -14,6 +14,7 @@ import { getMainDefinition } from 'apollo-utilities'
 import { AUTH_TOKEN } from './config';
 
 import LoginForm from './modules/user/authentication/LoginForm';
+import ImageList from './modules/annotatable/image/ImageList';
 
 const wsLink = new WebSocketLink({
   uri: 'ws://localhost:4000/',
@@ -56,6 +57,7 @@ ReactDOM.render(
     <div>
       Hello World!
       <LoginForm />
+      <ImageList />
     </div>
   </ApolloProvider>,
   document.getElementById('root'),

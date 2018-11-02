@@ -1,7 +1,8 @@
-# import * from "./generated/prisma.graphql"
+# import Query.imagesConnection from "./generated/prisma.graphql"
 
 type Query {
     me: User
+    images(count: Int!, after: ID): [Image!]!
 }
 
 type Mutation {

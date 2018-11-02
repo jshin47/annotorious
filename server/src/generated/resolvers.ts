@@ -2,11 +2,11 @@ import { GraphQLResolveInfo } from "graphql";
 
 export interface ITypeMap {
   Context: any;
+  ImageOrderByInput: any;
   AnnotationTaskOrderByInput: any;
   AnnotationOrderByInput: any;
   GroupOrderByInput: any;
   AnnotatableOrderByInput: any;
-  ImageOrderByInput: any;
   ClassificationContextOrderByInput: any;
   ClassificationLabelOrderByInput: any;
   UserOrderByInput: any;
@@ -16,15 +16,19 @@ export interface ITypeMap {
   MutationParent: any;
   AuthPayloadParent: any;
   UserParent: any;
+  ImageParent: any;
+  ImageConnectionParent: any;
   AnnotationTaskParent: any;
   AnnotationParent: any;
   SystemLoginParent: any;
   LocalLoginParent: any;
   GroupParent: any;
   AnnotatableParent: any;
-  ImageParent: any;
   ClassificationContextParent: any;
   ClassificationLabelParent: any;
+  PageInfoParent: any;
+  ImageEdgeParent: any;
+  AggregateImageParent: any;
   CgPointParent: any;
 }
 
@@ -41,6 +45,168 @@ export interface DefineImageAnnotationTaskInput {
 export interface AnnotatableImageInput {
   id: string;
   imageUri: string;
+}
+export interface ImageWhereInput {
+  AND: string;
+  OR: string;
+  NOT: string;
+  id: string;
+  id_not: string;
+  id_in: string;
+  id_not_in: string;
+  id_lt: string;
+  id_lte: string;
+  id_gt: string;
+  id_gte: string;
+  id_contains: string;
+  id_not_contains: string;
+  id_starts_with: string;
+  id_not_starts_with: string;
+  id_ends_with: string;
+  id_not_ends_with: string;
+  uri: string;
+  uri_not: string;
+  uri_in: string;
+  uri_not_in: string;
+  uri_lt: string;
+  uri_lte: string;
+  uri_gt: string;
+  uri_gte: string;
+  uri_contains: string;
+  uri_not_contains: string;
+  uri_starts_with: string;
+  uri_not_starts_with: string;
+  uri_ends_with: string;
+  uri_not_ends_with: string;
+  thumbnailUri: string;
+  thumbnailUri_not: string;
+  thumbnailUri_in: string;
+  thumbnailUri_not_in: string;
+  thumbnailUri_lt: string;
+  thumbnailUri_lte: string;
+  thumbnailUri_gt: string;
+  thumbnailUri_gte: string;
+  thumbnailUri_contains: string;
+  thumbnailUri_not_contains: string;
+  thumbnailUri_starts_with: string;
+  thumbnailUri_not_starts_with: string;
+  thumbnailUri_ends_with: string;
+  thumbnailUri_not_ends_with: string;
+  caption: string;
+  caption_not: string;
+  caption_in: string;
+  caption_not_in: string;
+  caption_lt: string;
+  caption_lte: string;
+  caption_gt: string;
+  caption_gte: string;
+  caption_contains: string;
+  caption_not_contains: string;
+  caption_starts_with: string;
+  caption_not_starts_with: string;
+  caption_ends_with: string;
+  caption_not_ends_with: string;
+  digestSha3: string;
+  digestSha3_not: string;
+  digestSha3_in: string;
+  digestSha3_not_in: string;
+  digestSha3_lt: string;
+  digestSha3_lte: string;
+  digestSha3_gt: string;
+  digestSha3_gte: string;
+  digestSha3_contains: string;
+  digestSha3_not_contains: string;
+  digestSha3_starts_with: string;
+  digestSha3_not_starts_with: string;
+  digestSha3_ends_with: string;
+  digestSha3_not_ends_with: string;
+  digestSha2: string;
+  digestSha2_not: string;
+  digestSha2_in: string;
+  digestSha2_not_in: string;
+  digestSha2_lt: string;
+  digestSha2_lte: string;
+  digestSha2_gt: string;
+  digestSha2_gte: string;
+  digestSha2_contains: string;
+  digestSha2_not_contains: string;
+  digestSha2_starts_with: string;
+  digestSha2_not_starts_with: string;
+  digestSha2_ends_with: string;
+  digestSha2_not_ends_with: string;
+  digestSha1: string;
+  digestSha1_not: string;
+  digestSha1_in: string;
+  digestSha1_not_in: string;
+  digestSha1_lt: string;
+  digestSha1_lte: string;
+  digestSha1_gt: string;
+  digestSha1_gte: string;
+  digestSha1_contains: string;
+  digestSha1_not_contains: string;
+  digestSha1_starts_with: string;
+  digestSha1_not_starts_with: string;
+  digestSha1_ends_with: string;
+  digestSha1_not_ends_with: string;
+  digestMd5: string;
+  digestMd5_not: string;
+  digestMd5_in: string;
+  digestMd5_not_in: string;
+  digestMd5_lt: string;
+  digestMd5_lte: string;
+  digestMd5_gt: string;
+  digestMd5_gte: string;
+  digestMd5_contains: string;
+  digestMd5_not_contains: string;
+  digestMd5_starts_with: string;
+  digestMd5_not_starts_with: string;
+  digestMd5_ends_with: string;
+  digestMd5_not_ends_with: string;
+  sizeInBytes: number;
+  sizeInBytes_not: number;
+  sizeInBytes_in: number;
+  sizeInBytes_not_in: number;
+  sizeInBytes_lt: number;
+  sizeInBytes_lte: number;
+  sizeInBytes_gt: number;
+  sizeInBytes_gte: number;
+  width: number;
+  width_not: number;
+  width_in: number;
+  width_not_in: number;
+  width_lt: number;
+  width_lte: number;
+  width_gt: number;
+  width_gte: number;
+  height: number;
+  height_not: number;
+  height_in: number;
+  height_not_in: number;
+  height_lt: number;
+  height_lte: number;
+  height_gt: number;
+  height_gte: number;
+  anyoneCanView: boolean;
+  anyoneCanView_not: boolean;
+  createdAt: string;
+  createdAt_not: string;
+  createdAt_in: string;
+  createdAt_not_in: string;
+  createdAt_lt: string;
+  createdAt_lte: string;
+  createdAt_gt: string;
+  createdAt_gte: string;
+  updatedAt: string;
+  updatedAt_not: string;
+  updatedAt_in: string;
+  updatedAt_not_in: string;
+  updatedAt_lt: string;
+  updatedAt_lte: string;
+  updatedAt_gt: string;
+  updatedAt_gte: string;
+  owner: string;
+  group: string;
+  creator: string;
 }
 export interface AnnotationTaskWhereInput {
   AND: string;
@@ -332,168 +498,6 @@ export interface AnnotatableWhereInput {
   tasks_every: string;
   tasks_some: string;
   tasks_none: string;
-  owner: string;
-  group: string;
-  creator: string;
-}
-export interface ImageWhereInput {
-  AND: string;
-  OR: string;
-  NOT: string;
-  id: string;
-  id_not: string;
-  id_in: string;
-  id_not_in: string;
-  id_lt: string;
-  id_lte: string;
-  id_gt: string;
-  id_gte: string;
-  id_contains: string;
-  id_not_contains: string;
-  id_starts_with: string;
-  id_not_starts_with: string;
-  id_ends_with: string;
-  id_not_ends_with: string;
-  uri: string;
-  uri_not: string;
-  uri_in: string;
-  uri_not_in: string;
-  uri_lt: string;
-  uri_lte: string;
-  uri_gt: string;
-  uri_gte: string;
-  uri_contains: string;
-  uri_not_contains: string;
-  uri_starts_with: string;
-  uri_not_starts_with: string;
-  uri_ends_with: string;
-  uri_not_ends_with: string;
-  thumbnailUri: string;
-  thumbnailUri_not: string;
-  thumbnailUri_in: string;
-  thumbnailUri_not_in: string;
-  thumbnailUri_lt: string;
-  thumbnailUri_lte: string;
-  thumbnailUri_gt: string;
-  thumbnailUri_gte: string;
-  thumbnailUri_contains: string;
-  thumbnailUri_not_contains: string;
-  thumbnailUri_starts_with: string;
-  thumbnailUri_not_starts_with: string;
-  thumbnailUri_ends_with: string;
-  thumbnailUri_not_ends_with: string;
-  caption: string;
-  caption_not: string;
-  caption_in: string;
-  caption_not_in: string;
-  caption_lt: string;
-  caption_lte: string;
-  caption_gt: string;
-  caption_gte: string;
-  caption_contains: string;
-  caption_not_contains: string;
-  caption_starts_with: string;
-  caption_not_starts_with: string;
-  caption_ends_with: string;
-  caption_not_ends_with: string;
-  digestSha3: string;
-  digestSha3_not: string;
-  digestSha3_in: string;
-  digestSha3_not_in: string;
-  digestSha3_lt: string;
-  digestSha3_lte: string;
-  digestSha3_gt: string;
-  digestSha3_gte: string;
-  digestSha3_contains: string;
-  digestSha3_not_contains: string;
-  digestSha3_starts_with: string;
-  digestSha3_not_starts_with: string;
-  digestSha3_ends_with: string;
-  digestSha3_not_ends_with: string;
-  digestSha2: string;
-  digestSha2_not: string;
-  digestSha2_in: string;
-  digestSha2_not_in: string;
-  digestSha2_lt: string;
-  digestSha2_lte: string;
-  digestSha2_gt: string;
-  digestSha2_gte: string;
-  digestSha2_contains: string;
-  digestSha2_not_contains: string;
-  digestSha2_starts_with: string;
-  digestSha2_not_starts_with: string;
-  digestSha2_ends_with: string;
-  digestSha2_not_ends_with: string;
-  digestSha1: string;
-  digestSha1_not: string;
-  digestSha1_in: string;
-  digestSha1_not_in: string;
-  digestSha1_lt: string;
-  digestSha1_lte: string;
-  digestSha1_gt: string;
-  digestSha1_gte: string;
-  digestSha1_contains: string;
-  digestSha1_not_contains: string;
-  digestSha1_starts_with: string;
-  digestSha1_not_starts_with: string;
-  digestSha1_ends_with: string;
-  digestSha1_not_ends_with: string;
-  digestMd5: string;
-  digestMd5_not: string;
-  digestMd5_in: string;
-  digestMd5_not_in: string;
-  digestMd5_lt: string;
-  digestMd5_lte: string;
-  digestMd5_gt: string;
-  digestMd5_gte: string;
-  digestMd5_contains: string;
-  digestMd5_not_contains: string;
-  digestMd5_starts_with: string;
-  digestMd5_not_starts_with: string;
-  digestMd5_ends_with: string;
-  digestMd5_not_ends_with: string;
-  sizeInBytes: number;
-  sizeInBytes_not: number;
-  sizeInBytes_in: number;
-  sizeInBytes_not_in: number;
-  sizeInBytes_lt: number;
-  sizeInBytes_lte: number;
-  sizeInBytes_gt: number;
-  sizeInBytes_gte: number;
-  width: number;
-  width_not: number;
-  width_in: number;
-  width_not_in: number;
-  width_lt: number;
-  width_lte: number;
-  width_gt: number;
-  width_gte: number;
-  height: number;
-  height_not: number;
-  height_in: number;
-  height_not_in: number;
-  height_lt: number;
-  height_lte: number;
-  height_gt: number;
-  height_gte: number;
-  anyoneCanView: boolean;
-  anyoneCanView_not: boolean;
-  createdAt: string;
-  createdAt_not: string;
-  createdAt_in: string;
-  createdAt_not_in: string;
-  createdAt_lt: string;
-  createdAt_lte: string;
-  createdAt_gt: string;
-  createdAt_gte: string;
-  updatedAt: string;
-  updatedAt_not: string;
-  updatedAt_in: string;
-  updatedAt_not_in: string;
-  updatedAt_lt: string;
-  updatedAt_lte: string;
-  updatedAt_gt: string;
-  updatedAt_gte: string;
   owner: string;
   group: string;
   creator: string;
@@ -1001,6 +1005,35 @@ export namespace QueryResolvers {
     info: GraphQLResolveInfo
   ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
 
+  export interface ArgsImages {
+    count: number;
+    after: string | null;
+  }
+
+  export type ImagesType<T extends ITypeMap> = (
+    parent: T["QueryParent"],
+    args: ArgsImages,
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ImageParent"][] | Promise<T["ImageParent"][]>;
+
+  export interface ArgsImagesConnection {
+    where: ImageWhereInput | null;
+    orderBy: T["ImageOrderByInput"] | null;
+    skip: number | null;
+    after: string | null;
+    before: string | null;
+    first: number | null;
+    last: number | null;
+  }
+
+  export type ImagesConnectionType<T extends ITypeMap> = (
+    parent: T["QueryParent"],
+    args: ArgsImagesConnection,
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ImageConnectionParent"] | Promise<T["ImageConnectionParent"]>;
+
   export interface Type<T extends ITypeMap> {
     me: (
       parent: T["QueryParent"],
@@ -1008,6 +1041,18 @@ export namespace QueryResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
+    images: (
+      parent: T["QueryParent"],
+      args: ArgsImages,
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ImageParent"][] | Promise<T["ImageParent"][]>;
+    imagesConnection: (
+      parent: T["QueryParent"],
+      args: ArgsImagesConnection,
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ImageConnectionParent"] | Promise<T["ImageConnectionParent"]>;
   }
 }
 
@@ -1627,6 +1672,276 @@ export namespace UserResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => string | Promise<string>;
+  }
+}
+
+export namespace ImageResolvers {
+  export type IdType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export type UriType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export type ThumbnailUriType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type CaptionType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type DigestSha3Type<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type DigestSha2Type<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type DigestSha1Type<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type DigestMd5Type<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type SizeInBytesType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => number | null | Promise<number | null>;
+
+  export type WidthType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => number | null | Promise<number | null>;
+
+  export type HeightType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => number | null | Promise<number | null>;
+
+  export type OwnerType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
+
+  export type GroupType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["GroupParent"] | null | Promise<T["GroupParent"] | null>;
+
+  export type AnyoneCanViewType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => boolean | Promise<boolean>;
+
+  export type CreatorType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
+
+  export type CreatedAtType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export type UpdatedAtType<T extends ITypeMap> = (
+    parent: T["ImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export interface Type<T extends ITypeMap> {
+    id: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+    uri: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+    thumbnailUri: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    caption: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    digestSha3: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    digestSha2: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    digestSha1: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    digestMd5: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    sizeInBytes: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => number | null | Promise<number | null>;
+    width: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => number | null | Promise<number | null>;
+    height: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => number | null | Promise<number | null>;
+    owner: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
+    group: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["GroupParent"] | null | Promise<T["GroupParent"] | null>;
+    anyoneCanView: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => boolean | Promise<boolean>;
+    creator: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
+    createdAt: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+    updatedAt: (
+      parent: T["ImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+  }
+}
+
+export namespace ImageConnectionResolvers {
+  export type PageInfoType<T extends ITypeMap> = (
+    parent: T["ImageConnectionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["PageInfoParent"] | Promise<T["PageInfoParent"]>;
+
+  export type EdgesType<T extends ITypeMap> = (
+    parent: T["ImageConnectionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ImageEdgeParent"][] | Promise<T["ImageEdgeParent"][]>;
+
+  export type AggregateType<T extends ITypeMap> = (
+    parent: T["ImageConnectionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["AggregateImageParent"] | Promise<T["AggregateImageParent"]>;
+
+  export interface Type<T extends ITypeMap> {
+    pageInfo: (
+      parent: T["ImageConnectionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["PageInfoParent"] | Promise<T["PageInfoParent"]>;
+    edges: (
+      parent: T["ImageConnectionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ImageEdgeParent"][] | Promise<T["ImageEdgeParent"][]>;
+    aggregate: (
+      parent: T["ImageConnectionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["AggregateImageParent"] | Promise<T["AggregateImageParent"]>;
   }
 }
 
@@ -2799,232 +3114,6 @@ export namespace AnnotatableResolvers {
   }
 }
 
-export namespace ImageResolvers {
-  export type IdType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | Promise<string>;
-
-  export type UriType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | Promise<string>;
-
-  export type ThumbnailUriType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
-
-  export type CaptionType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
-
-  export type DigestSha3Type<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
-
-  export type DigestSha2Type<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
-
-  export type DigestSha1Type<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
-
-  export type DigestMd5Type<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
-
-  export type SizeInBytesType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => number | null | Promise<number | null>;
-
-  export type WidthType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => number | null | Promise<number | null>;
-
-  export type HeightType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => number | null | Promise<number | null>;
-
-  export type OwnerType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
-
-  export type GroupType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["GroupParent"] | null | Promise<T["GroupParent"] | null>;
-
-  export type AnyoneCanViewType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => boolean | Promise<boolean>;
-
-  export type CreatorType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
-
-  export type CreatedAtType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | Promise<string>;
-
-  export type UpdatedAtType<T extends ITypeMap> = (
-    parent: T["ImageParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => string | Promise<string>;
-
-  export interface Type<T extends ITypeMap> {
-    id: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | Promise<string>;
-    uri: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | Promise<string>;
-    thumbnailUri: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    caption: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    digestSha3: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    digestSha2: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    digestSha1: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    digestMd5: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    sizeInBytes: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => number | null | Promise<number | null>;
-    width: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => number | null | Promise<number | null>;
-    height: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => number | null | Promise<number | null>;
-    owner: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
-    group: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["GroupParent"] | null | Promise<T["GroupParent"] | null>;
-    anyoneCanView: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => boolean | Promise<boolean>;
-    creator: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
-    createdAt: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | Promise<string>;
-    updatedAt: (
-      parent: T["ImageParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => string | Promise<string>;
-  }
-}
-
 export namespace ClassificationContextResolvers {
   export type IdType<T extends ITypeMap> = (
     parent: T["ClassificationContextParent"],
@@ -3427,6 +3516,112 @@ export namespace ClassificationLabelResolvers {
   }
 }
 
+export namespace PageInfoResolvers {
+  export type HasNextPageType<T extends ITypeMap> = (
+    parent: T["PageInfoParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => boolean | Promise<boolean>;
+
+  export type HasPreviousPageType<T extends ITypeMap> = (
+    parent: T["PageInfoParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => boolean | Promise<boolean>;
+
+  export type StartCursorType<T extends ITypeMap> = (
+    parent: T["PageInfoParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export type EndCursorType<T extends ITypeMap> = (
+    parent: T["PageInfoParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
+  export interface Type<T extends ITypeMap> {
+    hasNextPage: (
+      parent: T["PageInfoParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => boolean | Promise<boolean>;
+    hasPreviousPage: (
+      parent: T["PageInfoParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => boolean | Promise<boolean>;
+    startCursor: (
+      parent: T["PageInfoParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+    endCursor: (
+      parent: T["PageInfoParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+  }
+}
+
+export namespace ImageEdgeResolvers {
+  export type NodeType<T extends ITypeMap> = (
+    parent: T["ImageEdgeParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ImageParent"] | Promise<T["ImageParent"]>;
+
+  export type CursorType<T extends ITypeMap> = (
+    parent: T["ImageEdgeParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export interface Type<T extends ITypeMap> {
+    node: (
+      parent: T["ImageEdgeParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ImageParent"] | Promise<T["ImageParent"]>;
+    cursor: (
+      parent: T["ImageEdgeParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+  }
+}
+
+export namespace AggregateImageResolvers {
+  export type CountType<T extends ITypeMap> = (
+    parent: T["AggregateImageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => number | Promise<number>;
+
+  export interface Type<T extends ITypeMap> {
+    count: (
+      parent: T["AggregateImageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => number | Promise<number>;
+  }
+}
+
 export namespace CgPointResolvers {
   export type IdType<T extends ITypeMap> = (
     parent: T["CgPointParent"],
@@ -3554,14 +3749,18 @@ export interface IResolvers<T extends ITypeMap> {
   Mutation: MutationResolvers.Type<T>;
   AuthPayload: AuthPayloadResolvers.Type<T>;
   User: UserResolvers.Type<T>;
+  Image: ImageResolvers.Type<T>;
+  ImageConnection: ImageConnectionResolvers.Type<T>;
   AnnotationTask: AnnotationTaskResolvers.Type<T>;
   Annotation: AnnotationResolvers.Type<T>;
   SystemLogin: SystemLoginResolvers.Type<T>;
   LocalLogin: LocalLoginResolvers.Type<T>;
   Group: GroupResolvers.Type<T>;
   Annotatable: AnnotatableResolvers.Type<T>;
-  Image: ImageResolvers.Type<T>;
   ClassificationContext: ClassificationContextResolvers.Type<T>;
   ClassificationLabel: ClassificationLabelResolvers.Type<T>;
+  PageInfo: PageInfoResolvers.Type<T>;
+  ImageEdge: ImageEdgeResolvers.Type<T>;
+  AggregateImage: AggregateImageResolvers.Type<T>;
   CgPoint: CgPointResolvers.Type<T>;
 }

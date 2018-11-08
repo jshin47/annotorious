@@ -12,6 +12,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { ApolloProvider } from 'react-apollo'
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
@@ -29,6 +30,8 @@ import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
+import configureApollo from './configureApollo'
+
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -36,16 +39,19 @@ import { translationMessages } from './i18n';
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
+const client = configureApollo();
 const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </LanguageProvider>
+      <ApolloProvider client={client}>
+        <LanguageProvider messages={messages}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </LanguageProvider>
+      </ApolloProvider>
     </Provider>,
     MOUNT_NODE,
   );

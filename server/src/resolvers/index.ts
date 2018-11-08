@@ -15,6 +15,10 @@ import { Image } from "./Image";
 import { ClassificationContext } from "./ClassificationContext";
 import { ClassificationLabel } from "./ClassificationLabel";
 import { CgPoint } from "./CgPoint";
+import {ImageConnection} from './ImageConnection';
+import {PageInfo} from './PageInfo';
+import {AggregateImage} from './AggregateImage';
+import {ImageEdge} from './ImageEdge';
 
 export const resolvers: IResolvers<TypeMap> = {
   Query,
@@ -28,7 +32,11 @@ export const resolvers: IResolvers<TypeMap> = {
   Group,
   Annotatable,
   Image,
+  ImageConnection,
   ClassificationContext,
   ClassificationLabel,
-  CgPoint
+  CgPoint,
+  PageInfo,
+  AggregateImage,
+  ImageEdge,
 };

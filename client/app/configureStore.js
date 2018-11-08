@@ -24,7 +24,9 @@ export default function configureStore(initialState = {}, history) {
     process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        latency: 0
+      })
       : compose;
   /* eslint-enable */
 

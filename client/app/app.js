@@ -39,7 +39,7 @@ import { translationMessages } from './i18n';
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
-const client = configureApollo();
+const client = configureApollo(store);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {

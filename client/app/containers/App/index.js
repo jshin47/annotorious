@@ -15,8 +15,12 @@ import AnnotationTaskDesk from 'containers/AnnotationTaskDesk/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
+import { connect } from 'react-redux';
+import injectSaga from '../../utils/injectSaga';
+import saga from './saga';
+import { compose } from 'redux';
 
-export default function App() {
+export function App() {
   return (
     <div>
       <Switch>
@@ -28,3 +32,7 @@ export default function App() {
     </div>
   );
 }
+
+const withSaga = injectSaga({ key: 'app', saga });
+
+export default compose(withSaga)(App);

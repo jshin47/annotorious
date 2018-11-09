@@ -4,6 +4,7 @@ import login from './mutation/login';
 import defineImageAnnotationTask from './mutation/defineImageAnnotationTask';
 import createUser from './mutation/createUser';
 import annotateImage from './mutation/annotateImage';
+import importImages from './mutation/importImages';
 
 export interface MutationParent {}
 
@@ -12,4 +13,5 @@ export const Mutation: MutationResolvers.Type<TypeMap> = {
   createUser,
   defineImageAnnotationTask,
   annotateImage,
+  importImages,
 };

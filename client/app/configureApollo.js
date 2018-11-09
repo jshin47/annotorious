@@ -15,7 +15,7 @@ import { getMainDefinition } from 'apollo-utilities'
 
 const AUTH_TOKEN = 'auth-token'
 
-export function configureApollo() {
+export function configureApollo(reduxStore) {
   const wsLink = new WebSocketLink({
     uri: 'ws://localhost:4000/',
     options: {
@@ -25,6 +25,7 @@ export function configureApollo() {
   const httpLink = new HttpLink({ uri: 'http://localhost:4000' })
 
   const middlewareAuthLink = new ApolloLink((operation, forward) => {
+    // const token = reduxStore.getState();
     const token = localStorage.getItem(AUTH_TOKEN)
     const authorizationHeader = token ? `Bearer ${token}` : null
     operation.setContext({

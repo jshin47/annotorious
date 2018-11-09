@@ -17,8 +17,8 @@ export interface ITypeMap {
   AuthPayloadParent: any;
   UserParent: any;
   ImageParent: any;
-  ImageConnectionParent: any;
   AnnotationTaskParent: any;
+  ImageConnectionParent: any;
   AnnotationParent: any;
   SystemLoginParent: any;
   LocalLoginParent: any;
@@ -1017,6 +1017,13 @@ export namespace QueryResolvers {
     info: GraphQLResolveInfo
   ) => T["ImageParent"][] | Promise<T["ImageParent"][]>;
 
+  export type AssignedAnnotationTasksType<T extends ITypeMap> = (
+    parent: T["QueryParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["AnnotationTaskParent"][] | Promise<T["AnnotationTaskParent"][]>;
+
   export interface ArgsImagesConnection {
     where: ImageWhereInput | null;
     orderBy: T["ImageOrderByInput"] | null;
@@ -1047,6 +1054,12 @@ export namespace QueryResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["ImageParent"][] | Promise<T["ImageParent"][]>;
+    assignedAnnotationTasks: (
+      parent: T["QueryParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["AnnotationTaskParent"][] | Promise<T["AnnotationTaskParent"][]>;
     imagesConnection: (
       parent: T["QueryParent"],
       args: ArgsImagesConnection,
@@ -1080,6 +1093,17 @@ export namespace MutationResolvers {
     ctx: T["Context"],
     info: GraphQLResolveInfo
   ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
+
+  export interface ArgsImportImages {
+    files: string[];
+  }
+
+  export type ImportImagesType<T extends ITypeMap> = (
+    parent: T["MutationParent"],
+    args: ArgsImportImages,
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ImageParent"] | Promise<T["ImageParent"]>;
 
   export interface ArgsDefineImageAnnotationTask {
     data: DefineImageAnnotationTaskInput;
@@ -1116,6 +1140,12 @@ export namespace MutationResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
+    importImages: (
+      parent: T["MutationParent"],
+      args: ArgsImportImages,
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ImageParent"] | Promise<T["ImageParent"]>;
     defineImageAnnotationTask: (
       parent: T["MutationParent"],
       args: ArgsDefineImageAnnotationTask,
@@ -1901,50 +1931,6 @@ export namespace ImageResolvers {
   }
 }
 
-export namespace ImageConnectionResolvers {
-  export type PageInfoType<T extends ITypeMap> = (
-    parent: T["ImageConnectionParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["PageInfoParent"] | Promise<T["PageInfoParent"]>;
-
-  export type EdgesType<T extends ITypeMap> = (
-    parent: T["ImageConnectionParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["ImageEdgeParent"][] | Promise<T["ImageEdgeParent"][]>;
-
-  export type AggregateType<T extends ITypeMap> = (
-    parent: T["ImageConnectionParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["AggregateImageParent"] | Promise<T["AggregateImageParent"]>;
-
-  export interface Type<T extends ITypeMap> {
-    pageInfo: (
-      parent: T["ImageConnectionParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["PageInfoParent"] | Promise<T["PageInfoParent"]>;
-    edges: (
-      parent: T["ImageConnectionParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["ImageEdgeParent"][] | Promise<T["ImageEdgeParent"][]>;
-    aggregate: (
-      parent: T["ImageConnectionParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["AggregateImageParent"] | Promise<T["AggregateImageParent"]>;
-  }
-}
-
 export namespace AnnotationTaskResolvers {
   export type IdType<T extends ITypeMap> = (
     parent: T["AnnotationTaskParent"],
@@ -2177,6 +2163,50 @@ export namespace AnnotationTaskResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => string | Promise<string>;
+  }
+}
+
+export namespace ImageConnectionResolvers {
+  export type PageInfoType<T extends ITypeMap> = (
+    parent: T["ImageConnectionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["PageInfoParent"] | Promise<T["PageInfoParent"]>;
+
+  export type EdgesType<T extends ITypeMap> = (
+    parent: T["ImageConnectionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ImageEdgeParent"][] | Promise<T["ImageEdgeParent"][]>;
+
+  export type AggregateType<T extends ITypeMap> = (
+    parent: T["ImageConnectionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["AggregateImageParent"] | Promise<T["AggregateImageParent"]>;
+
+  export interface Type<T extends ITypeMap> {
+    pageInfo: (
+      parent: T["ImageConnectionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["PageInfoParent"] | Promise<T["PageInfoParent"]>;
+    edges: (
+      parent: T["ImageConnectionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ImageEdgeParent"][] | Promise<T["ImageEdgeParent"][]>;
+    aggregate: (
+      parent: T["ImageConnectionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["AggregateImageParent"] | Promise<T["AggregateImageParent"]>;
   }
 }
 
@@ -3750,8 +3780,8 @@ export interface IResolvers<T extends ITypeMap> {
   AuthPayload: AuthPayloadResolvers.Type<T>;
   User: UserResolvers.Type<T>;
   Image: ImageResolvers.Type<T>;
-  ImageConnection: ImageConnectionResolvers.Type<T>;
   AnnotationTask: AnnotationTaskResolvers.Type<T>;
+  ImageConnection: ImageConnectionResolvers.Type<T>;
   Annotation: AnnotationResolvers.Type<T>;
   SystemLogin: SystemLoginResolvers.Type<T>;
   LocalLogin: LocalLoginResolvers.Type<T>;

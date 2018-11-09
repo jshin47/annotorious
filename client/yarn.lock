@@ -9470,6 +9470,10 @@ styled-components@4.0.2:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
 
+styled-react-modal@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/styled-react-modal/-/styled-react-modal-1.1.2.tgz#5560409a595f5df33f35c35e4ab3446d1423882d"
+
 stylelint-config-recommended@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-2.1.0.tgz#f526d5c771c6811186d9eaedbed02195fee30858"

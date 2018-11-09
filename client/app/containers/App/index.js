@@ -19,17 +19,25 @@ import { connect } from 'react-redux';
 import injectSaga from '../../utils/injectSaga';
 import saga from './saga';
 import { compose } from 'redux';
+import { ThemeProvider } from 'styled-components';
+import { ModalProvider } from 'styled-react-modal';
+import ModalLoginForm from 'containers/LoginForm/ModalLoginForm';
+
+const theme = {};
 
 export function App() {
   return (
-    <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/task" component={AnnotationTaskDesk} />
-        <Route component={NotFoundPage} />
-      </Switch>
-      <GlobalStyle />
-    </div>
+    <ThemeProvider theme={theme}>
+      <ModalProvider>
+        <ModalLoginForm />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/task" component={AnnotationTaskDesk} />
+          <Route component={NotFoundPage} />
+        </Switch>
+        <GlobalStyle />
+      </ModalProvider>
+    </ThemeProvider>
   );
 }
 

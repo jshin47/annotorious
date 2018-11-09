@@ -97,6 +97,7 @@
     "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
     "styled-components": "4.0.2",
+    "styled-react-modal": "^1.1.2",
     "subscriptions-transport-ws": "^0.9.15",
     "warning": "4.0.2"
   },

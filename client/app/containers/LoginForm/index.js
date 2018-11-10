@@ -12,11 +12,11 @@ import { graphql, compose } from 'react-apollo';
 
 import messages from './messages';
 import { LOGIN_MUTATION } from 'data/graphql/mutations';
-import { setCurrentUser } from '../App/actions';
+import { hideLoginModal, setCurrentUser } from '../App/actions';
 
-function LoginForm({ dispatch, loginMutation }) {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+function LoginForm({ dispatch, loginMutation, displayedInModal = false }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const attemptLogin = async (e) => {
     e.preventDefault();
@@ -30,6 +30,10 @@ function LoginForm({ dispatch, loginMutation }) {
     const {token, user} = loginResult.data.login;
     console.log(token, user)
     dispatch(setCurrentUser({ token, user }));
+
+    if (displayedInModal) {
+      dispatch(hideLoginModal());
+    }
   }
 
   return (

@@ -2,6 +2,7 @@ type User {
     id: ID! @unique
 
     displayName: String!
+    emailAddress: String @unique
 
     systemLogin: SystemLogin @unique @relation(name: "SystemLoginUser")
     localLogin: LocalLogin @unique

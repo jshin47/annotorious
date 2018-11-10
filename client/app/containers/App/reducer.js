@@ -5,11 +5,15 @@
  */
 
 import { fromJS } from 'immutable';
-import { SET_CURRENT_USER, SET_LOGIN_MODAL_VISIBILITY } from './constants';
+import { SET_CURRENT_USER, SET_MODAL_ATTRIBUTES, SET_MODAL_VISIBILITY } from './constants';
+import { Enums } from 'containers/LoginForm/constants';
 
 export const initialState = fromJS({
   modals: {
-    loginModalVisible: false,
+    login: {
+      visible: false,
+      mode: Enums.MODAL_LOGIN_FORM_MODE_LOGIN,
+    }
   }
 });
 
@@ -21,9 +25,14 @@ function appReducer(state = initialState, action) {
         token,
         user,
       }));
-    case SET_LOGIN_MODAL_VISIBILITY:
-      const { show } = action;
-      return state.setIn(['modals', 'loginModalVisible'], show);
+    case SET_MODAL_VISIBILITY: {
+      const { visible, modal } = action;
+      return state.setIn(['modals', modal, 'visible'], visible);
+    }
+    case SET_MODAL_ATTRIBUTES: {
+      const { modal, attributes } = action;
+      return state.setIn(['modals', modal], state.getIn(['modals', modal]).merge(attributes));
+    }
     default:
       return state;
   }

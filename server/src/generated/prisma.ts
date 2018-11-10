@@ -6158,6 +6158,7 @@ input SystemLoginWhereUniqueInput {
 type User implements Node {
   id: ID!
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLogin
   localLogin: LocalLogin
   assignedAnnotationTasks(where: AnnotationTaskWhereInput, orderBy: AnnotationTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AnnotationTask!]
@@ -6194,6 +6195,7 @@ type UserConnection {
 
 input UserCreateInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6318,6 +6320,7 @@ input UserCreateOneWithoutSystemLoginInput {
 
 input UserCreateWithoutAnnotationsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6341,6 +6344,7 @@ input UserCreateWithoutAnnotationsInput {
 
 input UserCreateWithoutAssignedAnnotationTasksInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   annotations: AnnotationCreateManyWithoutAnnotatorInput
@@ -6364,6 +6368,7 @@ input UserCreateWithoutAssignedAnnotationTasksInput {
 
 input UserCreateWithoutCreatedAnnotatablesInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6387,6 +6392,7 @@ input UserCreateWithoutCreatedAnnotatablesInput {
 
 input UserCreateWithoutCreatedAnnotationsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6410,6 +6416,7 @@ input UserCreateWithoutCreatedAnnotationsInput {
 
 input UserCreateWithoutCreatedAnnotationTasksInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6433,6 +6440,7 @@ input UserCreateWithoutCreatedAnnotationTasksInput {
 
 input UserCreateWithoutCreatedClassificationContextsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6456,6 +6464,7 @@ input UserCreateWithoutCreatedClassificationContextsInput {
 
 input UserCreateWithoutCreatedClassificationLabelsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6479,6 +6488,7 @@ input UserCreateWithoutCreatedClassificationLabelsInput {
 
 input UserCreateWithoutCreatedGroupsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6502,6 +6512,7 @@ input UserCreateWithoutCreatedGroupsInput {
 
 input UserCreateWithoutCreatedImagesInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6525,6 +6536,7 @@ input UserCreateWithoutCreatedImagesInput {
 
 input UserCreateWithoutLocalLoginInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
   annotations: AnnotationCreateManyWithoutAnnotatorInput
@@ -6548,6 +6560,7 @@ input UserCreateWithoutLocalLoginInput {
 
 input UserCreateWithoutManagerOfGroupsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6571,6 +6584,7 @@ input UserCreateWithoutManagerOfGroupsInput {
 
 input UserCreateWithoutMemberOfGroupsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6594,6 +6608,7 @@ input UserCreateWithoutMemberOfGroupsInput {
 
 input UserCreateWithoutOwnedAnnotatablesInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6617,6 +6632,7 @@ input UserCreateWithoutOwnedAnnotatablesInput {
 
 input UserCreateWithoutOwnedAnnotationsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6640,6 +6656,7 @@ input UserCreateWithoutOwnedAnnotationsInput {
 
 input UserCreateWithoutOwnedAnnotationTasksInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6663,6 +6680,7 @@ input UserCreateWithoutOwnedAnnotationTasksInput {
 
 input UserCreateWithoutOwnedClassificationContextsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6686,6 +6704,7 @@ input UserCreateWithoutOwnedClassificationContextsInput {
 
 input UserCreateWithoutOwnedClassificationLabelsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6709,6 +6728,7 @@ input UserCreateWithoutOwnedClassificationLabelsInput {
 
 input UserCreateWithoutOwnedGroupsInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6732,6 +6752,7 @@ input UserCreateWithoutOwnedGroupsInput {
 
 input UserCreateWithoutOwnedImagesInput {
   displayName: String!
+  emailAddress: String
   systemLogin: SystemLoginCreateOneWithoutUserInput
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -6755,6 +6776,7 @@ input UserCreateWithoutOwnedImagesInput {
 
 input UserCreateWithoutSystemLoginInput {
   displayName: String!
+  emailAddress: String
   localLogin: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskCreateManyWithoutAssigneesInput
   annotations: AnnotationCreateManyWithoutAnnotatorInput
@@ -6790,6 +6812,8 @@ enum UserOrderByInput {
   id_DESC
   displayName_ASC
   displayName_DESC
+  emailAddress_ASC
+  emailAddress_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -6799,6 +6823,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   displayName: String!
+  emailAddress: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -6844,6 +6869,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7042,6 +7068,7 @@ input UserUpdateOneWithoutOwnedImagesInput {
 
 input UserUpdateWithoutAnnotationsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7065,6 +7092,7 @@ input UserUpdateWithoutAnnotationsDataInput {
 
 input UserUpdateWithoutAssignedAnnotationTasksDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   annotations: AnnotationUpdateManyWithoutAnnotatorInput
@@ -7088,6 +7116,7 @@ input UserUpdateWithoutAssignedAnnotationTasksDataInput {
 
 input UserUpdateWithoutCreatedAnnotatablesDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7111,6 +7140,7 @@ input UserUpdateWithoutCreatedAnnotatablesDataInput {
 
 input UserUpdateWithoutCreatedAnnotationsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7134,6 +7164,7 @@ input UserUpdateWithoutCreatedAnnotationsDataInput {
 
 input UserUpdateWithoutCreatedAnnotationTasksDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7157,6 +7188,7 @@ input UserUpdateWithoutCreatedAnnotationTasksDataInput {
 
 input UserUpdateWithoutCreatedClassificationContextsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7180,6 +7212,7 @@ input UserUpdateWithoutCreatedClassificationContextsDataInput {
 
 input UserUpdateWithoutCreatedClassificationLabelsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7203,6 +7236,7 @@ input UserUpdateWithoutCreatedClassificationLabelsDataInput {
 
 input UserUpdateWithoutCreatedGroupsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7226,6 +7260,7 @@ input UserUpdateWithoutCreatedGroupsDataInput {
 
 input UserUpdateWithoutCreatedImagesDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7249,6 +7284,7 @@ input UserUpdateWithoutCreatedImagesDataInput {
 
 input UserUpdateWithoutLocalLoginDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
   annotations: AnnotationUpdateManyWithoutAnnotatorInput
@@ -7272,6 +7308,7 @@ input UserUpdateWithoutLocalLoginDataInput {
 
 input UserUpdateWithoutManagerOfGroupsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7295,6 +7332,7 @@ input UserUpdateWithoutManagerOfGroupsDataInput {
 
 input UserUpdateWithoutMemberOfGroupsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7318,6 +7356,7 @@ input UserUpdateWithoutMemberOfGroupsDataInput {
 
 input UserUpdateWithoutOwnedAnnotatablesDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7341,6 +7380,7 @@ input UserUpdateWithoutOwnedAnnotatablesDataInput {
 
 input UserUpdateWithoutOwnedAnnotationsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7364,6 +7404,7 @@ input UserUpdateWithoutOwnedAnnotationsDataInput {
 
 input UserUpdateWithoutOwnedAnnotationTasksDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7387,6 +7428,7 @@ input UserUpdateWithoutOwnedAnnotationTasksDataInput {
 
 input UserUpdateWithoutOwnedClassificationContextsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7410,6 +7452,7 @@ input UserUpdateWithoutOwnedClassificationContextsDataInput {
 
 input UserUpdateWithoutOwnedClassificationLabelsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7433,6 +7476,7 @@ input UserUpdateWithoutOwnedClassificationLabelsDataInput {
 
 input UserUpdateWithoutOwnedGroupsDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7456,6 +7500,7 @@ input UserUpdateWithoutOwnedGroupsDataInput {
 
 input UserUpdateWithoutOwnedImagesDataInput {
   displayName: String
+  emailAddress: String
   systemLogin: SystemLoginUpdateOneWithoutUserInput
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -7479,6 +7524,7 @@ input UserUpdateWithoutOwnedImagesDataInput {
 
 input UserUpdateWithoutSystemLoginDataInput {
   displayName: String
+  emailAddress: String
   localLogin: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks: AnnotationTaskUpdateManyWithoutAssigneesInput
   annotations: AnnotationUpdateManyWithoutAnnotatorInput
@@ -7707,6 +7753,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   displayName_not_ends_with: String
+  emailAddress: String
+
+  """All values that are not equal to given value."""
+  emailAddress_not: String
+
+  """All values that are contained in given list."""
+  emailAddress_in: [String!]
+
+  """All values that are not contained in given list."""
+  emailAddress_not_in: [String!]
+
+  """All values less than the given value."""
+  emailAddress_lt: String
+
+  """All values less than or equal the given value."""
+  emailAddress_lte: String
+
+  """All values greater than the given value."""
+  emailAddress_gt: String
+
+  """All values greater than or equal the given value."""
+  emailAddress_gte: String
+
+  """All values containing the given string."""
+  emailAddress_contains: String
+
+  """All values not containing the given string."""
+  emailAddress_not_contains: String
+
+  """All values starting with the given string."""
+  emailAddress_starts_with: String
+
+  """All values not starting with the given string."""
+  emailAddress_not_starts_with: String
+
+  """All values ending with the given string."""
+  emailAddress_ends_with: String
+
+  """All values not ending with the given string."""
+  emailAddress_not_ends_with: String
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -7811,6 +7897,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  emailAddress: String
 }
 `
 
@@ -7843,6 +7930,8 @@ export type UserOrderByInput =   'id_ASC' |
   'id_DESC' |
   'displayName_ASC' |
   'displayName_DESC' |
+  'emailAddress_ASC' |
+  'emailAddress_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC' |
   'updatedAt_ASC' |
@@ -8048,6 +8137,20 @@ export interface UserWhereInput {
   displayName_not_starts_with?: String
   displayName_ends_with?: String
   displayName_not_ends_with?: String
+  emailAddress?: String
+  emailAddress_not?: String
+  emailAddress_in?: String[] | String
+  emailAddress_not_in?: String[] | String
+  emailAddress_lt?: String
+  emailAddress_lte?: String
+  emailAddress_gt?: String
+  emailAddress_gte?: String
+  emailAddress_contains?: String
+  emailAddress_not_contains?: String
+  emailAddress_starts_with?: String
+  emailAddress_not_starts_with?: String
+  emailAddress_ends_with?: String
+  emailAddress_not_ends_with?: String
   createdAt?: DateTime
   createdAt_not?: DateTime
   createdAt_in?: DateTime[] | DateTime
@@ -8234,6 +8337,7 @@ export interface SystemLoginUpdateOneWithoutUserInput {
 
 export interface UserUpdateWithoutCreatedAnnotatablesDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -8780,6 +8884,7 @@ export interface ImageUpdateOneInput {
 
 export interface UserWhereUniqueInput {
   id?: ID_Input
+  emailAddress?: String
 }
 
 export interface ImageUpdateDataInput {
@@ -8819,6 +8924,7 @@ export interface AnnotationWhereUniqueInput {
 
 export interface UserUpdateWithoutOwnedImagesDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -8934,6 +9040,7 @@ export interface AnnotatableUpdateDataInput {
 
 export interface UserUpdateWithoutLocalLoginDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
   annotations?: AnnotationUpdateManyWithoutAnnotatorInput
@@ -8977,6 +9084,7 @@ export interface AnnotationTaskUpdateWithWhereUniqueWithoutSubjectsInput {
 
 export interface UserUpdateWithoutSystemLoginDataInput {
   displayName?: String
+  emailAddress?: String
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
   annotations?: AnnotationUpdateManyWithoutAnnotatorInput
@@ -9044,6 +9152,7 @@ export interface UserUpsertWithoutOwnedImagesInput {
 
 export interface UserUpdateWithoutAssignedAnnotationTasksDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   annotations?: AnnotationUpdateManyWithoutAnnotatorInput
@@ -9134,6 +9243,7 @@ export interface GroupUpsertWithWhereUniqueWithoutMemberGroupsInput {
 
 export interface UserUpdateWithoutMemberOfGroupsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -9468,6 +9578,7 @@ export interface AnnotatableCreateOneInput {
 
 export interface UserUpdateWithoutOwnedAnnotatablesDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -9647,6 +9758,7 @@ export interface ImageCreateManyWithoutGroupInput {
 
 export interface UserUpdateWithoutCreatedImagesDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -9776,6 +9888,7 @@ export interface ClassificationContextCreateManyInput {
 
 export interface UserUpdateWithoutAnnotationsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -10021,6 +10134,7 @@ export interface AnnotationCreateManyWithoutCreatorInput {
 
 export interface UserUpdateWithoutOwnedClassificationLabelsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -10238,6 +10352,7 @@ export interface ClassificationLabelCreateManyWithoutCreatorInput {
 
 export interface UserUpdateWithoutOwnedClassificationContextsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -10375,6 +10490,7 @@ export interface AnnotationTaskUpdateOneInput {
 
 export interface UserCreateWithoutSystemLoginInput {
   displayName: String
+  emailAddress?: String
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
   annotations?: AnnotationCreateManyWithoutAnnotatorInput
@@ -10449,6 +10565,7 @@ export interface ClassificationLabelUpdateWithWhereUniqueNestedInput {
 
 export interface UserUpdateInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -10743,6 +10860,7 @@ export interface UserUpsertWithoutLocalLoginInput {
 
 export interface UserUpdateWithoutCreatedClassificationLabelsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -10890,6 +11008,7 @@ export interface AnnotationTaskCreateWithoutAssigneesInput {
 
 export interface UserUpdateWithoutOwnedAnnotationsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -11081,6 +11200,7 @@ export interface GroupCreateWithoutMemberUsersInput {
 
 export interface UserUpdateWithoutOwnedGroupsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -11151,6 +11271,7 @@ export interface AnnotationTaskUpdateWithWhereUniqueWithoutCreatorInput {
 
 export interface UserCreateWithoutAnnotationsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11228,6 +11349,7 @@ export interface ClassificationContextCreateInput {
 
 export interface UserUpdateWithoutOwnedAnnotationTasksDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -11251,6 +11373,7 @@ export interface UserUpdateWithoutOwnedAnnotationTasksDataInput {
 
 export interface UserCreateWithoutOwnedClassificationLabelsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11371,6 +11494,7 @@ export interface AnnotationTaskCreateInput {
 
 export interface UserUpdateWithoutCreatedClassificationContextsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -11460,6 +11584,7 @@ export interface ClassificationLabelUpdateWithoutOwnerDataInput {
 
 export interface UserCreateWithoutOwnedAnnotationsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11579,6 +11704,7 @@ export interface ClassificationLabelCreateWithoutOwnerInput {
 
 export interface UserUpdateWithoutManagerOfGroupsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -11602,6 +11728,7 @@ export interface UserUpdateWithoutManagerOfGroupsDataInput {
 
 export interface UserCreateWithoutManagerOfGroupsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11651,6 +11778,7 @@ export interface ClassificationContextUpdateWithWhereUniqueWithoutCreatorInput {
 
 export interface UserCreateWithoutCreatedGroupsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11688,6 +11816,7 @@ export interface ClassificationContextUpdateWithoutCreatorDataInput {
 
 export interface UserCreateWithoutCreatedAnnotationTasksInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11717,6 +11846,7 @@ export interface ClassificationContextUpsertWithWhereUniqueWithoutCreatorInput {
 
 export interface UserCreateWithoutCreatedAnnotationsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11759,6 +11889,7 @@ export interface ClassificationLabelUpdateWithWhereUniqueWithoutCreatorInput {
 
 export interface UserCreateWithoutLocalLoginInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
   annotations?: AnnotationCreateManyWithoutAnnotatorInput
@@ -11905,6 +12036,7 @@ export interface ImageUpsertNestedInput {
 
 export interface UserUpdateWithoutCreatedGroupsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -11965,6 +12097,7 @@ export interface GroupUpdateManyWithoutManagerGroupsInput {
 
 export interface UserCreateWithoutOwnedImagesInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -11993,6 +12126,7 @@ export interface GroupUpdateWithWhereUniqueWithoutManagerGroupsInput {
 
 export interface UserCreateWithoutAssignedAnnotationTasksInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   annotations?: AnnotationCreateManyWithoutAnnotatorInput
@@ -12133,6 +12267,7 @@ export interface ClassificationContextUpsertWithWhereUniqueWithoutOwnerInput {
 
 export interface UserCreateWithoutOwnedClassificationContextsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12180,6 +12315,7 @@ export interface AnnotationTaskUpsertWithWhereUniqueWithoutCreatorInput {
 
 export interface UserCreateWithoutCreatedClassificationLabelsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12226,6 +12362,7 @@ export interface GroupUpsertWithoutOwnedAnnotationTasksInput {
 
 export interface UserCreateWithoutOwnedAnnotationTasksInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12275,6 +12412,7 @@ export interface GroupCreateWithoutOwnedClassificationLabelsInput {
 
 export interface UserUpdateWithoutCreatedAnnotationTasksDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -12495,6 +12633,7 @@ export interface AnnotationUpsertWithWhereUniqueWithoutCreatorInput {
 
 export interface UserCreateInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12542,6 +12681,7 @@ export interface ClassificationLabelUpsertWithWhereUniqueWithoutGroupInput {
 
 export interface UserCreateWithoutOwnedAnnotatablesInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12632,6 +12772,7 @@ export interface AnnotationTaskUpsertNestedInput {
 
 export interface UserCreateWithoutOwnedGroupsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12678,6 +12819,7 @@ export interface ClassificationContextCreateWithoutCreatorInput {
 
 export interface UserUpdateWithoutCreatedAnnotationsDataInput {
   displayName?: String
+  emailAddress?: String
   systemLogin?: SystemLoginUpdateOneWithoutUserInput
   localLogin?: LocalLoginUpdateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskUpdateManyWithoutAssigneesInput
@@ -12701,6 +12843,7 @@ export interface UserUpdateWithoutCreatedAnnotationsDataInput {
 
 export interface UserCreateWithoutCreatedAnnotatablesInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12839,6 +12982,7 @@ export interface ClassificationContextUpsertWithWhereUniqueWithoutGroupInput {
 
 export interface UserCreateWithoutCreatedImagesInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12887,6 +13031,7 @@ export interface ImageUpsertWithWhereUniqueWithoutOwnerInput {
 
 export interface UserCreateWithoutCreatedClassificationContextsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -12968,6 +13113,7 @@ export interface ClassificationContextUpsertWithWhereUniqueNestedInput {
 
 export interface UserCreateWithoutMemberOfGroupsInput {
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLoginCreateOneWithoutUserInput
   localLogin?: LocalLoginCreateOneWithoutUserInput
   assignedAnnotationTasks?: AnnotationTaskCreateManyWithoutAssigneesInput
@@ -13167,6 +13313,7 @@ export interface ImageConnection {
 export interface User extends Node {
   id: ID_Output
   displayName: String
+  emailAddress?: String
   systemLogin?: SystemLogin
   localLogin?: LocalLogin
   assignedAnnotationTasks?: AnnotationTask[]
@@ -13252,6 +13399,7 @@ export interface AnnotationTaskEdge {
 export interface UserPreviousValues {
   id: ID_Output
   displayName: String
+  emailAddress?: String
   createdAt: DateTime
   updatedAt: DateTime
 }

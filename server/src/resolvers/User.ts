@@ -4,15 +4,16 @@ import { SystemLoginParent } from "./SystemLogin";
 import { LocalLoginParent } from "./LocalLogin";
 import { AnnotationTaskParent } from "./AnnotationTask";
 import { AnnotationParent } from "./Annotation";
-import {ClassificationLabelParent} from './ClassificationLabel';
-import {AnnotatableParent} from './Annotatable';
-import {ImageParent} from './Image';
-import {GroupParent} from './Group';
-import {ClassificationContextParent} from './ClassificationContext';
+import { GroupParent } from "./Group";
+import { AnnotatableParent } from "./Annotatable";
+import { ImageParent } from "./Image";
+import { ClassificationContextParent } from "./ClassificationContext";
+import { ClassificationLabelParent } from "./ClassificationLabel";
 
 export interface UserParent {
   id: string;
   displayName: string;
+  emailAddress?: string;
   systemLogin?: SystemLoginParent;
   localLogin?: LocalLoginParent;
   assignedAnnotationTasks: AnnotationTaskParent[];
@@ -40,8 +41,9 @@ export interface UserParent {
 export const User: UserResolvers.Type<TypeMap> = {
   id: parent => parent.id,
   displayName: parent => parent.displayName,
-  systemLogin: (parent, args, context: any) => context.db.user({id: parent.id}).systemLogin(),
-  localLogin: (parent, args, context: any) => context.db.user({id: parent.id}).localLogin(),
+  emailAddress: parent => parent.emailAddress,
+  systemLogin: parent => parent.systemLogin,
+  localLogin: parent => parent.localLogin,
   assignedAnnotationTasks: (parent, args) => parent.assignedAnnotationTasks,
   annotations: (parent, args) => parent.annotations,
   ownedGroups: (parent, args) => parent.ownedGroups,
@@ -64,5 +66,5 @@ export const User: UserResolvers.Type<TypeMap> = {
   createdClassificationLabels: (parent, args) =>
     parent.createdClassificationLabels,
   createdAt: parent => parent.createdAt,
-  updatedAt: parent => parent.updatedAt,
+  updatedAt: parent => parent.updatedAt
 };

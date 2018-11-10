@@ -712,6 +712,20 @@ export interface UserWhereInput {
   displayName_not_starts_with: string;
   displayName_ends_with: string;
   displayName_not_ends_with: string;
+  emailAddress: string;
+  emailAddress_not: string;
+  emailAddress_in: string;
+  emailAddress_not_in: string;
+  emailAddress_lt: string;
+  emailAddress_lte: string;
+  emailAddress_gt: string;
+  emailAddress_gte: string;
+  emailAddress_contains: string;
+  emailAddress_not_contains: string;
+  emailAddress_starts_with: string;
+  emailAddress_not_starts_with: string;
+  emailAddress_ends_with: string;
+  emailAddress_not_ends_with: string;
   createdAt: string;
   createdAt_not: string;
   createdAt_in: string;
@@ -1082,14 +1096,14 @@ export namespace MutationResolvers {
     info: GraphQLResolveInfo
   ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
 
-  export interface ArgsCreateUser {
-    username: string;
+  export interface ArgsSignup {
+    emailAddress: string;
     password: string;
   }
 
-  export type CreateUserType<T extends ITypeMap> = (
+  export type SignupType<T extends ITypeMap> = (
     parent: T["MutationParent"],
-    args: ArgsCreateUser,
+    args: ArgsSignup,
     ctx: T["Context"],
     info: GraphQLResolveInfo
   ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
@@ -1134,9 +1148,9 @@ export namespace MutationResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
-    createUser: (
+    signup: (
       parent: T["MutationParent"],
-      args: ArgsCreateUser,
+      args: ArgsSignup,
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
@@ -1206,6 +1220,13 @@ export namespace UserResolvers {
     ctx: T["Context"],
     info: GraphQLResolveInfo
   ) => string | Promise<string>;
+
+  export type EmailAddressType<T extends ITypeMap> = (
+    parent: T["UserParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
 
   export type SystemLoginType<T extends ITypeMap> = (
     parent: T["UserParent"],
@@ -1562,6 +1583,12 @@ export namespace UserResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => string | Promise<string>;
+    emailAddress: (
+      parent: T["UserParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
     systemLogin: (
       parent: T["UserParent"],
       args: {},

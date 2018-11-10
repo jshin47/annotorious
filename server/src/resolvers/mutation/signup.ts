@@ -2,13 +2,14 @@ import bcrypt from 'bcryptjs';
 import {AuthPayloadParent} from "../AuthPayload";
 import {signJwt} from '../../utilities/AuthenticationUtilities';
 
-export async function createUser(parent, { username, password }: { username: string, password: string }, context, info): Promise<AuthPayloadParent> {
+export async function signup(parent, { emailAddress, password }: { emailAddress: string, password: string }, context, info): Promise<AuthPayloadParent> {
 
   const user = await context.db.createUser({
-    displayName: username,
+    displayName: emailAddress,
+    emailAddress,
     localLogin: {
       create: {
-        username,
+        username: emailAddress,
         hashword: await bcrypt.hash(password, 10)
       }}});
   return {
@@ -19,4 +20,4 @@ export async function createUser(parent, { username, password }: { username: str
   throw new Error('Invalid username')
 }
 
-export default createUser;
+export default signup;

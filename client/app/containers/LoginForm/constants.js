@@ -9,7 +9,7 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const SET_CURRENT_USER = 'anno/App/SET_CURRENT_USER';
-export const ENSURE_AUTHENTICATION = 'anno/App/ENSURE_AUTHENTICATION';
-export const SET_MODAL_VISIBILITY = 'anno/App/SET_MODAL_VISIBILITY';
-export const SET_MODAL_ATTRIBUTES = 'anno/App/SET_MODAL_ATTRIBUTES';
+export const Enums = {
+  MODAL_LOGIN_FORM_MODE_SIGNUP: 'signup',
+  MODAL_LOGIN_FORM_MODE_LOGIN: 'login',
+};

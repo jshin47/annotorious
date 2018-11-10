@@ -13,7 +13,7 @@ import { ensureAuthentication, setCurrentUser } from '../App/actions';
 function Experimental({ dispatch }) {
 
   const doSomething = () => dispatch(ensureAuthentication({
-    postLoginAction: setCurrentUser({ token: null, user: null })
+    authenticatedAction: setCurrentUser({ token: null, user: null })
   }))
 
   return (

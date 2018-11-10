@@ -1,6 +1,6 @@
 import { take, call, put, select, fork, race } from 'redux-saga/effects';
 import { SET_CURRENT_USER } from '../App/constants';
-import { ENSURE_AUTHENTICATION, SET_LOGIN_MODAL_VISIBILITY } from './constants';
+import { ENSURE_AUTHENTICATION, SET_MODAL_VISIBILITY } from './constants';
 import { makeSelectCurrentAuthInfo } from './selectors';
 import { hideLoginModal, showLoginModal } from './actions';
 
@@ -20,21 +20,27 @@ function* ensureAuthenticationWorker() {
   while (true) {
     const action = yield take(ENSURE_AUTHENTICATION);
     const authInfo = yield select(makeSelectCurrentAuthInfo());
-    if (!authInfo || !authInfo.token || !authInfo.user) {
+
+    let authenticated = authInfo && authInfo.token && authInfo.user;
+
+    if (!authenticated) {
       yield put(showLoginModal());
 
       // race between hiding modal or successful login
       const { authUserChangedAction, modalHiddenAction } = yield race({
-        authUserChangedAction: take((action) => action.type === SET_CURRENT_USER && action.token),
-        modalHiddenAction: take((action) => action.type === SET_LOGIN_MODAL_VISIBILITY),
+        authUserChangedAction: take(({ type, token }) => type === SET_CURRENT_USER && token),
+        modalHiddenAction: take(({ type }) => type === SET_MODAL_VISIBILITY),
       });
 
+      console.log('race over', authUserChangedAction, modalHiddenAction);
+
       if (authUserChangedAction) {
-        yield put(hideLoginModal());
-        if (action.postLoginAction) {
-          yield put(action.postLoginAction);
-        }
+        authenticated = true;
       }
+    }
+
+    if (authenticated && action.authenticatedAction) {
+      yield put(action.authenticatedAction);
     }
   }
 }

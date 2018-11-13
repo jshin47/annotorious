@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { ensureAuthentication, setCurrentUser } from '../App/actions';
+import ListOfAnnotatables from '../AnnotationTaskDesk/ListOfAnnotatables';
+import { Box, Flex } from 'rebass';
 
 function Experimental({ dispatch }) {
 
@@ -17,9 +19,11 @@ function Experimental({ dispatch }) {
   }))
 
   return (
-    <div>
-      <button onClick={doSomething}>Do something</button>
-    </div>
+    <Flex style={{height: '500px'}}>
+      <Box width={1/4}>
+        <ListOfAnnotatables />
+      </Box>
+    </Flex>
   );
 }
 

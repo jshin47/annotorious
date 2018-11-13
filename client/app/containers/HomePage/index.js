@@ -17,10 +17,12 @@ import Experimental from 'containers/Experimental';
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
+      <div>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <Experimental />
-      </h1>
+      </div>
     );
   }
 }

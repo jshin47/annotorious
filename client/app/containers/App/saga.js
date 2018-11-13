@@ -1,4 +1,5 @@
 import { take, call, put, select, fork, race } from 'redux-saga/effects';
+import { replace } from 'connected-react-router';
 import { SET_CURRENT_USER } from '../App/constants';
 import { ENSURE_AUTHENTICATION, SET_MODAL_VISIBILITY } from './constants';
 import { makeSelectCurrentAuthInfo } from './selectors';
@@ -13,6 +14,7 @@ function* currentUserChangeWorker() {
     console.log('waiting for current user to change');
     const action = yield take(SET_CURRENT_USER);
     yield call(setAuthToken, action.token);
+    yield put(replace('fuckyou'))
   }
 }
 

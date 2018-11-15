@@ -14,14 +14,14 @@ import { Box, Flex, Image } from 'rebass';
 
 function ListOfAnnotatablesListItem({ thumbnailUri, title, style }) {
   return (
-    <Flex style={style} p={2} my={2}>
-      <Box width={1/4} p={2}>
+    <Flex style={style}>
+      <Box width={1/4}>
         <Image width={1} src={thumbnailUri} />
       </Box>
       <Box width={3/4}>
-        <h5>
+        <span>
           {title}
-        </h5>
+        </span>
       </Box>
     </Flex>
   );

@@ -21,6 +21,12 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
+const ANNOTATION_TOOL_TYPES = {
+  LABEL: 'LABEL',
+  BOUNDING_BOX: 'BOUNDING_BOX',
+  VECTOR: 'VECTOR',
+};
+
 class AnnotatableImage extends PureComponent {
   state = {};
 
@@ -60,44 +66,119 @@ export class ImageAnnotationTool extends PureComponent {
     mouseDownPosition: null,
     mouseUpPosition: null,
     lastMousePosition: null,
+    dragging: false,
   };
 
+  componentDidMount() {
+    document.addEventListener('mouseup', this.onMouseUp);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mouseup', this.onMouseUp);
+  }
+
   setMouseDownPosition = (e) => {
-    console.log(e);
-    const mouseDownPosition = {
-      x: e.evt.offsetX,
-      y: e.evt.offsetY
+    if (this.props.tool === ANNOTATION_TOOL_TYPES.BOUNDING_BOX) {
+      if (!this.state.dragging) {
+        const mouseDownPosition = {
+          x: e.evt.offsetX,
+          y: e.evt.offsetY
+        }
+        this.setState(() => ({ mouseDownPosition }));
+      } else {
+        this.setState(() => ({
+          mouseDownPosition: null,
+          mouseUpPosition: null,
+          lastMousePosition: null
+        }));
+      }
     }
-    this.setState(() => ({ mouseDownPosition }));
   }
   setLastMousePosition = (e) => {
-    console.log(e);
-    const lastMousePosition = {
-      x: e.evt.offsetX,
-      y: e.evt.offsetY
-    };
-    this.setState(() => ({ lastMousePosition }));
+    if (this.props.tool === ANNOTATION_TOOL_TYPES.BOUNDING_BOX) {
+      if (!this.state.dragging) {
+        const lastMousePosition = {
+          x: e.evt.offsetX,
+          y: e.evt.offsetY
+        };
+        this.setState(() => ({ lastMousePosition }));
+      } else {
+        this.setState(() => ({
+          mouseDownPosition: null,
+          mouseUpPosition: null,
+          lastMousePosition: null
+        }));
+      }
+    }
   };
 
   onMouseUp = (e) => {
-    console.log(e);
-    const mouseUpPosition = {
-      x: e.evt.offsetX,
-      y: e.evt.offsetY
-    };
+    if (this.props.tool === ANNOTATION_TOOL_TYPES.BOUNDING_BOX) {
+      if (!this.state.dragging) {
+        let mouseUpPosition = (e.evt) ? {
+          x: e.evt.offsetX,
+          y: e.evt.offsetY
+        } : this.state.mouseUpPosition;
 
-    const mouseDownPosition = this.state.mouseDownPosition;
+        mouseUpPosition = mouseUpPosition || this.state.lastMousePosition;
 
-    this.props.onCreateBoundingBox(getRectFromTwoPoints(mouseDownPosition, mouseUpPosition));
-    this.setState(() => ({
-      mouseDownPosition: null,
-      lastMousePosition: null,
-    }))
+        const mouseDownPosition = this.state.mouseDownPosition;
+
+        if (mouseDownPosition && mouseUpPosition) {
+          this.props.onCreateBoundingBox(getRectFromTwoPoints(mouseDownPosition, mouseUpPosition));
+        } else {
+          this.setState(() => ({
+            mouseDownPosition: null,
+            mouseUpPosition: null,
+            lastMousePosition: null
+          }));
+        }
+      }
+
+      this.setState(() => ({
+        mouseDownPosition: null,
+        mouseUpPosition: null,
+        lastMousePosition: null
+      }));
+    }
+  };
+
+  onMouseEnter = (e) => {
+    if (this.props.tool === ANNOTATION_TOOL_TYPES.BOUNDING_BOX) {
+      if (!this.state.dragging && this.state.mouseDownPosition) {
+        this.setState({ left: false });
+      }
+    }
+  }
+
+  onMouseOut = (e) => {
+    if (this.props.tool === ANNOTATION_TOOL_TYPES.BOUNDING_BOX) {
+      if (!this.state.dragging && this.state.mouseDownPosition) {
+        this.setState({ left: true });
+      }
+    }
+  };
+
+  onTouchTap = (e) => {
+    console.log('yo')
+    if (this.props.tool === ANNOTATION_TOOL_TYPES.LABEL) {
+      this.props.onClassifyEntireImage({
+        
+      })
+    }
   };
 
   render() {
     const {
-      width, height, image, tool, entireImageClassifications, boundingBoxClassifications = [], layerMaskClassifications, onCreateBoundingBox
+      width,
+      height,
+      image,
+      tool = ANNOTATION_TOOL_TYPES.LABEL,
+      entireImageClassifications = [],
+      boundingBoxClassifications = [],
+      layerMaskClassifications = [],
+      onCreateBoundingBox,
+      onClassifyEntireImage,
     } = this.props;
 
     const newBoundingBox = (this.state.mouseDownPosition) ? getRectFromTwoPoints(this.state.mouseDownPosition, this.state.lastMousePosition) : null;
@@ -105,6 +186,8 @@ export class ImageAnnotationTool extends PureComponent {
     return (
       <div
         style={{ width, height }}
+        onMouseLeave={this.onMouseOut}
+        onMouseEnter={this.onMouseEnter}
       >
         <Stage
           width={width}
@@ -112,6 +195,7 @@ export class ImageAnnotationTool extends PureComponent {
           onMouseDown={this.setMouseDownPosition}
           onMouseMove={this.setLastMousePosition}
           onMouseUp={this.onMouseUp}
+          onClick={this.onTouchTap}
         >
           <Layer>
             <AnnotatableImage src={image.uri} />
@@ -119,6 +203,23 @@ export class ImageAnnotationTool extends PureComponent {
           <Layer>
             {boundingBoxClassifications.map(({ x, y, width, height, fill = "red" }) => (
               <Rect
+                draggable
+                onDragStart={(e) => {
+                  this.setState(() => ({
+                    dragging: true,
+                    mouseDownPosition: null,
+                    mouseUpPosition: null,
+                    lastMousePosition: null
+                  }));
+                }}
+                onDragEnd={(e) => {
+                  this.setState(() => ({
+                    dragging: false,
+                    mouseDownPosition: null,
+                    mouseUpPosition: null,
+                    lastMousePosition: null
+                  }));
+                }}
                 x={x}
                 y={y}
                 width={width}
@@ -161,7 +262,13 @@ ImageAnnotationTool.propTypes = {
     fill: PropTypes.string,
   })),
   onCreateBoundingBox: PropTypes.func,
+  onClassifyEntireImage: PropTypes.func,
+  tool: PropTypes.oneOf([ANNOTATION_TOOL_TYPES.LABEL, ANNOTATION_TOOL_TYPES.BOUNDING_BOX]),
 };
+
+ImageAnnotationTool.defaultProps = {
+  tool: ANNOTATION_TOOL_TYPES.LABEL,
+}
 
 const mapStateToProps = createStructuredSelector({
   imageAnnotationTool: makeSelectImageAnnotationTool(),
